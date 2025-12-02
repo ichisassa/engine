@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --bg-space: #020b1f;
     --bg-deep: #031437;
     --bg-panel: rgba(8, 21, 48, 0.92);
@@ -185,18 +185,18 @@ body {
     width: 14px;
 }
 
-.base-status-scroll::-webkit-scrollbar-track {
+base-status-scroll::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.04);
     border-radius: 999px;
 }
 
-.base-status-scroll::-webkit-scrollbar-thumb {
+base-status-scroll::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, rgba(46, 150, 255, 0.8), rgba(34, 123, 230, 0.85));
     border-radius: 999px;
     border: 3px solid rgba(255, 255, 255, 0.04);
 }
 
-.base-status-scroll::-webkit-scrollbar-thumb:hover {
+base-status-scroll::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, rgba(65, 173, 255, 0.95), rgba(47, 140, 240, 0.95));
 }
 
@@ -220,47 +220,46 @@ body {
     margin: 0 0 0.8rem;
 }
 
-.base-status-head .page-title {
+base-status-head .page-title {
     margin: 0;
     font-size: 1.65rem;
     font-weight: 500;
     letter-spacing: 0.08em;
 }
 
-.base-status-head .page-subtext {
+base-status-head .page-subtext {
     margin: 0.35rem 0 1.75rem;
     color: rgba(203, 213, 245, 0.75);
     font-size: 0.95rem;
 }
 
-.base-status-section + .base-status-section {
+base-status-section + .base-status-section {
     margin-top: 2.5rem;
     padding-top: 2.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.base-status-section .section-title {
+base-status-section .section-title {
     margin: 0 0 1.5rem;
     font-size: 1.05rem;
     color: #cbd5f5;
     letter-spacing: 0.05em;
     font-weight: 500;
 }
-
-.base-status-grid {
+ase-status-grid {
     display: grid;
     gap: 1.25rem 1.5rem;
 }
 
-.base-status-grid--single {
+base-status-grid--single {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-.base-status-grid--double {
+base-status-grid--double {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.base-status-grid--triple {
+base-status-grid--triple {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -326,7 +325,7 @@ body {
 }
 
 /* ============================
-   入力フォーム（近未来スタイル）
+   入力フォーム系 近未来スタイル
    ============================ */
 
 .form-control {
@@ -363,25 +362,15 @@ body {
     box-shadow: none;
 }
 
-/* 基礎ステータス画面の入力項目：より強い発光 */
-.base-status-page .form-control:focus {
-    background: linear-gradient(140deg, rgba(12, 42, 73, 0.95), rgba(5, 15, 31, 0.92));
-    border-color: #72ffff;
-    color: #f6feff;
-    box-shadow:
-        0 0 0 2px rgba(114, 255, 255, 0.9),
-        0 0 18px rgba(90, 255, 255, 0.9),
-        0 0 35px rgba(56, 195, 255, 0.75),
-        0 0 60px rgba(30, 140, 255, 0.55);
-}
-
 /* ============================
-   サイドバーメニュー（ネオン発光）
+   サイドバーメニュー ネオン発光
    ============================ */
 
 .main-sidebar .nav-sidebar > .nav-item > .nav-link {
     transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
     border-left: 4px solid transparent;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .main-sidebar .nav-sidebar > .nav-item > .nav-link i {
@@ -401,12 +390,7 @@ body {
 }
 
 .main-sidebar .nav-sidebar > .nav-item > .nav-link.active {
-    background: linear-gradient(
-        90deg,
-        rgba(0, 230, 255, 0.55) 0%,
-        rgba(0, 110, 220, 0.35) 40%,
-        rgba(0, 0, 0, 0) 100%
-    );
+    background: rgba(41, 198, 255, 0.12);
     color: #f4ffff;
     border-left: 4px solid #44ffff;
     box-shadow:
@@ -418,5 +402,66 @@ body {
 
 .main-sidebar .nav-sidebar > .nav-item > .nav-link.active i {
     color: #62ffff;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+}
+
+.nav-sidebar .nav-treeview {
+    margin-left: 0;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: var(--text-muted);
+    padding-left: 2.75rem !important;
+    border-left: 4px solid transparent;
+    border-radius: 0;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link .nav-icon {
+    margin-right: 0.75rem;
+    width: 1.25rem;
+    text-align: center;
+    color: #8ec7ff;
+    transition: color 0.25s ease, filter 0.25s ease;
+}
+
+.base-status-nav > .nav-link {
+    background: transparent;
+    box-shadow: none;
+    border-left: 3px solid transparent;
+    color: var(--text-main);
+}
+
+.base-status-nav > .nav-link:hover,
+.base-status-nav.menu-open > .nav-link {
+    background: transparent;
+    border-left: 3px solid transparent;
+    color: var(--text-main);
+}
+
+.base-status-nav > .nav-link i {
+    color: #8ec7ff;
+    filter: none;
+}
+
+.base-status-nav.menu-open > .nav-link i {
+    color: var(--text-main);
+    filter: none;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    color: #f4ffff !important;
+    background: rgba(41, 198, 255, 0.12) !important;
+    border-left-color: #44ffff;
+    box-shadow:
+        0 0 12px rgba(0, 255, 255, 0.75),
+        0 0 25px rgba(40, 200, 255, 0.5),
+        0 0 45px rgba(15, 120, 255, 0.45) !important;
+    backdrop-filter: blur(3px);
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
+    color: #62ffff !important;
     filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
 }

@@ -1,8 +1,14 @@
 <section class="content base-status-page" th:fragment="content">
     <div class="base-status-scroll">
         <div class="base-status-card">
+            <div class="base-status-head">
+                <p class="eyebrow">BASE STATUS</p>
+                <h2 class="page-title">基礎ステータス入力</h2>
+                <p class="page-subtext">共鳴者の詳細ステータスをここで調整できます。</p>
+            </div>
 
             <div class="base-status-section">
+                <h3 class="section-title">主要パラメータ</h3>
                 <div class="base-status-grid base-status-grid--triple">
                     <div class="form-field">
                         <label>HP</label>
@@ -80,6 +86,12 @@
                         <label>消滅ダメージアップ</label>
                         <input type="text" class="form-control form-control-sm" placeholder="消滅ダメージアップ">
                     </div>
+                </div>
+            </div>
+
+            <div class="base-status-section">
+                <h3 class="section-title">耐性・補助指標</h3>
+                <div class="base-status-grid base-status-grid--triple">
                     <div class="form-field">
                         <label>物理ダメージ耐性</label>
                         <input type="text" class="form-control form-control-sm" placeholder="物理ダメージ耐性">

@@ -21,12 +21,31 @@
                         <p>ダッシュボード</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a th:href="@{/base-status}" th:class="'nav-link' + (${activePage} == 'base-status' ? ' active' : '')">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>基礎ステータス</p>
+
+                <li class="nav-item has-treeview base-status-nav menu-open">
+                    <a href="#" class="nav-link" aria-expanded="true">
+                        <i class="nav-icon fas fa-dna"></i>
+                        <p>
+                            基礎ステータス
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: block;">
+                        <li class="nav-item">
+                            <a th:href="@{/base-status/input}" th:class="'nav-link' + (${activePage} == 'base-status-input' ? ' active' : '')">
+                                <i class="far fa-edit nav-icon"></i>
+                                <p>入力画面</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/base-status/list}" th:class="'nav-link' + (${activePage} == 'base-status-list' ? ' active' : '')">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p>一覧画面</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="nav-item">
                     <a th:href="@{/reports}" th:class="'nav-link' + (${activePage} == 'reports' ? ' active' : '')">
                         <i class="nav-icon fas fa-chart-pie"></i>

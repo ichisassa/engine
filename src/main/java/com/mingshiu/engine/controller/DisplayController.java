@@ -45,7 +45,17 @@ public class DisplayController {
     }
 
     @GetMapping("/base-status")
-    public String showBaseStatus(Model model) {
-        return render("基礎ステータス", "contents/base-status", "base-status", model);
+    public String baseStatusRoot(Model model) {
+        return render("基礎ステータス入力", "contents/base-status-input", "base-status-input", model);
+    }
+
+    @GetMapping("/base-status/input")
+    public String baseStatusInput(Model model) {
+        return render("基礎ステータス入力", "contents/base-status-input", "base-status-input", model);
+    }
+
+    @GetMapping("/base-status/list")
+    public String baseStatusList(Model model) {
+        return render("基礎ステータス一覧", "contents/base-status-list", "base-status-list", model);
     }
 }
