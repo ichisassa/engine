@@ -1,6 +1,3 @@
 <section class="content solo" th:fragment="content">
-    <div class="solo-message">
-        <h2>プロファイル</h2>
-        <p>オペレーター情報やアクセス権の管理パネルをここに用意します。</p>
-    </div>
+    <div th:replace="~{fragments/solo-message :: solo(title='プロファイル', message='オペレーター情報やアクセス権の管理パネルをここに用意します。')}"></div>
 </section>

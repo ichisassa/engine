@@ -1,6 +1,3 @@
 <section class="content solo" th:fragment="content">
-    <div class="solo-message">
-        <h2>メール一覧</h2>
-        <p>到着済みメールを表示するテーブルがここに並びます。</p>
-    </div>
+    <div th:replace="~{fragments/solo-message :: solo(title='メール一覧', message='到着済みメールを表示するテーブルがここに並びます。')}"></div>
 </section>
