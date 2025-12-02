@@ -1,34 +1,63 @@
-<aside class="sidebar" th:fragment="sidebar">
-    <nav class="sidebar__nav">
-        <a class="nav-link"
-           th:href="@{/}"
-           th:classappend="${page == 'dashboard'} ? ' active' : ''">
-            <i class="fa-solid fa-gauge"></i> ダッシュボード
-        </a>
-        <a class="nav-link"
-           th:href="@{/reports}"
-           th:classappend="${page == 'reports'} ? ' active' : ''">
-            <i class="fa-solid fa-layer-group"></i> レポート
-        </a>
-        <a class="nav-link"
-           th:href="@{/mail/list}"
-           th:classappend="${page == 'mail-list'} ? ' active' : ''">
-            <i class="fa-solid fa-table-list"></i> メール一覧
-        </a>
-        <a class="nav-link"
-           th:href="@{/mail/send}"
-           th:classappend="${page == 'mail-send'} ? ' active' : ''">
-            <i class="fa-solid fa-paper-plane"></i> メール送信
-        </a>
-        <a class="nav-link"
-           th:href="@{/profile}"
-           th:classappend="${page == 'profile'} ? ' active' : ''">
-            <i class="fa-solid fa-user"></i> プロファイル
-        </a>
-        <a class="nav-link"
-           th:href="@{/settings}"
-           th:classappend="${page == 'settings'} ? ' active' : ''">
-            <i class="fa-solid fa-gear"></i> 設定
-        </a>
-    </nav>
+<aside th:fragment="sidebar(activePage)" class="main-sidebar sidebar-dark-primary elevation-4">
+    <a th:href="@{/}" class="brand-link">
+        <span class="brand-text font-weight-light">鳴潮 Mingshiu Engine</span>
+    </a>
+
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+            <div class="image">
+                <img src="https://i.pravatar.cc/64?img=12" class="img-circle elevation-2" alt="User">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Operator</a>
+            </div>
+        </div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a th:href="@{/}" th:class="'nav-link' + (${activePage} == 'dashboard' ? ' active' : '')">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>ダッシュボード</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/base-status}" th:class="'nav-link' + (${activePage} == 'base-status' ? ' active' : '')">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>基礎ステータス</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/reports}" th:class="'nav-link' + (${activePage} == 'reports' ? ' active' : '')">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>レポート</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/mail/list}" th:class="'nav-link' + (${activePage} == 'mail-list' ? ' active' : '')">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>メール一覧</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/mail/send}" th:class="'nav-link' + (${activePage} == 'mail-send' ? ' active' : '')">
+                        <i class="nav-icon fas fa-paper-plane"></i>
+                        <p>メール送信</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/profile}" th:class="'nav-link' + (${activePage} == 'profile' ? ' active' : '')">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>プロファイル</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/settings}" th:class="'nav-link' + (${activePage} == 'settings' ? ' active' : '')">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>設定</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </aside>
