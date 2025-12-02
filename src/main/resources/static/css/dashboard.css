@@ -298,6 +298,40 @@ body {
     box-shadow: none;
 }
 
+.mingshiu-section-card .row {
+    row-gap: 0.75rem;
+}
+
+.mingshiu-section-card .form-label {
+    font-size: 0.78rem;
+    color: #a9bfd8;
+    margin-bottom: 0.2rem;
+}
+
+.mingshiu-section-card .form-control {
+    font-size: 0.82rem;
+}
+
+select.form-control.mingshiu-select {
+    background-color: #050f1f;
+    border: 1px solid #1f3a58;
+    color: #e6f4ff;
+    border-radius: 999px;
+    padding-inline: 1.2rem;
+    padding-block: 0.55rem;
+}
+
+select.form-control.mingshiu-select:focus {
+    background-color: #071528;
+    border-color: #3bffff;
+    color: #f1fbff;
+    outline: 0;
+    box-shadow:
+        0 0 0 1px rgba(59, 255, 255, 0.7),
+        0 0 10px rgba(59, 255, 255, 0.8),
+        0 0 22px rgba(40, 180, 255, 0.5);
+}
+
 /* ============================
    サイドバーメニュー ネオン発光
    ============================ */
