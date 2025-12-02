@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鳴潮 Mingshiu Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdH0Lk9R/+qvOB0fOkH1ZZ1xdjQbaO5jM90oCbGyF/F7kh/3Gzdh0dX8GZFZ5ZM3S3XG8fX0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-shell">
+    <div th:replace="fragments/header :: header"></div>
+    <div class="dashboard-layout">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+        <main class="main-panel">
+            <section th:replace="${content}">
+                <div class="content">Loading...</div>
+            </section>
+        </main>
+    </div>
+</div>
+<script th:inline="javascript">
+    const layout = document.querySelector('.dashboard-layout');
+    const toggleButton = document.querySelector('.menu-toggle');
+
+    toggleButton?.addEventListener('click', () => {
+        layout?.classList.toggle('sidebar-collapsed');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<header class="topbar" th:fragment="header">
+    <div class="topbar__brand-block">
+        <span class="topbar__logo">鳴潮</span>
+        <span class="topbar__version">Mingshiu Engine</span>
+    </div>
+    <div class="topbar__main">
+        <div class="topbar__controls">
+            <button class="menu-toggle" type="button" aria-label="メニュー切替">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+            <div class="topbar__search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+        <div class="topbar__right">
+            <div class="topbar__support">
+                <span>ご質問は</span>
+                <a href="mailto:support@mingshiu.com">support@mingshiu.com</a>
+            </div>
+            <div class="topbar__avatar">
+                <img src="https://i.pravatar.cc/60?img=12" alt="user">
+            </div>
+        </div>
+    </div>
+</header>

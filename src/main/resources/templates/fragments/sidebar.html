@@ -1,0 +1,34 @@
+<aside class="sidebar" th:fragment="sidebar">
+    <nav class="sidebar__nav">
+        <a class="nav-link"
+           th:href="@{/}"
+           th:classappend="${page == 'dashboard'} ? ' active' : ''">
+            <i class="fa-solid fa-gauge"></i> ダッシュボード
+        </a>
+        <a class="nav-link"
+           th:href="@{/reports}"
+           th:classappend="${page == 'reports'} ? ' active' : ''">
+            <i class="fa-solid fa-layer-group"></i> レポート
+        </a>
+        <a class="nav-link"
+           th:href="@{/mail/list}"
+           th:classappend="${page == 'mail-list'} ? ' active' : ''">
+            <i class="fa-solid fa-table-list"></i> メール一覧
+        </a>
+        <a class="nav-link"
+           th:href="@{/mail/send}"
+           th:classappend="${page == 'mail-send'} ? ' active' : ''">
+            <i class="fa-solid fa-paper-plane"></i> メール送信
+        </a>
+        <a class="nav-link"
+           th:href="@{/profile}"
+           th:classappend="${page == 'profile'} ? ' active' : ''">
+            <i class="fa-solid fa-user"></i> プロファイル
+        </a>
+        <a class="nav-link"
+           th:href="@{/settings}"
+           th:classappend="${page == 'settings'} ? ' active' : ''">
+            <i class="fa-solid fa-gear"></i> 設定
+        </a>
+    </nav>
+</aside>
