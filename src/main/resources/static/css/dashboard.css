@@ -324,3 +324,87 @@ body {
         padding: 2rem 1rem;
     }
 }
+
+/* ============================
+   入力フォーム（近未来スタイル）
+   ============================ */
+
+.form-control {
+    background-color: #050f1f;
+    border: 1px solid #1f3a58;
+    color: #e6f4ff;
+    border-radius: 999px;
+    padding-inline: 1.2rem;
+    padding-block: 0.55rem;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: #637a94;
+}
+
+.form-control:focus {
+    background-color: #071528;
+    border-color: #3bffff;
+    color: #f1fbff;
+    outline: 0;
+    box-shadow:
+        0 0 0 1px rgba(59, 255, 255, 0.7),
+        0 0 10px rgba(59, 255, 255, 0.8),
+        0 0 22px rgba(40, 180, 255, 0.5);
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #050b15;
+    border-color: #1a2735;
+    color: #6c7f96;
+    box-shadow: none;
+}
+
+/* ============================
+   サイドバーメニュー（ネオン発光）
+   ============================ */
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link {
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    border-left: 4px solid transparent;
+}
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link i {
+    color: #8ec7ff;
+    transition: color 0.25s ease, filter 0.25s ease;
+}
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link:hover {
+    background: rgba(0, 180, 255, 0.2);
+    color: #e4faff;
+    box-shadow: inset 0 0 18px rgba(0, 200, 255, 0.35);
+}
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link:hover i {
+    color: #bdf3ff;
+    filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.8));
+}
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link.active {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 230, 255, 0.55) 0%,
+        rgba(0, 110, 220, 0.35) 40%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    color: #f4ffff;
+    border-left: 4px solid #44ffff;
+    box-shadow:
+        0 0 12px rgba(0, 255, 255, 0.75),
+        0 0 25px rgba(40, 200, 255, 0.5),
+        0 0 45px rgba(15, 120, 255, 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.main-sidebar .nav-sidebar > .nav-item > .nav-link.active i {
+    color: #62ffff;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+}
