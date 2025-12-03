@@ -13,44 +13,52 @@
             </div>
         </div>
 
-        <nav class="mt-2">
+        <nav class="mt-2" aria-label="Sidebar navigation">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a th:href="@{/}" th:class="'nav-link' + (${activePage} == 'dashboard' ? ' active' : '')">
+                    <a th:href="@{/}" class="nav-link"
+                       th:classappend="${activePage} == 'dashboard' ? ' active' : ''">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>ダッシュボード</p>
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview base-status-nav menu-open">
-                    <a href="#" class="nav-link" aria-expanded="true">
+                <li class="nav-item has-treeview base-status-nav"
+                    th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' menu-open' : ''">
+                    <a href="#" class="nav-link"
+                       th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''"
+                       th:attr="aria-expanded=${#strings.startsWith(activePage, 'status-')}">
                         <i class="nav-icon fas fa-dna"></i>
                         <p>
                             ステータス
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a th:href="@{/status/base/input}" th:class="'nav-link' + (${activePage} == 'status-base-input' ? ' active' : '')">
+                            <a th:href="@{/status/base/input}" class="nav-link"
+                               th:classappend="${activePage} == 'status-base-input' ? ' active' : ''">
                                 <i class="far fa-edit nav-icon"></i>
                                 <p>基礎入力</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/status/weapon/input}" th:class="'nav-link' + (${activePage} == 'status-weapon-input' ? ' active' : '')">
+                            <a th:href="@{/status/weapon/input}" class="nav-link"
+                               th:classappend="${activePage} == 'status-weapon-input' ? ' active' : ''">
                                 <i class="far fa-edit nav-icon"></i>
                                 <p>武器入力</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/status/bonus/input}" th:class="'nav-link' + (${activePage} == 'status-bonus-input' ? ' active' : '')">
+                            <a th:href="@{/status/bonus/input}" class="nav-link"
+                               th:classappend="${activePage} == 'status-bonus-input' ? ' active' : ''">
                                 <i class="far fa-edit nav-icon"></i>
                                 <p>ボーナス入力</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/status/echo/input}" th:class="'nav-link' + (${activePage} == 'status-echo-input' ? ' active' : '')">
+                            <a th:href="@{/status/echo/input}" class="nav-link"
+                               th:classappend="${activePage} == 'status-echo-input' ? ' active' : ''">
                                 <i class="far fa-edit nav-icon"></i>
                                 <p>音骸入力</p>
                             </a>
@@ -58,7 +66,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/settings}" th:class="'nav-link' + (${activePage} == 'settings' ? ' active' : '')">
+                    <a th:href="@{/settings}" class="nav-link"
+                       th:classappend="${activePage} == 'settings' ? ' active' : ''">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>設定</p>
                     </a>

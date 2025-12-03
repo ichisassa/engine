@@ -1,17 +1,69 @@
-﻿:root {
-    --bg-space: #020b1f;
-    --bg-deep: #031437;
-    --bg-panel: rgba(8, 21, 48, 0.92);
-    --bg-panel-darker: rgba(6, 13, 31, 0.92);
-    --bg-sidebar-top: #060f25;
-    --bg-sidebar-bottom: #010714;
-    --card-top: rgba(18, 42, 84, 0.92);
-    --card-bottom: rgba(10, 23, 54, 0.95);
-    --text-main: #e8f2ff;
-    --text-muted: #8da0c3;
-    --accent: #29c6ff;
-    --accent-soft: rgba(41, 198, 255, 0.45);
+﻿/*
+ * Refactoring summary:
+ * 1) Introduced design tokens for repeated gradients, colors, and shadows.
+ * 2) Reordered the stylesheet into the requested eleven sections for quick scanning.
+ * 3) Unified header/search/sidebar behaviors to remove competing overrides.
+ * 4) Promoted neon panel, badge, and button motifs into reusable classes.
+ * 5) Grouped status form styles under page-specific blocks with shared utilities.
+ * 6) Removed redundant declarations and documented each major block.
+ */
+
+/* ==================================================================
+   01. Design Tokens
+   ================================================================== */
+:root {
+    --font-base: 'Segoe UI', 'Noto Sans JP', system-ui, sans-serif;
+    --color-bg-space: #020b1f;
+    --color-bg-deep: #031437;
+    --color-bg-panel: rgba(8, 21, 48, 0.92);
+    --color-bg-panel-dark: rgba(6, 13, 31, 0.92);
+    --color-bg-sidebar-top: #060f25;
+    --color-bg-sidebar-bottom: #010714;
+    --color-card-top: rgba(18, 42, 84, 0.92);
+    --color-card-bottom: rgba(10, 23, 54, 0.95);
+    --color-text-main: #e8f2ff;
+    --color-text-muted: #8da0c3;
+    --color-text-subtle: rgba(203, 213, 245, 0.8);
+    --color-accent: #29c6ff;
+    --color-accent-strong: rgba(0, 200, 255, 0.9);
+    --color-accent-soft: rgba(41, 198, 255, 0.45);
+    --color-border-panel: rgba(255, 255, 255, 0.14);
+    --color-border-soft: rgba(255, 255, 255, 0.08);
+    --radius-card: 20px;
+    --radius-panel: 14px;
+    --radius-pill: 999px;
+    --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.45);
+    --shadow-panel: 0 22px 35px rgba(0, 0, 0, 0.55);
+    --shadow-header: 0 8px 18px rgba(0, 0, 0, 0.65);
+    --shadow-neon-soft: 0 0 12px rgba(0, 180, 255, 0.55);
+    --shadow-neon-strong: 0 0 24px rgba(0, 160, 255, 0.45);
+    --grad-body:
+        radial-gradient(circle at 20% 15%, rgba(28, 94, 169, 0.4), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(10, 52, 110, 0.4), transparent 60%),
+        linear-gradient(180deg, #050e22 0%, #030c1f 55%, #010714 100%);
+    --grad-content:
+        radial-gradient(circle at 25% 15%, rgba(18, 65, 136, 0.25), transparent 50%),
+        radial-gradient(circle at 85% 10%, rgba(11, 42, 92, 0.3), transparent 60%),
+        linear-gradient(180deg, rgba(5, 10, 25, 0.9), rgba(3, 9, 22, 0.95));
+    --grad-card: linear-gradient(150deg, var(--color-card-top), var(--color-card-bottom));
+    --grad-panel: linear-gradient(135deg, rgba(5, 13, 30, 0.96), rgba(6, 20, 42, 0.94));
+    --grad-header: radial-gradient(circle at 0% 0%, rgba(0, 180, 255, 0.18), transparent 55%), linear-gradient(90deg, #020818, #06142b);
+    --grad-sidebar: radial-gradient(circle at 0 0, rgba(20, 91, 165, 0.25), transparent 60%), linear-gradient(180deg, var(--color-bg-sidebar-top), var(--color-bg-sidebar-bottom));
+    --grad-title-accent: linear-gradient(180deg, rgba(0, 220, 255, 0.9), rgba(0, 120, 255, 0.4));
+    --grad-legend: linear-gradient(90deg, rgba(0, 180, 255, 0.35) 0%, rgba(0, 120, 255, 0.65) 30%, rgba(0, 180, 255, 0.35) 100%);
+    --grad-search: linear-gradient(135deg, rgba(6, 14, 28, 0.95), rgba(10, 22, 40, 0.95));
+    --grad-search-focus: linear-gradient(135deg, rgba(6, 20, 45, 0.98), rgba(12, 32, 64, 0.98));
+    --grad-btn-neon: linear-gradient(120deg, rgba(0, 160, 255, 0.95), rgba(0, 220, 255, 0.95));
     --scrollbar-compensation: 22px;
+}
+
+/* ==================================================================
+   02. Global Base
+   ================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 html,
@@ -19,24 +71,23 @@ body {
     height: 100%;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', 'Noto Sans JP', system-ui, sans-serif;
-    background:
-        radial-gradient(circle at 20% 15%, rgba(28, 94, 169, 0.4), transparent 55%),
-        radial-gradient(circle at 80% 0%, rgba(10, 52, 110, 0.4), transparent 60%),
-        linear-gradient(180deg, #050e22 0%, #030c1f 55%, #010714 100%);
-    color: var(--text-main);
+    font-family: var(--font-base);
+    background: var(--grad-body);
+    color: var(--color-text-main);
     min-height: 100vh;
     overflow-y: hidden;
 }
 
-/* Remove native number spinners; values are controlled manually */
+a {
+    color: var(--color-accent);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #bdf3ff;
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -47,7 +98,9 @@ input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
-
+/* ==================================================================
+   03. Layout: Header / Sidebar / Content Wrapper
+   ================================================================== */
 .wrapper {
     min-height: 100vh;
     position: relative;
@@ -62,55 +115,10 @@ input[type="number"] {
 }
 
 .content-wrapper {
-    background:
-        radial-gradient(circle at 25% 15%, rgba(18, 65, 136, 0.25), transparent 50%),
-        radial-gradient(circle at 85% 10%, rgba(11, 42, 92, 0.3), transparent 60%),
-        linear-gradient(180deg, rgba(5, 10, 25, 0.9), rgba(3, 9, 22, 0.95));
-    color: var(--text-main);
+    background: var(--grad-content);
+    color: var(--color-text-main);
     min-height: calc(100vh - 120px);
     padding-bottom: 3rem;
-}
-
-.main-header.navbar {
-    background:
-        linear-gradient(120deg, rgba(2, 13, 34, 0.95), rgba(10, 29, 63, 0.95));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-}
-
-.main-header .navbar-nav .nav-link {
-    color: var(--text-muted);
-}
-
-.main-header .navbar-nav .nav-link:hover {
-    color: var(--text-main);
-}
-
-.main-sidebar {
-    background:
-        radial-gradient(circle at 0 0, rgba(20, 91, 165, 0.25), transparent 60%),
-        linear-gradient(180deg, var(--bg-sidebar-top), var(--bg-sidebar-bottom));
-}
-
-.brand-link {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-}
-
-.nav-sidebar .nav-item .nav-link {
-    color: var(--text-muted);
-}
-
-.nav-sidebar .nav-item .nav-link.active,
-.nav-sidebar .nav-item .nav-link:hover {
-    color: var(--text-main);
-    background: rgba(41, 198, 255, 0.12);
-    border-left: 3px solid var(--accent);
-}
-
-.nav-sidebar .nav-item .nav-link.active i,
-.nav-sidebar .nav-item .nav-link:hover i {
-    color: var(--accent);
 }
 
 .content-header {
@@ -119,18 +127,436 @@ input[type="number"] {
     background: transparent;
 }
 
+.main-footer {
+    background: rgba(3, 9, 22, 0.85);
+    border-top: 1px solid var(--color-border-soft);
+    color: var(--color-text-muted);
+}
+
+.main-header.navbar {
+    position: relative;
+    background: var(--grad-header);
+    border-bottom: 1px solid var(--color-border-soft);
+    box-shadow: var(--shadow-header), inset 0 -2px 6px rgba(0, 140, 255, 0.15);
+    color: var(--color-text-main);
+}
+
+.main-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 200, 255, 0) 0%, rgba(0, 200, 255, 0.55) 35%, rgba(0, 200, 255, 0.55) 65%, rgba(0, 200, 255, 0) 100%);
+    box-shadow: var(--shadow-neon-soft);
+    pointer-events: none;
+}
+
+.main-header .navbar-nav .nav-link {
+    color: rgba(190, 210, 255, 0.8);
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.main-header .navbar-nav .nav-link:hover {
+    color: rgba(220, 240, 255, 1);
+}
+
+.main-header .navbar-nav.ml-auto .nav-link {
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+}
+
+.header-search {
+    margin-left: 1.5rem;
+}
+
+.header-search .input-group.input-group-sm {
+    height: 34px;
+}
+
+.header-search .form-control-navbar {
+    min-width: 240px;
+    height: 100%;
+    background: var(--grad-search);
+    border-radius: 0;
+    border: 1px solid rgba(60, 140, 255, 0.45);
+    color: #cfe8ff;
+    padding: 0 0.9rem;
+    box-shadow: 0 0 6px rgba(0, 100, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.header-search .form-control-navbar::placeholder {
+    color: rgba(180, 205, 235, 0.65);
+}
+
+.header-search .form-control-navbar:focus {
+    outline: none;
+    border-color: rgba(80, 180, 255, 0.9);
+    background: var(--grad-search-focus);
+    box-shadow: 0 0 12px rgba(0, 190, 255, 0.65), 0 0 22px rgba(0, 160, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.header-search .btn-navbar {
+    border-left: none;
+    border-radius: 0;
+    height: 100%;
+}
+
+.main-sidebar {
+    background: var(--grad-sidebar);
+}
+
+.brand-link {
+    border-bottom: 1px solid var(--color-border-soft);
+    color: var(--color-text-main);
+}
+
+.nav-sidebar .nav-item .nav-link {
+    color: var(--color-text-muted);
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    border-left: 4px solid transparent;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.nav-sidebar .nav-item .nav-link i {
+    color: #8ec7ff;
+    transition: color 0.25s ease, filter 0.25s ease;
+}
+
+.nav-sidebar .nav-item .nav-link:hover {
+    color: var(--color-text-main);
+    background: rgba(0, 180, 255, 0.2);
+    box-shadow: inset 0 0 18px rgba(0, 200, 255, 0.35);
+}
+
+.nav-sidebar .nav-item .nav-link:hover i {
+    color: #bdf3ff;
+    filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.8));
+}
+
+.nav-sidebar .nav-item .nav-link.active {
+    color: var(--color-text-main);
+    background: rgba(41, 198, 255, 0.12);
+    border-left-color: #44ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.75), 0 0 25px rgba(40, 200, 255, 0.5), 0 0 45px rgba(15, 120, 255, 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.nav-sidebar .nav-item .nav-link.active i {
+    color: #62ffff;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+}
+
+.nav-sidebar .nav-treeview {
+    margin-left: 0;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link {
+    padding-left: 2.75rem;
+    border-left: 4px solid transparent;
+    border-radius: 0;
+    color: var(--color-text-muted);
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link .nav-icon {
+    margin-right: 0.75rem;
+    width: 1.25rem;
+    text-align: center;
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    color: #f4ffff;
+    background: rgba(41, 198, 255, 0.12);
+    border-left-color: #44ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.75), 0 0 25px rgba(40, 200, 255, 0.5), 0 0 45px rgba(15, 120, 255, 0.45);
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
+    color: #62ffff;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+}
+
+.base-status-nav > .nav-link {
+    background: transparent;
+    box-shadow: none;
+    border-left: 3px solid transparent;
+    color: var(--color-text-main);
+}
+
+.base-status-nav.menu-open > .nav-link i {
+    color: var(--color-text-main);
+    filter: none;
+}
+
+@media (max-width: 768px) {
+    .content-header {
+        padding-inline: 0.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    body.sidebar-mini.sidebar-collapse .main-sidebar {
+        margin-left: -250px;
+        transition: margin-left 0.2s ease-in-out;
+    }
+
+    body.sidebar-mini.sidebar-collapse .content-wrapper,
+    body.sidebar-mini.sidebar-collapse .main-footer,
+    body.sidebar-mini.sidebar-collapse .main-header {
+        margin-left: 0;
+        transition: margin-left 0.2s ease-in-out;
+    }
+
+    body.sidebar-mini.sidebar-collapse .main-header .navbar {
+        display: flex;
+        align-items: center;
+    }
+
+    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav:first-child {
+        margin-right: 1.5rem;
+    }
+
+    body.sidebar-mini.sidebar-collapse .header-search {
+        margin-left: 0;
+        margin-right: 0;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav.ml-auto {
+        margin-left: 1.5rem;
+    }
+
+    body.sidebar-mini.sidebar-collapse .nav-sidebar .nav-treeview {
+        display: none;
+    }
+}
+/* ==================================================================
+   04. Components: Card / Panel / Form / Button / Badge
+   ================================================================== */
+.panel-deep {
+    border-radius: var(--radius-panel);
+    background: var(--grad-panel);
+    border: 1px solid var(--color-border-panel);
+    box-shadow: var(--shadow-panel), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.card,
+.info-box,
+.small-box {
+    border: none;
+    border-radius: var(--radius-card);
+    background: var(--grad-card);
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.btn-neon {
+    border: 1px solid rgba(80, 180, 255, 0.9);
+    background: var(--grad-btn-neon);
+    color: #f6fbff;
+    box-shadow: 0 0 14px rgba(0, 190, 255, 0.7), var(--shadow-neon-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.9rem;
+    transition: filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-neon:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 18px rgba(0, 220, 255, 0.85), 0 0 28px rgba(0, 180, 255, 0.6);
+}
+
+.badge-neon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.22rem 1rem 0.25rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #e9f1ff;
+    background: var(--grad-legend);
+    border: 1px solid rgba(0, 150, 255, 0.45);
+    box-shadow: 0 0 8px rgba(0, 160, 255, 0.55), 0 0 15px rgba(0, 140, 255, 0.35);
+    white-space: nowrap;
+}
+
+.form-control,
+select.mingshiu-select,
+select.neo-select {
+    background-color: #050f1f;
+    border: 1px solid #1f3a58;
+    color: #e6f4ff;
+    border-radius: var(--radius-pill);
+    padding-inline: 1.2rem;
+    padding-block: 0.55rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.form-control::placeholder,
+select.mingshiu-select::placeholder,
+select.neo-select::placeholder {
+    color: #637a94;
+}
+
+.form-control:focus,
+select.mingshiu-select:focus,
+select.neo-select:focus {
+    background-color: #071528;
+    border-color: #3bffff;
+    color: #f1fbff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #050b15;
+    border-color: #1a2735;
+    color: #6c7f96;
+    box-shadow: none;
+}
+
+select.mingshiu-select,
+select.neo-select {
+    font-size: 1rem;
+    line-height: 45px;
+    height: 45px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+select.mingshiu-select option {
+    font-size: 1rem;
+}
+
+.neo-select {
+    appearance: none;
+    background-image: none;
+    width: 100%;
+    padding: 0.6rem 3.25rem 0.6rem 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
+
+.neo-select::-ms-expand {
+    display: none;
+}
+
+.mingshiu-native-select {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+}
+
+.mingshiu-native-select::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1.4rem;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(94, 207, 255, 0.75);
+    border-bottom: 2px solid rgba(94, 207, 255, 0.75);
+    transform: translateY(-60%) rotate(45deg);
+    pointer-events: none;
+    box-shadow: 0 0 3px rgba(94, 207, 255, 0.35);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.mingshiu-native-select:focus-within::after {
+    border-color: rgba(124, 254, 245, 0.85);
+    box-shadow: 0 0 4px rgba(124, 254, 245, 0.4);
+}
+
+/* ==================================================================
+   05. Components: Section Fieldset / Section Legend
+   ================================================================== */
+.section-fieldset {
+    position: relative;
+    border: 1px solid var(--color-border-panel);
+    border-radius: var(--radius-panel);
+    padding: 1.9rem 1.5rem 1.25rem;
+    margin-top: 1.75rem;
+    background: var(--grad-panel);
+    box-shadow: var(--shadow-panel);
+}
+
+.section-fieldset-body {
+    position: relative;
+    z-index: 1;
+}
+
+.section-legend {
+    position: absolute;
+    top: 0;
+    left: 1.6rem;
+    transform: translateY(-50%);
+    width: 180px;
+}
+
+.section-legend::before,
+.section-legend::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 26px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 160, 255, 0) 0%, rgba(0, 200, 255, 0.8) 50%, rgba(0, 160, 255, 0) 100%);
+    transform: translateY(-50%);
+}
+
+.section-legend::before {
+    left: -28px;
+}
+
+.section-legend::after {
+    right: -28px;
+}
+
+.section-subtitle {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+    .section-fieldset {
+        padding: 1.6rem 1rem 1rem;
+        margin-top: 1.35rem;
+    }
+
+    .section-legend {
+        left: 1rem;
+        width: 140px;
+        font-size: 0.82rem;
+        padding: 0.2rem 0.8rem;
+    }
+}
+/* ==================================================================
+   06. Pages: Dashboard
+   ================================================================== */
 .page-header {
     position: relative;
     width: 100%;
-    padding: 1.0rem 1.0rem 1.0rem;
+    padding: 1rem;
     margin-bottom: 0.2rem;
     border-radius: 16px;
     background: linear-gradient(135deg, rgba(5, 10, 25, 0.88), rgba(12, 24, 48, 0.85));
     border: 1px solid rgba(255, 255, 255, 0.04);
-    box-shadow:
-        inset 0 12px 24px rgba(0, 0, 0, 0.5),
-        inset 0 -6px 18px rgba(0, 150, 255, 0.09),
-        0 20px 35px rgba(0, 0, 0, 0.55);
+    box-shadow: inset 0 12px 24px rgba(0, 0, 0, 0.5), inset 0 -6px 18px rgba(0, 150, 255, 0.09), 0 20px 35px rgba(0, 0, 0, 0.55);
     overflow: hidden;
 }
 
@@ -143,7 +569,6 @@ input[type="number"] {
     height: 1px;
     background: linear-gradient(90deg, rgba(0, 200, 255, 0), rgba(0, 200, 255, 0.75), rgba(0, 200, 255, 0));
     box-shadow: 0 0 12px rgba(0, 180, 255, 0.35);
-    pointer-events: none;
 }
 
 .page-header-title {
@@ -157,29 +582,18 @@ input[type="number"] {
     width: 5px;
     height: 30px;
     border-radius: 4px;
-    background: linear-gradient(180deg, rgba(0, 220, 255, 0.9), rgba(0, 120, 255, 0.4));
-    box-shadow:
-        0 0 12px rgba(0, 200, 255, 0.55),
-        0 0 22px rgba(0, 150, 255, 0.35);
+    background: var(--grad-title-accent);
+    box-shadow: 0 0 12px rgba(0, 200, 255, 0.55), 0 0 22px rgba(0, 150, 255, 0.35);
 }
 
 .page-header-title h1 {
     font-size: 1.55rem;
     font-weight: 700;
-
-    /* ▼ 白ではなく UI に馴染む水色へ */
     color: #9fd8ff;
-
     margin: 0;
     padding: 0;
-
-    /* ▼ 控えめな青発光 */
-text-shadow:
-    0 0 10px rgba(0, 200, 255, 0.35),
-    0 0 20px rgba(0, 200, 255, 0.25),
-    0 0 30px rgba(0, 200, 255, 0.15);
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.35), 0 0 20px rgba(0, 200, 255, 0.25), 0 0 30px rgba(0, 200, 255, 0.15);
 }
-
 
 .page-header-breadcrumb {
     font-size: 0.85rem;
@@ -209,10 +623,6 @@ text-shadow:
 }
 
 @media (max-width: 768px) {
-    .content-header {
-        padding-inline: 0.25rem;
-    }
-
     .page-header {
         padding: 1.4rem 1.2rem 1.2rem;
     }
@@ -226,28 +636,6 @@ text-shadow:
         text-align: left;
         padding-right: 0;
     }
-}
-
-.main-footer {
-    background: rgba(3, 9, 22, 0.85);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-muted);
-}
-
-.card,
-.info-box,
-.small-box {
-    border: none;
-    background: linear-gradient(150deg, var(--card-top), var(--card-bottom));
-    color: var(--text-main);
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.card .card-title,
-.card .card-text {
-    color: var(--text-main);
 }
 
 .content.solo {
@@ -265,7 +653,7 @@ text-shadow:
     padding: 3rem;
     border-radius: 1.25rem;
     background: linear-gradient(145deg, rgba(12, 29, 66, 0.95), rgba(6, 16, 36, 0.9));
-    color: var(--text-main);
+    color: var(--color-text-main);
     box-shadow: 0 25px 45px rgba(5, 10, 25, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -277,11 +665,13 @@ text-shadow:
 }
 
 .solo-message p {
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     margin-bottom: 0;
 }
-
-.base-status-page {
+/* ==================================================================
+   07. Pages: Status Base Input
+   ================================================================== */
+.status-page:not(.solo) {
     padding: 2.5rem 1.5rem 3.5rem;
     display: flex;
     justify-content: center;
@@ -306,8 +696,8 @@ text-shadow:
     max-width: 1280px;
     margin: 0 auto;
     padding: 2.75rem 3rem;
-    border-radius: 20px;
-    color: var(--text-main);
+    border-radius: var(--radius-card);
+    color: var(--color-text-main);
 }
 
 .base-status-head .eyebrow {
@@ -318,203 +708,13 @@ text-shadow:
     margin: 0 0 0.8rem;
 }
 
-.form-field label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-size: 0.85rem;
-    color: #bfc9d8;
+.mingshiu-section-card .row {
+    row-gap: 0.75rem;
 }
 
-.form-field .form-control {
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(108, 134, 187, 0.4);
-    color: #e5e7eb;
-    height: 40px;
-    border-radius: 10px;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
+.mingshiu-section-card .form-control {
+    font-size: 0.82rem;
 }
-
-.form-field .form-control:focus {
-    border-color: var(--accent);
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent-soft);
-}
-
-.damage-resist-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.section-subtitle {
-    margin: 0 0 1rem;
-    font-size: 0.9rem;
-    color: rgba(203, 213, 245, 0.8);
-    letter-spacing: 0.04em;
-}
-
-/* ============================
-   legend 風セクション見出し（発光ライン）
-   ============================ */
-
-.section-fieldset {
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 14px;
-    padding: 1.9rem 1.5rem 1.25rem;
-    margin-top: 1.75rem;
-    background: linear-gradient(
-        135deg,
-        rgba(5, 13, 30, 0.96),
-        rgba(6, 20, 42, 0.94)
-    );
-    box-shadow:
-        0 22px 35px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.section-fieldset-body {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- ここから legend をネオンっぽくする --- */
-.section-legend {
-    position: absolute;
-    top: 0;
-    left: 1.6rem;
-    transform: translateY(-50%);
-
-    /* ▼ 固定幅にする（例：180px） */
-    width: 180px;
-    text-align: center;
-
-    padding: 0.22rem 1.0rem 0.25rem;
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #e9f1ff;
-
-    /* 発光グラデーション背景 */
-    background: linear-gradient(
-        90deg,
-        rgba(0, 180, 255, 0.35) 0%,
-        rgba(0, 120, 255, 0.65) 30%,
-        rgba(0, 180, 255, 0.35) 100%
-    );
-
-    box-shadow:
-        0 0 8px rgba(0, 160, 255, 0.55),
-        0 0 15px rgba(0, 140, 255, 0.35);
-
-    border-radius: 0; /* 角丸なし */
-    border: 1px solid rgba(0, 150, 255, 0.45);
-
-    white-space: nowrap;
-}
-
-/* ▼ legend の左右を伸ばす細い光ライン */
-.section-legend::before,
-.section-legend::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 26px;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 160, 255, 0) 0%,
-        rgba(0, 200, 255, 0.8) 50%,
-        rgba(0, 160, 255, 0) 100%
-    );
-    transform: translateY(-50%);
-}
-
-.section-legend::before {
-    left: -28px;
-}
-
-.section-legend::after {
-    right: -28px;
-}
-
-
-/* ----------------------------- */
-
-@media (max-width: 768px) {
-    .section-fieldset {
-        padding: 1.6rem 1rem 1rem;
-        margin-top: 1.35rem;
-    }
-
-    .section-legend {
-        left: 1rem;
-        width: 140px;   /* スマホ時は少し短く */
-        font-size: 0.82rem;
-        padding: 0.2rem 0.8rem;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .base-status-scroll {
-        max-height: none;
-        padding-right: 0;
-    }
-
-    .base-status-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .base-status-page {
-        padding: 2rem 1rem 3rem;
-    }
-
-    .content.solo {
-        min-height: auto;
-        padding: 2rem 1rem;
-    }
-}
-
-/* ============================
-   入力フォーム系 近未来スタイル
-   ============================ */
-
-.form-control {
-    background-color: #050f1f;
-    border: 1px solid #1f3a58;
-    color: #e6f4ff;
-    border-radius: 999px;
-    padding-inline: 1.2rem;
-    padding-block: 0.55rem;
-    box-shadow: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-.form-control::placeholder {
-    color: #637a94;
-}
-
-.form-control:focus {
-    background-color: #071528;
-    border-color: #3bffff;
-    color: #f1fbff;
-    outline: 0;
-    box-shadow:
-        0 0 0 1px rgba(59, 255, 255, 0.7),
-        0 0 10px rgba(59, 255, 255, 0.8),
-        0 0 22px rgba(40, 180, 255, 0.5);
-}
-
-.form-control:disabled,
-.form-control[readonly] {
-    background-color: #050b15;
-    border-color: #1a2735;
-    color: #6c7f96;
-    box-shadow: none;
-}
-
-/* ===== ステータス行（タイトル＋値） ===== */
 
 .stat-row-flat {
     display: flex;
@@ -522,24 +722,19 @@ text-shadow:
     justify-content: space-between;
     padding: 0.2rem 0.6rem;
     margin-bottom: 0.35rem;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: linear-gradient(135deg, #050f1f, #06152b);
-    box-shadow:
-        inset 0 0 0 1px rgba(25, 60, 105, 0.9);
+    box-shadow: inset 0 0 0 1px rgba(25, 60, 105, 0.9);
     overflow: hidden;
     transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.1s ease;
 }
 
 .stat-row-flat:focus-within {
     background: linear-gradient(135deg, #071528, #071f3a);
-    box-shadow:
-        0 0 0 1px rgba(59, 255, 255, 0.7),
-        0 0 10px rgba(59, 255, 255, 0.8),
-        0 0 22px rgba(40, 180, 255, 0.5);
+    box-shadow: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
     transform: translateY(-0.5px);
 }
 
-/* ▼ タイトル部分：幅を広げて改行させない */
 .stat-flat-label {
     flex: 0 0 65%;
     padding: 0.45rem 1rem;
@@ -552,7 +747,6 @@ text-shadow:
     white-space: nowrap;
 }
 
-/* ▼ 入力値部分：残りの幅 */
 .stat-flat-value-wrap {
     flex: 0 0 35%;
     display: flex;
@@ -572,6 +766,7 @@ text-shadow:
     color: #f8fafc;
     font-size: 1.2rem;
     padding: 0.2rem 0.5rem;
+    transition: box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .stat-flat-input::placeholder {
@@ -584,611 +779,78 @@ text-shadow:
     box-shadow: none;
 }
 
-input[type=number].stat-flat-input {
+input[type="number"].stat-flat-input {
     appearance: textfield;
 }
-input[type=number].stat-flat-input::-webkit-outer-spin-button,
-input[type=number].stat-flat-input::-webkit-inner-spin-button {
+
+input[type="number"].stat-flat-input::-webkit-outer-spin-button,
+input[type="number"].stat-flat-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.mingshiu-section-card .row {
-    row-gap: 0.75rem;
-}
-
-.mingshiu-section-card .form-label {
-    font-size: 0.78rem;
-    color: #a9bfd8;
-    margin-bottom: 0.2rem;
-}
-
-.mingshiu-section-card .form-control {
-    font-size: 0.82rem;
-}
-
-select.form-control.mingshiu-select {
-    background-color: #050f1f;
-    border: 1px solid #1f3a58;
-    color: #e6f4ff;
-    border-radius: 999px;
-    padding-inline: 1.2rem;
-    padding-block: 0.55rem;
-}
-
-select.form-control.mingshiu-select:focus {
-    background-color: #071528;
-    border-color: #3bffff;
-    color: #f1fbff;
-    outline: 0;
-    box-shadow:
-        0 0 0 1px rgba(59, 255, 255, 0.7),
-        0 0 10px rgba(59, 255, 255, 0.8),
-        0 0 22px rgba(40, 180, 255, 0.5);
-}
-
-.mingshiu-native-select {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border-radius: 999px;
-    background: transparent;
-    box-shadow: none;
-    transition: box-shadow 0.2s ease;
-}
-
-.mingshiu-native-select::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 1.4rem;
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid rgba(94, 207, 255, 0.75);
-    border-bottom: 2px solid rgba(94, 207, 255, 0.75);
-    transform: translateY(-60%) rotate(45deg);
-    pointer-events: none;
-    box-shadow: 0 0 3px rgba(94, 207, 255, 0.35);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.mingshiu-native-select:focus-within::after {
-    border-color: rgba(124, 254, 245, 0.85);
-    box-shadow: 0 0 4px rgba(124, 254, 245, 0.4);
-}
-
-.neo-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #050f1f;
-    background-image: none;
-    border: 1px solid #1f3a58;
-    border-radius: 999px;
-    width: 100%;
-    padding: 0.6rem 3.25rem 0.6rem 1.4rem;
-    color: #f1fbff;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    box-shadow: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-.neo-select:focus {
-    background-color: #071528;
-    border-color: #3bffff;
-    color: #f1fbff;
-    box-shadow:
-        0 0 0 1px rgba(59, 255, 255, 0.7),
-        0 0 10px rgba(59, 255, 255, 0.8),
-        0 0 22px rgba(40, 180, 255, 0.5);
-    outline: none;
-}
-
-.neo-select::-ms-expand {
-    display: none;
-}
-
-/* ============================
-   サイドバーメニュー ネオン発光
-   ============================ */
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link {
-    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-    border-left: 4px solid transparent;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link i {
-    color: #8ec7ff;
-    transition: color 0.25s ease, filter 0.25s ease;
-}
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link:hover {
-    background: rgba(0, 180, 255, 0.2);
-    color: #e4faff;
-    box-shadow: inset 0 0 18px rgba(0, 200, 255, 0.35);
-}
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link:hover i {
-    color: #bdf3ff;
-    filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.8));
-}
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link.active {
-    background: rgba(41, 198, 255, 0.12);
-    color: #f4ffff;
-    border-left: 4px solid #44ffff;
-    box-shadow:
-        0 0 12px rgba(0, 255, 255, 0.75),
-        0 0 25px rgba(40, 200, 255, 0.5),
-        0 0 45px rgba(15, 120, 255, 0.45);
-    backdrop-filter: blur(3px);
-}
-
-.main-sidebar .nav-sidebar > .nav-item > .nav-link.active i {
-    color: #62ffff;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
-}
-
-.nav-sidebar .nav-treeview {
-    margin-left: 0;
-}
-
-.nav-sidebar .nav-treeview > .nav-item > .nav-link {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    color: var(--text-muted);
-    padding-left: 2.75rem !important;
-    border-left: 4px solid transparent;
-    border-radius: 0;
-}
-
-.nav-sidebar .nav-treeview > .nav-item > .nav-link .nav-icon {
-    margin-right: 0.75rem;
-    width: 1.25rem;
-    text-align: center;
-    color: #8ec7ff;
-    transition: color 0.25s ease, filter 0.25s ease;
-}
-
-.base-status-nav > .nav-link {
-    background: transparent;
-    box-shadow: none;
-    border-left: 3px solid transparent;
-    color: var(--text-main);
-}
-
-.base-status-nav > .nav-link:hover,
-.base-status-nav.menu-open > .nav-link {
-    background: transparent;
-    border-left: 3px solid transparent;
-    color: var(--text-main);
-}
-
-.base-status-nav > .nav-link i {
-    color: #8ec7ff;
-    filter: none;
-}
-
-.base-status-nav.menu-open > .nav-link i {
-    color: var(--text-main);
-    filter: none;
-}
-
-.nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
-    color: #f4ffff !important;
-    background: rgba(41, 198, 255, 0.12) !important;
-    border-left-color: #44ffff;
-    box-shadow:
-        0 0 12px rgba(0, 255, 255, 0.75),
-        0 0 25px rgba(40, 200, 255, 0.5),
-        0 0 45px rgba(15, 120, 255, 0.45) !important;
-    backdrop-filter: blur(3px);
-}
-
-.nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
-    color: #62ffff !important;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
-}
-
-/* 共鳴者セレクトボックスの文字サイズを大きくする */
-select.mingshiu-select,
-select.neo-select {
-    font-size: 1.0rem !important;
-    line-height: 1.0rem !important;
-    height: 45px !important;       /* stat-flat-input と同じ高さに */
-    line-height: 45px !important;  /* テキストの縦位置も安定させる */
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* ドロップダウン内の項目も同じサイズにするなら */
-.mingshiu-select option {
-    font-size: 1.0rem;
-}
-
-/* ▼ input / select 共通：フォーカス時のネオン発光を強化 */
 input.stat-flat-input:focus,
 select.mingshiu-select:focus,
 select.neo-select:focus {
-    outline: none !important;
-    border-color: rgba(0, 255, 255, 0.95) !important;
-
-    box-shadow:
-        0 0 6px rgba(0, 255, 255, 0.65),
-        0 0 14px rgba(0, 255, 255, 0.55),
-        0 0 28px rgba(0, 255, 255, 0.45),
-        inset 0 0 10px rgba(0, 120, 255, 0.45) !important;
-
-    background: rgba(8, 22, 45, 0.98) !important;
-    transition: box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    border-color: rgba(0, 255, 255, 0.95);
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.65), 0 0 14px rgba(0, 255, 255, 0.55), 0 0 28px rgba(0, 255, 255, 0.45), inset 0 0 10px rgba(0, 120, 255, 0.45);
+    background: rgba(8, 22, 45, 0.98);
 }
 
-/* ▼ 通常時の select/input の背景を軽く統一 */
-input.stat-flat-input,
-select.mingshiu-select,
-select.neo-select {
-    transition: box-shadow 0.15s ease, background 0.15s ease;
+.damage-resist-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* ===============================
-   上部ナビゲーションバー（Main Header）
-   =============================== */
-
-.main-header {
-    position: relative;
-    background: radial-gradient(circle at 0% 0%, rgba(0,180,255,0.18), transparent 55%),
-                linear-gradient(90deg, #020818, #06142b);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.65),
-        inset 0 -2px 6px rgba(0, 140, 255, 0.15);
-}
-
-/* 下端ネオンライン */
-.main-header::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 200, 255, 0) 0%,
-        rgba(0, 200, 255, 0.55) 35%,
-        rgba(0, 200, 255, 0.55) 65%,
-        rgba(0, 200, 255, 0) 100%
-    );
-    box-shadow: 0 0 12px rgba(0, 180, 255, 0.55);
-    pointer-events: none;
-}
-
-/* ===============================
-   検索フォーム（Search Box）
-   =============================== */
-
-.main-header .form-inline {
-    margin-left: 1.5rem;
-}
-
-/* 入力欄：グラス風＋ネオン枠 */
-.main-header .form-control-navbar {
-    min-width: 220px;
-    background: rgba(3, 10, 25, 0.68);
-    border-radius: 999px 0 0 999px;
-    border: 1px solid rgba(110, 190, 255, 0.7);
-    color: #d7e9ff;
-    box-shadow:
-        0 0 10px rgba(0, 160, 255, 0.3),
-        inset 0 0 4px rgba(255, 255, 255, 0.06);
-}
-
-.main-header .form-control-navbar::placeholder {
-    color: rgba(190, 210, 240, 0.65);
-}
-
-/* 検索ボタン */
-.main-header .btn-navbar {
-    border-radius: 0 999px 999px 0;
-    border: 1px solid rgba(110, 190, 255, 0.7);
-    border-left: none;
-    background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25), transparent 55%),
-                linear-gradient(120deg, #0796ff, #3ad8ff);
-    color: #f5fbff;
-    box-shadow:
-        0 0 12px rgba(0, 170, 255, 0.6),
-        0 0 18px rgba(0, 140, 255, 0.4);
-}
-
-.main-header .btn-navbar:hover {
-    filter: brightness(1.08);
-}
-
-/* ===============================
-   ナビゲーションリンク
-   =============================== */
-
-.main-header .navbar-nav .nav-link {
-    color: rgba(190, 210, 255, 0.8);
-}
-
-.main-header .navbar-nav .nav-link:hover {
-    color: rgba(220, 240, 255, 1);
-}
-
-/* 右上アイコン・メールアドレス */
-.main-header .navbar-nav.ml-auto .nav-link {
-    font-size: 0.85rem;
-    letter-spacing: 0.03em;
-}
-
-/* ===============================
-   検索ボックス（ヘッダー内）
-   =============================== */
-
-.main-header .input-group.input-group-sm {
-    /* ちょっとだけ高さを出して、他のUIと揃える */
-    height: 36px;
-}
-
-/* テキストボックス本体 */
-.main-header .form-control-navbar {
-    min-width: 230px;
-    height: 100%;
-
-    /* 他の入力と同じようなダーク系グラデ */
-    background: linear-gradient(
-        135deg,
-        rgba(5, 15, 35, 0.96),
-        rgba(10, 26, 54, 0.96)
-    );
-
-    border-radius: 999px 0 0 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    color: #e3f2ff;
-    padding: 0 0.9rem;
-
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.75),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 0 1px rgba(0, 170, 255, 0.40); /* 外側のうっすらネオン */
-
-    transition: box-shadow 0.18s ease, border-color 0.18s ease,
-                background 0.18s ease;
-}
-
-/* フォーカス時：少しだけネオン強め */
-.main-header .form-control-navbar:focus {
-    outline: none;
-    border-color: rgba(0, 200, 255, 0.9);
-    box-shadow:
-        0 0 12px rgba(0, 190, 255, 0.65),
-        0 0 22px rgba(0, 160, 255, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.09);
-    background: linear-gradient(
-        135deg,
-        rgba(6, 20, 45, 0.98),
-        rgba(12, 32, 64, 0.98)
-    );
-}
-
-.main-header .form-control-navbar::placeholder {
-    color: rgba(180, 205, 235, 0.65);
-}
-
-/* 検索ボタン（右側の丸いボタン） */
-.main-header .btn-navbar {
-    height: 100%;
-    border-radius: 0 999px 999px 0;
-    border: 1px solid rgba(0, 190, 255, 0.85);
-    border-left: none;
-
-    background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25), transparent 55%),
-                linear-gradient(120deg, rgba(0,160,255,0.95), rgba(0,220,255,0.95));
-
-    color: #f6fbff;
-    box-shadow:
-        0 0 14px rgba(0, 190, 255, 0.7),
-        0 0 24px rgba(0, 160, 255, 0.5);
-    padding: 0 0.9rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: filter 0.15s ease, box-shadow 0.15s ease;
-}
-
-.main-header .btn-navbar:hover {
-    filter: brightness(1.1);
-    box-shadow:
-        0 0 18px rgba(0, 220, 255, 0.85),
-        0 0 28px rgba(0, 180, 255, 0.6);
-}
-
-
-/* ===============================
-   SEARCH BOX（全体デザイン統一版）
-   =============================== */
-
-/* 入力欄 */
-.main-header .form-control-navbar {
-    min-width: 240px;
-    height: 34px;
-
-    /* ▼ ダークテーマと馴染む背景 */
-    background: linear-gradient(
-        135deg,
-        rgba(6, 14, 28, 0.95),
-        rgba(10, 22, 40, 0.95)
-    );
-
-    /* ▼ 角丸なし（重要） */
-    border-radius: 0;
-
-    /* ▼ 白枠禁止 → UI に合わせた淡青の細線 */
-    border: 1px solid rgba(60, 140, 255, 0.45);
-
-    /* ▼ テキスト色：黒ではなく淡い水色へ */
-    color: #cfe8ff;
-
-    padding: 0 0.9rem;
-
-    /* ▼ ほんのり光を入れて視認性UP */
-    box-shadow:
-        0 0 6px rgba(0, 100, 255, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.main-header .form-control-navbar::placeholder {
-    color: rgba(170, 200, 230, 0.55);
-}
-
-/* フォーカス時：すこし光らせる */
-.main-header .form-control-navbar:focus {
-    outline: none;
-    border-color: rgba(80, 180, 255, 0.9);
-    box-shadow:
-        0 0 10px rgba(0, 160, 255, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* 検索ボタン（こちらも角丸なしに統一） */
-.main-header .btn-navbar {
-    height: 34px;
-    border-radius: 0;
-    border: 1px solid rgba(80, 180, 255, 0.9);
-    border-left: none;
-
-    background: linear-gradient(
-        120deg,
-        rgba(0, 160, 255, 0.95),
-        rgba(0, 220, 255, 0.95)
-    );
-
-    color: #f5fbff;
-
-    box-shadow:
-        0 0 12px rgba(0, 190, 255, 0.65),
-        0 0 22px rgba(0, 160, 255, 0.45);
-
-    transition: filter 0.15s ease;
-}
-
-.main-header .btn-navbar:hover {
-    filter: brightness(1.12);
-}
-
-
-/* =======================================
-   Header Search 最終調整（強制上書き）
-   ======================================= */
-
-/* テキストボックス本体 */
-.main-header .input-group.input-group-sm .form-control-navbar {
-    /* ─ 1. 文字色を白にする ─ */
-    color: #ffffff !important;
-
-    /* ─ 2. 白枠をやめて、青系の細枠にする ─ */
-    border: 1px solid rgba(80, 180, 255, 0.8) !important;
-
-    /* 背景も暗くして全体と統一 */
-    background: linear-gradient(
-        135deg,
-        rgba(6, 14, 28, 0.98),
-        rgba(10, 24, 46, 0.98)
-    ) !important;
-
-    /* ─ 3. ボタンと高さを合わせる ─ */
-    height: 34px !important;
-    border-radius: 0 !important;
-    padding: 0 10px !important;
-
-    box-shadow:
-        0 0 8px rgba(0, 160, 255, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-}
-
-.main-header .input-group.input-group-sm .form-control-navbar::placeholder {
-    color: rgba(185, 210, 235, 0.6) !important;
-}
-
-/* 検索ボタン（Qアイコン）側も高さ・角を揃える */
-.main-header .input-group.input-group-sm .btn-navbar {
-    height: 34px !important;
-    border-radius: 0 !important;
-    border: 1px solid rgba(80, 180, 255, 0.9) !important;
-    border-left: none !important;
-
-    background: linear-gradient(
-        120deg,
-        rgba(0, 160, 255, 0.96),
-        rgba(0, 220, 255, 0.96)
-    ) !important;
-    color: #ffffff !important;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px !important;
-}
-/* =========================================
-   サイドメニュー閉じたときのヘッダー調整
-   ========================================= */
-@media (min-width: 992px) {
-
-    /* メニュー閉じたときだけ適用 */
-    body.sidebar-mini.sidebar-collapse .main-header .navbar {
-        display: flex;
-        align-items: center;
+@media (max-width: 768px) {
+    .base-status-scroll {
+        max-height: none;
+        padding-right: 0;
     }
 
-    /* 左ナビ（≡ ホーム） */
-    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav:first-child {
-        margin-right: 1.5rem;
+    .base-status-card {
+        padding: 2rem 1.5rem;
     }
 
-    /* 検索フォームを中央寄せに */
-    body.sidebar-mini.sidebar-collapse .main-header .form-inline {
-        margin-left: 0;
-        margin-right: 0;
-        flex: 1;                      /* 余白を全部ここに持たせる */
-        display: flex;
-        justify-content: center;      /* 中央に配置 */
+    .status-page:not(.solo) {
+        padding: 2rem 1rem 3rem;
     }
 
-    /* 右側（メールアドレス／アイコン）は右端キープ */
-    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav.ml-auto {
-        margin-left: 1.5rem;
+    .content.solo {
+        min-height: auto;
+        padding: 2rem 1rem;
     }
 }
 
-/* =========================================
-   メニュー閉じたときはサイドバーを完全に隠す
-   ========================================= */
-@media (min-width: 992px) {
-
-    /* サイドバー本体を画面外へ */
-    body.sidebar-mini.sidebar-collapse .main-sidebar {
-        margin-left: -250px !important; /* サイドバー幅ぶんマイナス */
-        transition: margin-left 0.2s ease-in-out;
-    }
-
-    /* コンテンツ側を全幅に広げる */
-    body.sidebar-mini.sidebar-collapse .content-wrapper,
-    body.sidebar-mini.sidebar-collapse .main-footer,
-    body.sidebar-mini.sidebar-collapse .main-header {
-        margin-left: 0 !important;
-        transition: margin-left 0.2s ease-in-out;
-    }
+/* ==================================================================
+   08. Pages: Status Weapon Input
+   ================================================================== */
+.status-weapon-page {
+    /* Reuses base status components; no additional overrides yet. */
 }
 
+/* ==================================================================
+   09. Pages: Status Bonus Input
+   ================================================================== */
+.status-bonus-page {
+    /* Reuses base status components; no additional overrides yet. */
+}
 
+/* ==================================================================
+   10. Pages: Status Echo Input
+   ================================================================== */
+.status-echo-page {
+    /* Reuses base status components; no additional overrides yet. */
+}
+
+/* ==================================================================
+   11. Utilities
+   ================================================================== */
+.is-hidden {
+    display: none !important;
+}
+
+.text-glow {
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.35), 0 0 20px rgba(0, 200, 255, 0.2);
+}
