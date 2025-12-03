@@ -240,6 +240,14 @@ input[type="number"] {
     background: var(--grad-sidebar);
 }
 
+/* ==== Sidebar Logo ================================================== */
+.sidebar-logo .logo-img {
+    padding-top: 0.5rem;
+    width: 250px;
+    height: 58px;
+    object-fit: contain;
+}
+
 .brand-link {
     border-bottom: 1px solid var(--color-border-soft);
     color: var(--color-text-main);
@@ -258,7 +266,7 @@ input[type="number"] {
     transition: color 0.25s ease, filter 0.25s ease;
 }
 
-.nav-sidebar .nav-item .nav-link:hover {
+.nav-sidebar .nav-item .nav-link:not(.active):hover {
     color: var(--color-text-main);
     background: rgba(0, 180, 255, 0.2);
     box-shadow: inset 0 0 18px rgba(0, 200, 255, 0.35);
@@ -270,6 +278,17 @@ input[type="number"] {
 }
 
 .nav-sidebar .nav-item:not(.base-status-nav) > .nav-link.active {
+    color: var(--color-text-main);
+    background: rgba(41, 198, 255, 0.12);
+    border-left-color: #44ffff;
+    box-shadow:
+        0 0 12px rgba(0, 255, 255, 0.75),
+        0 0 25px rgba(40, 200, 255, 0.5),
+        0 0 45px rgba(15, 120, 255, 0.45);
+    backdrop-filter: blur(3px);
+}
+
+.nav-sidebar .nav-item:not(.base-status-nav) > .nav-link.active:hover {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -307,6 +326,15 @@ input[type="number"] {
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.75), 0 0 25px rgba(40, 200, 255, 0.5), 0 0 45px rgba(15, 120, 255, 0.45);
+}
+
+.nav-sidebar .nav-treeview > .nav-item > .nav-link.active:hover {
+    color: #f4ffff;
+    background: rgba(41, 198, 255, 0.12);
+    border-left-color: #44ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.75),
+                0 0 25px rgba(40, 200, 255, 0.5),
+                0 0 45px rgba(15, 120, 255, 0.45);
 }
 
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
