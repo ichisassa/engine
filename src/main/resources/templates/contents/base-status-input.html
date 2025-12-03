@@ -1,4 +1,4 @@
-<section class="content base-status-page" th:fragment="content">
+﻿<section class="content base-status-page" th:fragment="content">
     <div class="base-status-scroll">
         <div class="base-status-card">
             <div class="base-status-head">
@@ -7,7 +7,8 @@
             <div class="card mingshiu-section-card">
                 <div class="card-body">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <select id="character" name="character" class="form-control mingshiu-select">
+                        <div class="mingshiu-native-select">
+                            <select id="character" name="character" class="form-control mingshiu-select neo-select">
                             <option value="">共鳴者</option>
                             <option value="気動主人公">気動主人公</option>
                             <option value="千咲">千咲</option>
@@ -40,7 +41,8 @@
                             <option value="モルトフィー">モルトフィー</option>
                             <option value="桃祈">桃祈</option>
                             <option value="アールト">アールト</option>
-                        </select>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

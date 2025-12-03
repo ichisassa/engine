@@ -332,6 +332,70 @@ select.form-control.mingshiu-select:focus {
         0 0 22px rgba(40, 180, 255, 0.5);
 }
 
+.mingshiu-native-select {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border-radius: 999px;
+    background: transparent;
+    box-shadow: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.mingshiu-native-select::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1.4rem;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(94, 207, 255, 0.75);
+    border-bottom: 2px solid rgba(94, 207, 255, 0.75);
+    transform: translateY(-60%) rotate(45deg);
+    pointer-events: none;
+    box-shadow: 0 0 3px rgba(94, 207, 255, 0.35);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.mingshiu-native-select:focus-within::after {
+    border-color: rgba(124, 254, 245, 0.85);
+    box-shadow: 0 0 4px rgba(124, 254, 245, 0.4);
+}
+
+.neo-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #050f1f;
+    background-image: none;
+    border: 1px solid #1f3a58;
+    border-radius: 999px;
+    width: 100%;
+    padding: 0.6rem 3.25rem 0.6rem 1.4rem;
+    color: #f1fbff;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.neo-select:focus {
+    background-color: #071528;
+    border-color: #3bffff;
+    color: #f1fbff;
+    box-shadow:
+        0 0 0 1px rgba(59, 255, 255, 0.7),
+        0 0 10px rgba(59, 255, 255, 0.8),
+        0 0 22px rgba(40, 180, 255, 0.5);
+    outline: none;
+}
+
+.neo-select::-ms-expand {
+    display: none;
+}
+
 /* ============================
    サイドバーメニュー ネオン発光
    ============================ */
