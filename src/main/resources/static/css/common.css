@@ -1,11 +1,8 @@
-﻿/*
- * Refactoring summary:
- * 1) Introduced design tokens for repeated gradients, colors, and shadows.
- * 2) Reordered the stylesheet into the requested eleven sections for quick scanning.
- * 3) Unified header/search/sidebar behaviors to remove competing overrides.
- * 4) Promoted neon panel, badge, and button motifs into reusable classes.
- * 5) Grouped status form styles under page-specific blocks with shared utilities.
- * 6) Removed redundant declarations and documented each major block.
+/*
+ * Refinement summary (2025-12-03):
+ * - Consolidated header/search/sidebar selectors (.main-header.navbar ... nav-treeview) into the layout block.
+ * - Unified neon focus states via tokens so temporary overrides and duplicate rules are removed.
+ * - Added reusable gradients/shadows for stat rows and inputs to clarify the final, intended styling.
  */
 
 /* ==================================================================
@@ -29,6 +26,8 @@
     --color-accent-soft: rgba(41, 198, 255, 0.45);
     --color-border-panel: rgba(255, 255, 255, 0.14);
     --color-border-soft: rgba(255, 255, 255, 0.08);
+    --color-input-focus-bg: rgba(8, 22, 45, 0.98);
+    --color-input-focus-border: #3bffff;
     --radius-card: 20px;
     --radius-panel: 14px;
     --radius-pill: 999px;
@@ -54,6 +53,11 @@
     --grad-search: linear-gradient(135deg, rgba(6, 14, 28, 0.95), rgba(10, 22, 40, 0.95));
     --grad-search-focus: linear-gradient(135deg, rgba(6, 20, 45, 0.98), rgba(12, 32, 64, 0.98));
     --grad-btn-neon: linear-gradient(120deg, rgba(0, 160, 255, 0.95), rgba(0, 220, 255, 0.95));
+    --grad-stat-row: linear-gradient(135deg, #050f1f, #06152b);
+    --grad-stat-row-focus: linear-gradient(135deg, #071528, #071f3a);
+    --shadow-stat-row: inset 0 0 0 1px rgba(25, 60, 105, 0.9);
+    --shadow-neon-ring: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
+    --shadow-neon-fill: 0 0 6px rgba(0, 255, 255, 0.65), 0 0 14px rgba(0, 255, 255, 0.55), 0 0 28px rgba(0, 255, 255, 0.45), inset 0 0 10px rgba(0, 120, 255, 0.45);
     --scrollbar-compensation: 22px;
 }
 
@@ -168,15 +172,15 @@ input[type="number"] {
     letter-spacing: 0.03em;
 }
 
-.header-search {
+.main-header .header-search {
     margin-left: 1.5rem;
 }
 
-.header-search .input-group.input-group-sm {
+.main-header .header-search .input-group.input-group-sm {
     height: 34px;
 }
 
-.header-search .form-control-navbar {
+.main-header .form-control-navbar {
     min-width: 240px;
     height: 100%;
     background: var(--grad-search);
@@ -188,18 +192,18 @@ input[type="number"] {
     transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
-.header-search .form-control-navbar::placeholder {
+.main-header .form-control-navbar::placeholder {
     color: rgba(180, 205, 235, 0.65);
 }
 
-.header-search .form-control-navbar:focus {
+.main-header .form-control-navbar:focus {
     outline: none;
     border-color: rgba(80, 180, 255, 0.9);
     background: var(--grad-search-focus);
     box-shadow: 0 0 12px rgba(0, 190, 255, 0.65), 0 0 22px rgba(0, 160, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
-.header-search .btn-navbar {
+.main-header .btn-navbar {
     border-left: none;
     border-radius: 0;
     height: 100%;
@@ -320,7 +324,7 @@ input[type="number"] {
         margin-right: 1.5rem;
     }
 
-    body.sidebar-mini.sidebar-collapse .header-search {
+    body.sidebar-mini.sidebar-collapse .main-header .header-search {
         margin-left: 0;
         margin-right: 0;
         flex: 1;
@@ -409,11 +413,11 @@ select.neo-select::placeholder {
 .form-control:focus,
 select.mingshiu-select:focus,
 select.neo-select:focus {
-    background-color: #071528;
-    border-color: #3bffff;
+    background-color: var(--color-input-focus-bg);
+    border-color: var(--color-input-focus-border);
     color: #f1fbff;
     outline: 0;
-    box-shadow: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
+    box-shadow: var(--shadow-neon-ring), var(--shadow-neon-fill);
 }
 
 .form-control:disabled,
@@ -723,15 +727,15 @@ select.mingshiu-select option {
     padding: 0.2rem 0.6rem;
     margin-bottom: 0.35rem;
     border-radius: var(--radius-pill);
-    background: linear-gradient(135deg, #050f1f, #06152b);
-    box-shadow: inset 0 0 0 1px rgba(25, 60, 105, 0.9);
+    background: var(--grad-stat-row);
+    box-shadow: var(--shadow-stat-row);
     overflow: hidden;
     transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.1s ease;
 }
 
 .stat-row-flat:focus-within {
-    background: linear-gradient(135deg, #071528, #071f3a);
-    box-shadow: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
+    background: var(--grad-stat-row-focus);
+    box-shadow: var(--shadow-neon-ring);
     transform: translateY(-0.5px);
 }
 
@@ -776,7 +780,9 @@ select.mingshiu-select option {
 
 .stat-flat-input:focus {
     outline: none;
-    box-shadow: none;
+    color: #f8fafc;
+    background: var(--color-input-focus-bg);
+    box-shadow: var(--shadow-neon-fill);
 }
 
 input[type="number"].stat-flat-input {
@@ -787,14 +793,6 @@ input[type="number"].stat-flat-input::-webkit-outer-spin-button,
 input[type="number"].stat-flat-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-input.stat-flat-input:focus,
-select.mingshiu-select:focus,
-select.neo-select:focus {
-    border-color: rgba(0, 255, 255, 0.95);
-    box-shadow: 0 0 6px rgba(0, 255, 255, 0.65), 0 0 14px rgba(0, 255, 255, 0.55), 0 0 28px rgba(0, 255, 255, 0.45), inset 0 0 10px rgba(0, 120, 255, 0.45);
-    background: rgba(8, 22, 45, 0.98);
 }
 
 .damage-resist-grid {
@@ -847,6 +845,7 @@ select.neo-select:focus {
 /* ==================================================================
    11. Utilities
    ================================================================== */
+/* Keeps priority over AdminLTE/Bootstrap display helpers. */
 .is-hidden {
     display: none !important;
 }
