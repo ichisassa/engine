@@ -114,14 +114,118 @@ input[type="number"] {
 }
 
 .content-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border: none;
+    padding: 1.4rem 0.5rem 0;
+    background: transparent;
 }
 
-.content-header h1,
-.content-header a,
-.content-header .breadcrumb-item,
-.content-header .breadcrumb-item a {
-    color: var(--text-main);
+.page-header {
+    position: relative;
+    width: 100%;
+    padding: 1.0rem 1.0rem 1.0rem;
+    margin-bottom: 0.2rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(5, 10, 25, 0.88), rgba(12, 24, 48, 0.85));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow:
+        inset 0 12px 24px rgba(0, 0, 0, 0.5),
+        inset 0 -6px 18px rgba(0, 150, 255, 0.09),
+        0 20px 35px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: "";
+    position: absolute;
+    left: 1.6rem;
+    right: 1.6rem;
+    bottom: 1rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 200, 255, 0), rgba(0, 200, 255, 0.75), rgba(0, 200, 255, 0));
+    box-shadow: 0 0 12px rgba(0, 180, 255, 0.35);
+    pointer-events: none;
+}
+
+.page-header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.title-accent {
+    width: 5px;
+    height: 30px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(0, 220, 255, 0.9), rgba(0, 120, 255, 0.4));
+    box-shadow:
+        0 0 12px rgba(0, 200, 255, 0.55),
+        0 0 22px rgba(0, 150, 255, 0.35);
+}
+
+.page-header-title h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+
+    /* ▼ 白ではなく UI に馴染む水色へ */
+    color: #9fd8ff;
+
+    margin: 0;
+    padding: 0;
+
+    /* ▼ 控えめな青発光 */
+text-shadow:
+    0 0 10px rgba(0, 200, 255, 0.35),
+    0 0 20px rgba(0, 200, 255, 0.25),
+    0 0 30px rgba(0, 200, 255, 0.15);
+}
+
+
+.page-header-breadcrumb {
+    font-size: 0.85rem;
+    color: rgba(200, 220, 255, 0.65);
+    text-align: right;
+    padding-right: 0.4rem;
+}
+
+.page-header-breadcrumb span {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.page-header-breadcrumb a {
+    color: rgba(140, 190, 255, 0.78);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.page-header-breadcrumb a:hover {
+    color: rgba(190, 230, 255, 0.95);
+}
+
+.page-header-breadcrumb span span {
+    color: rgba(235, 245, 255, 0.65);
+}
+
+@media (max-width: 768px) {
+    .content-header {
+        padding-inline: 0.25rem;
+    }
+
+    .page-header {
+        padding: 1.4rem 1.2rem 1.2rem;
+    }
+
+    .page-header-title {
+        flex-direction: row;
+        margin-bottom: 0.6rem;
+    }
+
+    .page-header-breadcrumb {
+        text-align: left;
+        padding-right: 0;
+    }
 }
 
 .main-footer {
@@ -730,3 +834,361 @@ select.mingshiu-select,
 select.neo-select {
     transition: box-shadow 0.15s ease, background 0.15s ease;
 }
+
+/* ===============================
+   上部ナビゲーションバー（Main Header）
+   =============================== */
+
+.main-header {
+    position: relative;
+    background: radial-gradient(circle at 0% 0%, rgba(0,180,255,0.18), transparent 55%),
+                linear-gradient(90deg, #020818, #06142b);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.65),
+        inset 0 -2px 6px rgba(0, 140, 255, 0.15);
+}
+
+/* 下端ネオンライン */
+.main-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 200, 255, 0) 0%,
+        rgba(0, 200, 255, 0.55) 35%,
+        rgba(0, 200, 255, 0.55) 65%,
+        rgba(0, 200, 255, 0) 100%
+    );
+    box-shadow: 0 0 12px rgba(0, 180, 255, 0.55);
+    pointer-events: none;
+}
+
+/* ===============================
+   検索フォーム（Search Box）
+   =============================== */
+
+.main-header .form-inline {
+    margin-left: 1.5rem;
+}
+
+/* 入力欄：グラス風＋ネオン枠 */
+.main-header .form-control-navbar {
+    min-width: 220px;
+    background: rgba(3, 10, 25, 0.68);
+    border-radius: 999px 0 0 999px;
+    border: 1px solid rgba(110, 190, 255, 0.7);
+    color: #d7e9ff;
+    box-shadow:
+        0 0 10px rgba(0, 160, 255, 0.3),
+        inset 0 0 4px rgba(255, 255, 255, 0.06);
+}
+
+.main-header .form-control-navbar::placeholder {
+    color: rgba(190, 210, 240, 0.65);
+}
+
+/* 検索ボタン */
+.main-header .btn-navbar {
+    border-radius: 0 999px 999px 0;
+    border: 1px solid rgba(110, 190, 255, 0.7);
+    border-left: none;
+    background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25), transparent 55%),
+                linear-gradient(120deg, #0796ff, #3ad8ff);
+    color: #f5fbff;
+    box-shadow:
+        0 0 12px rgba(0, 170, 255, 0.6),
+        0 0 18px rgba(0, 140, 255, 0.4);
+}
+
+.main-header .btn-navbar:hover {
+    filter: brightness(1.08);
+}
+
+/* ===============================
+   ナビゲーションリンク
+   =============================== */
+
+.main-header .navbar-nav .nav-link {
+    color: rgba(190, 210, 255, 0.8);
+}
+
+.main-header .navbar-nav .nav-link:hover {
+    color: rgba(220, 240, 255, 1);
+}
+
+/* 右上アイコン・メールアドレス */
+.main-header .navbar-nav.ml-auto .nav-link {
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+}
+
+/* ===============================
+   検索ボックス（ヘッダー内）
+   =============================== */
+
+.main-header .input-group.input-group-sm {
+    /* ちょっとだけ高さを出して、他のUIと揃える */
+    height: 36px;
+}
+
+/* テキストボックス本体 */
+.main-header .form-control-navbar {
+    min-width: 230px;
+    height: 100%;
+
+    /* 他の入力と同じようなダーク系グラデ */
+    background: linear-gradient(
+        135deg,
+        rgba(5, 15, 35, 0.96),
+        rgba(10, 26, 54, 0.96)
+    );
+
+    border-radius: 999px 0 0 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #e3f2ff;
+    padding: 0 0.9rem;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 0 0 1px rgba(0, 170, 255, 0.40); /* 外側のうっすらネオン */
+
+    transition: box-shadow 0.18s ease, border-color 0.18s ease,
+                background 0.18s ease;
+}
+
+/* フォーカス時：少しだけネオン強め */
+.main-header .form-control-navbar:focus {
+    outline: none;
+    border-color: rgba(0, 200, 255, 0.9);
+    box-shadow:
+        0 0 12px rgba(0, 190, 255, 0.65),
+        0 0 22px rgba(0, 160, 255, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.09);
+    background: linear-gradient(
+        135deg,
+        rgba(6, 20, 45, 0.98),
+        rgba(12, 32, 64, 0.98)
+    );
+}
+
+.main-header .form-control-navbar::placeholder {
+    color: rgba(180, 205, 235, 0.65);
+}
+
+/* 検索ボタン（右側の丸いボタン） */
+.main-header .btn-navbar {
+    height: 100%;
+    border-radius: 0 999px 999px 0;
+    border: 1px solid rgba(0, 190, 255, 0.85);
+    border-left: none;
+
+    background: radial-gradient(circle at 30% 0%, rgba(255,255,255,0.25), transparent 55%),
+                linear-gradient(120deg, rgba(0,160,255,0.95), rgba(0,220,255,0.95));
+
+    color: #f6fbff;
+    box-shadow:
+        0 0 14px rgba(0, 190, 255, 0.7),
+        0 0 24px rgba(0, 160, 255, 0.5);
+    padding: 0 0.9rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.main-header .btn-navbar:hover {
+    filter: brightness(1.1);
+    box-shadow:
+        0 0 18px rgba(0, 220, 255, 0.85),
+        0 0 28px rgba(0, 180, 255, 0.6);
+}
+
+
+/* ===============================
+   SEARCH BOX（全体デザイン統一版）
+   =============================== */
+
+/* 入力欄 */
+.main-header .form-control-navbar {
+    min-width: 240px;
+    height: 34px;
+
+    /* ▼ ダークテーマと馴染む背景 */
+    background: linear-gradient(
+        135deg,
+        rgba(6, 14, 28, 0.95),
+        rgba(10, 22, 40, 0.95)
+    );
+
+    /* ▼ 角丸なし（重要） */
+    border-radius: 0;
+
+    /* ▼ 白枠禁止 → UI に合わせた淡青の細線 */
+    border: 1px solid rgba(60, 140, 255, 0.45);
+
+    /* ▼ テキスト色：黒ではなく淡い水色へ */
+    color: #cfe8ff;
+
+    padding: 0 0.9rem;
+
+    /* ▼ ほんのり光を入れて視認性UP */
+    box-shadow:
+        0 0 6px rgba(0, 100, 255, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.main-header .form-control-navbar::placeholder {
+    color: rgba(170, 200, 230, 0.55);
+}
+
+/* フォーカス時：すこし光らせる */
+.main-header .form-control-navbar:focus {
+    outline: none;
+    border-color: rgba(80, 180, 255, 0.9);
+    box-shadow:
+        0 0 10px rgba(0, 160, 255, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 検索ボタン（こちらも角丸なしに統一） */
+.main-header .btn-navbar {
+    height: 34px;
+    border-radius: 0;
+    border: 1px solid rgba(80, 180, 255, 0.9);
+    border-left: none;
+
+    background: linear-gradient(
+        120deg,
+        rgba(0, 160, 255, 0.95),
+        rgba(0, 220, 255, 0.95)
+    );
+
+    color: #f5fbff;
+
+    box-shadow:
+        0 0 12px rgba(0, 190, 255, 0.65),
+        0 0 22px rgba(0, 160, 255, 0.45);
+
+    transition: filter 0.15s ease;
+}
+
+.main-header .btn-navbar:hover {
+    filter: brightness(1.12);
+}
+
+
+/* =======================================
+   Header Search 最終調整（強制上書き）
+   ======================================= */
+
+/* テキストボックス本体 */
+.main-header .input-group.input-group-sm .form-control-navbar {
+    /* ─ 1. 文字色を白にする ─ */
+    color: #ffffff !important;
+
+    /* ─ 2. 白枠をやめて、青系の細枠にする ─ */
+    border: 1px solid rgba(80, 180, 255, 0.8) !important;
+
+    /* 背景も暗くして全体と統一 */
+    background: linear-gradient(
+        135deg,
+        rgba(6, 14, 28, 0.98),
+        rgba(10, 24, 46, 0.98)
+    ) !important;
+
+    /* ─ 3. ボタンと高さを合わせる ─ */
+    height: 34px !important;
+    border-radius: 0 !important;
+    padding: 0 10px !important;
+
+    box-shadow:
+        0 0 8px rgba(0, 160, 255, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.main-header .input-group.input-group-sm .form-control-navbar::placeholder {
+    color: rgba(185, 210, 235, 0.6) !important;
+}
+
+/* 検索ボタン（Qアイコン）側も高さ・角を揃える */
+.main-header .input-group.input-group-sm .btn-navbar {
+    height: 34px !important;
+    border-radius: 0 !important;
+    border: 1px solid rgba(80, 180, 255, 0.9) !important;
+    border-left: none !important;
+
+    background: linear-gradient(
+        120deg,
+        rgba(0, 160, 255, 0.96),
+        rgba(0, 220, 255, 0.96)
+    ) !important;
+    color: #ffffff !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px !important;
+}
+/* =========================================
+   サイドメニュー閉じたときのヘッダー調整
+   ========================================= */
+@media (min-width: 992px) {
+
+    /* メニュー閉じたときだけ適用 */
+    body.sidebar-mini.sidebar-collapse .main-header .navbar {
+        display: flex;
+        align-items: center;
+    }
+
+    /* 左ナビ（≡ ホーム） */
+    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav:first-child {
+        margin-right: 1.5rem;
+    }
+
+    /* 検索フォームを中央寄せに */
+    body.sidebar-mini.sidebar-collapse .main-header .form-inline {
+        margin-left: 0;
+        margin-right: 0;
+        flex: 1;                      /* 余白を全部ここに持たせる */
+        display: flex;
+        justify-content: center;      /* 中央に配置 */
+    }
+
+    /* 右側（メールアドレス／アイコン）は右端キープ */
+    body.sidebar-mini.sidebar-collapse .main-header .navbar-nav.ml-auto {
+        margin-left: 1.5rem;
+    }
+}
+
+/* =========================================
+   メニュー閉じたときはサイドバーを完全に隠す
+   ========================================= */
+@media (min-width: 992px) {
+
+    /* サイドバー本体を画面外へ */
+    body.sidebar-mini.sidebar-collapse .main-sidebar {
+        margin-left: -250px !important; /* サイドバー幅ぶんマイナス */
+        transition: margin-left 0.2s ease-in-out;
+    }
+
+    /* コンテンツ側を全幅に広げる */
+    body.sidebar-mini.sidebar-collapse .content-wrapper,
+    body.sidebar-mini.sidebar-collapse .main-footer,
+    body.sidebar-mini.sidebar-collapse .main-header {
+        margin-left: 0 !important;
+        transition: margin-left 0.2s ease-in-out;
+    }
+}
+
+
