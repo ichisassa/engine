@@ -1,272 +1,409 @@
 ﻿<section class="content base-status-page" th:fragment="content">
     <div class="base-status-scroll">
         <div class="base-status-card">
-            <div class="base-status-head">
-                <p class="eyebrow">BASE STATUS</p>
-            </div>
+            <!-- 共鳴者セレクト -->
             <div class="card mingshiu-section-card">
                 <div class="card-body">
+                    <h5 class="section-title">共鳴者</h3>
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="mingshiu-native-select">
                             <select id="character" name="character" class="form-control mingshiu-select neo-select">
-                            <option value="">共鳴者</option>
-                            <option value="気動主人公">気動主人公</option>
-                            <option value="千咲">千咲</option>
-                            <option value="ガルブレーナ">ガルブレーナ</option>
-                            <option value="ユーノ">ユーノ</option>
-                            <option value="フローヴァ">フローヴァ</option>
-                            <option value="カルテジア">カルテジア</option>
-                            <option value="シャコンヌ">シャコンヌ</option>
-                            <option value="カンタレラ">カンタレラ</option>
-                            <option value="ロココ">ロココ</option>
-                            <option value="カルロッタ">カルロッタ</option>
-                            <option value="ツバキ">ツバキ</option>
-                            <option value="ショアキーパー">ショアキーパー</option>
-                            <option value="相里要">相里要</option>
-                            <option value="折枝">折枝</option>
-                            <option value="長離">長離</option>
-                            <option value="今汐">今汐</option>
-                            <option value="鑑心">鑑心</option>
-                            <option value="ヴェリーナ">ヴェリーナ</option>
-                            <option value="アンコ">アンコ</option>
-                            <option value="淵武">淵武</option>
-                            <option value="丹瑾">丹瑾</option>
-                            <option value="散華">散華</option>
-                            <option value="白芷">白芷</option>
-                            <option value="秧秧">秧秧</option>
-                            <option value="熾霞">熾霞</option>
-                            <option value="カカロ">カカロ</option>
-                            <option value="灯灯">灯灯</option>
-                            <option value="釉瑚">釉瑚</option>
-                            <option value="モルトフィー">モルトフィー</option>
-                            <option value="桃祈">桃祈</option>
-                            <option value="アールト">アールト</option>
+                                <option value=""></option>
+                                <option value="気動主人公">気動主人公</option>
+                                <option value="千咲">千咲</option>
+                                <option value="ガルブレーナ">ガルブレーナ</option>
+                                <option value="ユーノ">ユーノ</option>
+                                <option value="フローヴァ">フローヴァ</option>
+                                <option value="カルテジア">カルテジア</option>
+                                <option value="シャコンヌ">シャコンヌ</option>
+                                <option value="カンタレラ">カンタレラ</option>
+                                <option value="ロココ">ロココ</option>
+                                <option value="カルロッタ">カルロッタ</option>
+                                <option value="ツバキ">ツバキ</option>
+                                <option value="ショアキーパー">ショアキーパー</option>
+                                <option value="相里要">相里要</option>
+                                <option value="折枝">折枝</option>
+                                <option value="長離">長離</option>
+                                <option value="今汐">今汐</option>
+                                <option value="鑑心">鑑心</option>
+                                <option value="ヴェリーナ">ヴェリーナ</option>
+                                <option value="アンコ">アンコ</option>
+                                <option value="淵武">淵武</option>
+                                <option value="丹瑾">丹瑾</option>
+                                <option value="散華">散華</option>
+                                <option value="白芷">白芷</option>
+                                <option value="秧秧">秧秧</option>
+                                <option value="熾霞">熾霞</option>
+                                <option value="カカロ">カカロ</option>
+                                <option value="灯灯">灯灯</option>
+                                <option value="釉瑚">釉瑚</option>
+                                <option value="モルトフィー">モルトフィー</option>
+                                <option value="桃祈">桃祈</option>
+                                <option value="アールト">アールト</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- 基本ステータス -->
             <div class="card mingshiu-section-card">
                 <div class="card-body">
-                    <h3 class="section-title">基本ステータス</h3>
+                    <h5 class="section-title">基本ステータス</h3>
                     <div class="row">
+
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
                                 <div class="stat-row-flat">
                                     <div class="stat-flat-label">HP</div>
                                     <div class="stat-flat-value-wrap">
-                                        <input type="number"
-                                            class="stat-flat-input"
-                                            id="hp"
-                                            name="hp"
-                                            step="0.1"
-                                            min="0"
-                                            placeholder="0.0">
+                                        <input type="number" class="stat-flat-input" id="hp" name="hp" placeholder="0">
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="attackPower" class="form-label">攻撃力</label>
-                                <input type="number" class="form-control" id="attackPower" name="attackPower" placeholder="攻撃力">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">攻撃力</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="attackPower" name="attackPower" placeholder="0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="defensePower" class="form-label">防御力</label>
-                                <input type="number" class="form-control" id="defensePower" name="defensePower" placeholder="防御力">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">防御力</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="defensePower" name="defensePower" placeholder="0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="staminaLimit" class="form-label">スタミナ上限</label>
-                                <input type="number" class="form-control" id="staminaLimit" name="staminaLimit" placeholder="スタミナ上限">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">スタミナ上限</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="staminaLimit" name="staminaLimit" placeholder="0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="soarStaminaLimit" class="form-label">ソアーのスタミナ上限</label>
-                                <input type="number" class="form-control" id="soarStaminaLimit" name="soarStaminaLimit" placeholder="ソアーのスタミナ上限">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">ソアーのスタミナ上限</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="soarStaminaLimit" name="soarStaminaLimit" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- クリティカル・共鳴 -->
+            <div class="card mingshiu-section-card">
+                <div class="card-body">
+                    <h5 class="section-title">クリティカル・共鳴</h3>
+                    <div class="row">
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">クリティカル率</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">クリティカルダメージ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">共鳴効率</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">共鳴スキルダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="resonanceSkillUp" name="resonanceSkillUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">通常攻撃ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="normalAttackUp" name="normalAttackUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">重撃ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="heavyAttackUp" name="heavyAttackUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">共鳴解放ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="resonanceReleaseUp" name="resonanceReleaseUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 属性ダメージアップ -->
+            <div class="card mingshiu-section-card">
+                <div class="card-body">
+                    <h5 class="section-title">属性ダメージアップ</h3>
+                    <div class="row">
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">物理ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="physicalDamageUp" name="physicalDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">凝縮ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="condensedDamageUp" name="condensedDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">焦熱ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="thermalDamageUp" name="thermalDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">電導ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="electricDamageUp" name="electricDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">気動ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="aeroDamageUp" name="aeroDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">回折ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="diffractionDamageUp" name="diffractionDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">消滅ダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="extinctionDamageUp" name="extinctionDamageUp" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 属性ダメージ耐性 -->
+            <div class="card mingshiu-section-card">
+                <div class="card-body">
+                    <h5 class="section-title">属性ダメージ耐性</h3>
+                    <div class="row">
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">物理ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="physicalResist" name="physicalResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">凝縮ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="condensedResist" name="condensedResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">焦熱ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="thermalResist" name="thermalResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">電導ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="electricResist" name="electricResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">気動ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="aeroResist" name="aeroResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">回折ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="diffractionResist" name="diffractionResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">消滅ダメージ耐性</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="extinctionResist" name="extinctionResist" placeholder="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 回復 -->
+            <div class="card mingshiu-section-card">
+                <div class="card-body">
+                    <h5 class="section-title">回復</h3>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="form-group mb-0">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">HP回復効果アップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="hpRecoveryUp" name="hpRecoveryUp" placeholder="0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- 音骸 -->
             <div class="card mingshiu-section-card">
                 <div class="card-body">
-                    <h3 class="section-title">クリティカル・共鳴</h3>
+                    <h5 class="section-title">音骸</h3>
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="criticalRate" class="form-label">クリティカル率</label>
-                                <input type="number" class="form-control" id="criticalRate" name="criticalRate" placeholder="クリティカル率">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="criticalDamage" class="form-label">クリティカルダメージ</label>
-                                <input type="number" class="form-control" id="criticalDamage" name="criticalDamage" placeholder="クリティカルダメージ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="resonanceEfficiency" class="form-label">共鳴効率</label>
-                                <input type="number" class="form-control" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="共鳴効率">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="resonanceSkillUp" class="form-label">共鳴スキルダメージアップ</label>
-                                <input type="number" class="form-control" id="resonanceSkillUp" name="resonanceSkillUp" placeholder="共鳴スキルダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="normalAttackUp" class="form-label">通常攻撃ダメージアップ</label>
-                                <input type="number" class="form-control" id="normalAttackUp" name="normalAttackUp" placeholder="通常攻撃ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="heavyAttackUp" class="form-label">重撃ダメージアップ</label>
-                                <input type="number" class="form-control" id="heavyAttackUp" name="heavyAttackUp" placeholder="重撃ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="resonanceReleaseUp" class="form-label">共鳴解放ダメージアップ</label>
-                                <input type="number" class="form-control" id="resonanceReleaseUp" name="resonanceReleaseUp" placeholder="共鳴解放ダメージアップ">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mingshiu-section-card">
-                <div class="card-body">
-                    <h3 class="section-title">属性ダメージアップ</h3>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="physicalDamageUp" class="form-label">物理ダメージアップ</label>
-                                <input type="number" class="form-control" id="physicalDamageUp" name="physicalDamageUp" placeholder="物理ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="condensedDamageUp" class="form-label">凝縮ダメージアップ</label>
-                                <input type="number" class="form-control" id="condensedDamageUp" name="condensedDamageUp" placeholder="凝縮ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="thermalDamageUp" class="form-label">焦熱ダメージアップ</label>
-                                <input type="number" class="form-control" id="thermalDamageUp" name="thermalDamageUp" placeholder="焦熱ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="electricDamageUp" class="form-label">電導ダメージアップ</label>
-                                <input type="number" class="form-control" id="electricDamageUp" name="electricDamageUp" placeholder="電導ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="aeroDamageUp" class="form-label">気動ダメージアップ</label>
-                                <input type="number" class="form-control" id="aeroDamageUp" name="aeroDamageUp" placeholder="気動ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="diffractionDamageUp" class="form-label">回折ダメージアップ</label>
-                                <input type="number" class="form-control" id="diffractionDamageUp" name="diffractionDamageUp" placeholder="回折ダメージアップ">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="extinctionDamageUp" class="form-label">消滅ダメージアップ</label>
-                                <input type="number" class="form-control" id="extinctionDamageUp" name="extinctionDamageUp" placeholder="消滅ダメージアップ">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mingshiu-section-card">
-                <div class="card-body">
-                    <h3 class="section-title">属性ダメージ耐性</h3>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="physicalResist" class="form-label">物理ダメージ耐性</label>
-                                <input type="number" class="form-control" id="physicalResist" name="physicalResist" placeholder="物理ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="condensedResist" class="form-label">凝縮ダメージ耐性</label>
-                                <input type="number" class="form-control" id="condensedResist" name="condensedResist" placeholder="凝縮ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="thermalResist" class="form-label">焦熱ダメージ耐性</label>
-                                <input type="number" class="form-control" id="thermalResist" name="thermalResist" placeholder="焦熱ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="electricResist" class="form-label">電導ダメージ耐性</label>
-                                <input type="number" class="form-control" id="electricResist" name="electricResist" placeholder="電導ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="aeroResist" class="form-label">気動ダメージ耐性</label>
-                                <input type="number" class="form-control" id="aeroResist" name="aeroResist" placeholder="気動ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="diffractionResist" class="form-label">回折ダメージ耐性</label>
-                                <input type="number" class="form-control" id="diffractionResist" name="diffractionResist" placeholder="回折ダメージ耐性">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="extinctionResist" class="form-label">消滅ダメージ耐性</label>
-                                <input type="number" class="form-control" id="extinctionResist" name="extinctionResist" placeholder="消滅ダメージ耐性">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mingshiu-section-card">
-                <div class="card-body">
-                    <h3 class="section-title">回復</h3>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="hpRecoveryUp" class="form-label">HP回復効果アップ</label>
-                                <input type="number" class="form-control" id="hpRecoveryUp" name="hpRecoveryUp" placeholder="HP回復効果アップ">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mingshiu-section-card">
-                <div class="card-body">
-                    <h3 class="section-title">音骸</h3>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group mb-0">
-                                <label for="echoSkillUp" class="form-label">音骸スキルダメージアップ</label>
-                                <input type="number" class="form-control" id="echoSkillUp" name="echoSkillUp" placeholder="音骸スキルダメージアップ">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">音骸スキルダメージアップ</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number" class="stat-flat-input" id="echoSkillUp" name="echoSkillUp" placeholder="0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -199,7 +199,7 @@ input[type="number"] {
 
 .base-status-card {
     width: 100%;
-    max-width: 1040px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 2.75rem 3rem;
     border-radius: 20px;
@@ -310,6 +310,8 @@ input[type="number"] {
     box-shadow: none;
 }
 
+/* ===== ステータス行（タイトル＋値） ===== */
+
 .stat-row-flat {
     display: flex;
     align-items: stretch;
@@ -333,19 +335,22 @@ input[type="number"] {
     transform: translateY(-0.5px);
 }
 
+/* ▼ タイトル部分：幅を広げて改行させない */
 .stat-flat-label {
-    flex: 0 0 55%;
+    flex: 0 0 60%;
     padding: 0.45rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: #f3f6ff;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    white-space: nowrap;
 }
 
+/* ▼ 入力値部分：残りの幅 */
 .stat-flat-value-wrap {
-    flex: 1;
+    flex: 0 0 40%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -355,18 +360,18 @@ input[type="number"] {
 
 .stat-flat-input {
     width: 100%;
-    max-width: 140px;
+    max-width: 240px;
     height: 30px;
     text-align: center;
     background: transparent;
     border: none;
     color: #f8fafc;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: 0.2rem 0.5rem;
 }
 
 .stat-flat-input::placeholder {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -584,4 +589,44 @@ select.form-control.mingshiu-select:focus {
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
     color: #62ffff !important;
     filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+}
+
+/* 共鳴者セレクトボックスの文字サイズを大きくする */
+select.mingshiu-select,
+select.neo-select {
+    font-size: 1.0rem !important;
+    line-height: 1.0rem !important;
+    height: 50px !important;       /* stat-flat-input と同じ高さに */
+    line-height: 50px !important;  /* テキストの縦位置も安定させる */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* ドロップダウン内の項目も同じサイズにするなら */
+.mingshiu-select option {
+    font-size: 1.0rem;
+}
+
+/* ▼ input / select 共通：フォーカス時のネオン発光を強化 */
+input.stat-flat-input:focus,
+select.mingshiu-select:focus,
+select.neo-select:focus {
+    outline: none !important;
+    border-color: rgba(0, 255, 255, 0.95) !important;
+
+    box-shadow:
+        0 0 6px rgba(0, 255, 255, 0.65),
+        0 0 14px rgba(0, 255, 255, 0.55),
+        0 0 28px rgba(0, 255, 255, 0.45),
+        inset 0 0 10px rgba(0, 120, 255, 0.45) !important;
+
+    background: rgba(8, 22, 45, 0.98) !important;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+/* ▼ 通常時の select/input の背景を軽く統一 */
+input.stat-flat-input,
+select.mingshiu-select,
+select.neo-select {
+    transition: box-shadow 0.15s ease, background 0.15s ease;
 }
