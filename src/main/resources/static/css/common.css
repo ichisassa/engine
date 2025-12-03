@@ -687,7 +687,6 @@ select.mingshiu-select option {
    07. Pages: Status Base Input
    ================================================================== */
 .status-page:not(.solo) {
-    padding: 2.5rem 1.5rem 3.5rem;
     display: flex;
     justify-content: center;
 }
