@@ -309,6 +309,79 @@ input[type="number"] {
     color: #6c7f96;
     box-shadow: none;
 }
+/* 外側のピル：他の入力と同じトーン＋フォーカスで発光 */
+.stat-row-flat {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.35rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #050f1f, #06152b);
+    box-shadow:
+        inset 0 0 0 1px rgba(25, 60, 105, 0.9);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.1s ease;
+}
+
+.stat-row-flat:focus-within {
+    background: linear-gradient(135deg, #071528, #071f3a);
+    box-shadow:
+        0 0 0 1px rgba(59, 255, 255, 0.7),
+        0 0 10px rgba(59, 255, 255, 0.8),
+        0 0 22px rgba(40, 180, 255, 0.5);
+    transform: translateY(-0.5px);
+}
+
+.stat-flat-label {
+    flex: 0 0 55%;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #f3f6ff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.stat-flat-value-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stat-flat-input {
+    width: 100%;
+    max-width: 140px;
+    height: 30px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+}
+
+.stat-flat-input::placeholder {
+    color: rgba(148, 170, 210, 0.6);
+}
+
+.stat-flat-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input[type=number].stat-flat-input {
+    -moz-appearance: textfield;
+}
+input[type=number].stat-flat-input::-webkit-outer-spin-button,
+input[type=number].stat-flat-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 .mingshiu-section-card .row {
     row-gap: 0.75rem;

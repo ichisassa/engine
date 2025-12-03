@@ -53,8 +53,18 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="form-group mb-0">
-                                <label for="hp" class="form-label">HP</label>
-                                <input type="number" class="form-control" id="hp" name="hp" placeholder="HP">
+                                <div class="stat-row-flat">
+                                    <div class="stat-flat-label">HP</div>
+                                    <div class="stat-flat-value-wrap">
+                                        <input type="number"
+                                            class="stat-flat-input"
+                                            id="hp"
+                                            name="hp"
+                                            step="0.1"
+                                            min="0"
+                                            placeholder="0.0">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
