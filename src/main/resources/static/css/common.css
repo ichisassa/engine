@@ -315,15 +315,16 @@ input[type="number"] {
 }
 
 @media (min-width: 992px) {
+    /* ▼ メニューを閉じたときはサイドバー自体を消す */
     body.sidebar-mini.sidebar-collapse .main-sidebar {
-        margin-left: -250px;
-        transition: margin-left 0.2s ease-in-out;
+        display: none !important;
     }
 
+    /* ▼ コンテンツ／ヘッダー／フッターは左余白ゼロで全幅表示 */
     body.sidebar-mini.sidebar-collapse .content-wrapper,
     body.sidebar-mini.sidebar-collapse .main-footer,
     body.sidebar-mini.sidebar-collapse .main-header {
-        margin-left: 0;
+        margin-left: 0 !important;
         transition: margin-left 0.2s ease-in-out;
     }
 
@@ -348,10 +349,12 @@ input[type="number"] {
         margin-left: 1.5rem;
     }
 
+    /* ▼ 子メニューは閉じた状態では表示しない */
     body.sidebar-mini.sidebar-collapse .nav-sidebar .nav-treeview {
         display: none;
     }
 }
+
 /* ==================================================================
    04. Components: Card / Panel / Form / Button / Badge
    ================================================================== */
