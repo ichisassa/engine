@@ -381,7 +381,7 @@ input[type="number"] {
 }
 
 input[type=number].stat-flat-input {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
 input[type=number].stat-flat-input::-webkit-outer-spin-button,
 input[type=number].stat-flat-input::-webkit-inner-spin-button {
