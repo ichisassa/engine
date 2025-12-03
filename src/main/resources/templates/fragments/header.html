@@ -4,30 +4,24 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <!-- Header search -->
         <li class="nav-item d-none d-sm-inline-block">
-            <a th:href="@{/}" class="nav-link">ホーム</a>
+            <form class="form-inline header-search ml-3" role="search">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar btn-neon" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </li>
     </ul>
 
-    <!-- Header search -->
-    <form class="form-inline header-search ml-3" role="search">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar btn-neon" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
 
     <!-- Right-side quick actions -->
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item d-none d-md-inline-block">
-            <a class="nav-link" href="mailto:support@mingshiu.com">
-                <i class="fas fa-life-ring mr-1"></i>support@mingshiu.com
-            </a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-user-circle"></i>

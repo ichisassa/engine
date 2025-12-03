@@ -157,14 +157,36 @@ input[type="number"] {
     pointer-events: none;
 }
 
-.main-header .navbar-nav .nav-link {
-    color: rgba(190, 210, 255, 0.8);
+.main-header .navbar-nav .nav-link,
+.main-header .navbar-nav .nav-link:focus,
+.main-header .navbar-nav .nav-link:active,
+.main-header .navbar-nav .nav-link.active {
+    color: rgba(220, 240, 255, 0.9) !important;
     font-size: 0.95rem;
-    transition: color 0.2s ease;
+    padding: 6px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+    border: 1px solid rgba(60, 140, 255, 0.5) !important;
+    background: linear-gradient(135deg, #04101f, #06243d) !important;
+    box-shadow:
+        0 0 6px rgba(0, 160, 255, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    outline: none;
+    transition: 0.2s ease;
 }
 
 .main-header .navbar-nav .nav-link:hover {
-    color: rgba(220, 240, 255, 1);
+    border-color: rgba(80, 200, 255, 0.9);
+    background: linear-gradient(135deg, #06233e, #0a365d);
+    color: #ffffff;
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.8),
+        0 0 20px rgba(0, 140, 255, 0.5);
 }
 
 .main-header .navbar-nav.ml-auto .nav-link {
@@ -177,7 +199,7 @@ input[type="number"] {
 }
 
 .main-header .header-search .input-group.input-group-sm {
-    height: 34px;
+    height: 39px;
 }
 
 .main-header.navbar .form-control-navbar {
@@ -210,15 +232,8 @@ input[type="number"] {
 .main-header.navbar .btn-navbar {
     height: 100%;
     border-radius: 0;
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
-    background: var(--grad-btn-neon);
-    color: #f6fbff;
-    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
 }
 
 .main-sidebar {
@@ -350,17 +365,27 @@ input[type="number"] {
     border: 1px solid rgba(80, 180, 255, 0.9);
     background: var(--grad-btn-neon);
     color: #f6fbff;
-    box-shadow: 0 0 14px rgba(0, 190, 255, 0.7), var(--shadow-neon-strong);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0 0.9rem;
+    box-shadow:
+        0 0 8px rgba(0, 190, 255, 0.55),
+        0 0 16px rgba(0, 160, 255, 0.45);
+
     transition: filter 0.15s ease, box-shadow 0.15s ease;
 }
 
-.btn-neon:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 0 18px rgba(0, 220, 255, 0.85), 0 0 28px rgba(0, 180, 255, 0.6);
+.btn-neon:hover,
+.btn-neon:focus,
+.btn-neon:active {
+    filter: brightness(1.18);
+    /* ここでガッツリ光らせる：外枠がバチッと光る */
+    box-shadow:
+        0 0 14px rgba(0, 255, 255, 0.95),
+        0 0 30px rgba(0, 210, 255, 0.9),
+        0 0 52px rgba(0, 160, 255, 0.75);
+    outline: none;
 }
 
 .badge-neon {
