@@ -19,43 +19,29 @@ public class DisplayController {
         return render("ダッシュボード", "contents/dashboard", "dashboard", model);
     }
 
-    @GetMapping("/reports")
-    public String reports(Model model) {
-        return render("レポート", "contents/reports", "reports", model);
-    }
-
-    @GetMapping("/mail/list")
-    public String mailList(Model model) {
-        return render("メール一覧", "contents/mail-list", "mail-list", model);
-    }
-
-    @GetMapping("/mail/send")
-    public String mailSend(Model model) {
-        return render("メール送信", "contents/mail-send", "mail-send", model);
-    }
-
-    @GetMapping("/profile")
-    public String profile(Model model) {
-        return render("プロファイル", "contents/profile", "profile", model);
-    }
-
     @GetMapping("/settings")
     public String settings(Model model) {
         return render("設定", "contents/settings", "settings", model);
     }
 
-    @GetMapping("/base-status")
-    public String baseStatusRoot(Model model) {
-        return render("基礎ステータス入力", "contents/base-status-input", "base-status-input", model);
-    }
-
-    @GetMapping("/base-status/input")
+    @GetMapping("/status/base/input")
     public String baseStatusInput(Model model) {
-        return render("基礎ステータス入力", "contents/base-status-input", "base-status-input", model);
+        return render("基礎入力", "contents/status-base-input", "status-base-input", model);
     }
 
-    @GetMapping("/base-status/list")
-    public String baseStatusList(Model model) {
-        return render("基礎ステータス一覧", "contents/base-status-list", "base-status-list", model);
+    @GetMapping("/status/weapon/input")
+    public String baseStatusWeapon(Model model) {
+        return render("武器入力", "contents/status-weapon-input", "status-weapon-input", model);
     }
+
+    @GetMapping("/status/bonus/input")
+    public String baseStatusBonus(Model model) {
+        return render("ボーナス入力", "contents/status-bonus-input", "status-bonus-input", model);
+    }
+
+    @GetMapping("/status/echo/input")
+    public String baseStatusEcho(Model model) {
+        return render("音骸入力", "contents/status-echo-input", "status-echo-input", model);
+    }
+
 }
