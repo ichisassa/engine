@@ -4,16 +4,22 @@
     <a href="#" class="brand-link sidebar-hud">
         <div class="sidebar-hud-card">
             <div class="sidebar-hud-top">
-                <span class="sidebar-hud-name text-glow">アールト</span>
-                <div class="sidebar-hud-metrics">
-                    <span class="sidebar-hud-metric">
-                        ATK
-                        <strong class="sidebar-hud-value">1,234</strong>
-                    </span>
-                    <span class="sidebar-hud-metric">
-                        CRIT
-                        <strong class="sidebar-hud-value">52%</strong>
-                    </span>
+                <!-- ① キャラアイコン -->
+                <img th:src="@{/img/chisa.png}" alt="千咲" class="sidebar-hud-icon">
+
+                <!-- ② テキスト部分をまとめる -->
+                <div class="sidebar-hud-main">
+                    <span class="sidebar-hud-name text-glow">千咲</span>
+                    <div class="sidebar-hud-metrics">
+                        <span class="sidebar-hud-metric">
+                            ATK
+                            <strong class="sidebar-hud-value">1,234</strong>
+                        </span>
+                        <span class="sidebar-hud-metric">
+                            CRIT
+                            <strong class="sidebar-hud-value">52%</strong>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="sidebar-hud-bottom">

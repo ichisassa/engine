@@ -928,10 +928,26 @@ input[type="number"].stat-flat-input::-webkit-inner-spin-button {
 
 .sidebar-hud-top {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.4rem;
+    align-items: center;   /* baseline → center に変更 */
+    gap: 0.7rem;           /* アイコンと文字の間の余白 */
     margin-bottom: 0.6rem;
+}
+
+/* キャラアイコン（900x900 を丸く縮小） */
+.sidebar-hud-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(150, 220, 255, 0.7);
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.55);
+}
+
+/* テキスト塊（名前＋ATK/CRIT） */
+.sidebar-hud-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .sidebar-hud-name {
