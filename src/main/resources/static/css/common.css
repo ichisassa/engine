@@ -711,7 +711,7 @@ select.mingshiu-select option {
     margin-bottom: 0;
 }
 /* ==================================================================
-   07. Pages: Status Base Input
+   07. Pages: Status Input
    ================================================================== */
 .status-page:not(.solo) {
     display: flex;
@@ -862,21 +862,21 @@ input[type="number"].stat-flat-input::-webkit-inner-spin-button {
    08. Pages: Status Weapon Input
    ================================================================== */
 .weapon-page {
-    /* Reuses base status components; no additional overrides yet. */
+    /* Reuses status components; no additional overrides yet. */
 }
 
 /* ==================================================================
    09. Pages: Status Bonus Input
    ================================================================== */
 .bonus-page {
-    /* Reuses base status components; no additional overrides yet. */
+    /* Reuses status components; no additional overrides yet. */
 }
 
 /* ==================================================================
    10. Pages: Status Echo Input
    ================================================================== */
 .echo-page {
-    /* Reuses base status components; no additional overrides yet. */
+    /* Reuses status components; no additional overrides yet. */
 }
 
 /* ==================================================================
