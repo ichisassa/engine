@@ -269,7 +269,7 @@ input[type="number"] {
     filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.8));
 }
 
-.nav-sidebar .nav-item:not(.base-status-nav) > .nav-link.active {
+.nav-sidebar .nav-item:not(.status-nav) > .nav-link.active {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -280,7 +280,7 @@ input[type="number"] {
     backdrop-filter: blur(3px);
 }
 
-.nav-sidebar .nav-item:not(.base-status-nav) > .nav-link.active:hover {
+.nav-sidebar .nav-item:not(.status-nav) > .nav-link.active:hover {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -334,18 +334,18 @@ input[type="number"] {
     filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
 }
 
-.base-status-nav > .nav-link,
-.base-status-nav > .nav-link:hover,
-.base-status-nav > .nav-link:focus,
-.base-status-nav > .nav-link:active,
-.base-status-nav.menu-open > .nav-link {
+.status-nav > .nav-link,
+.status-nav > .nav-link:hover,
+.status-nav > .nav-link:focus,
+.status-nav > .nav-link:active,
+.status-nav.menu-open > .nav-link {
     background: transparent !important;
     box-shadow: none !important;
     border-left-color: transparent !important;
     color: var(--color-text-main) !important;
 }
 
-.base-status-nav.menu-open > .nav-link i {
+.status-nav.menu-open > .nav-link i {
     color: var(--color-text-main);
     filter: none;
 }
@@ -718,7 +718,7 @@ select.mingshiu-select option {
     justify-content: center;
 }
 
-.base-status-scroll {
+.status-scroll {
     width: 100%;
     max-height: calc(100vh - 140px);
     padding-right: var(--scrollbar-compensation);
@@ -728,11 +728,11 @@ select.mingshiu-select option {
     scrollbar-gutter: stable both-edges;
 }
 
-.base-status-scroll::-webkit-scrollbar {
+.status-scroll::-webkit-scrollbar {
     width: 14px;
 }
 
-.base-status-card {
+.status-card {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -741,7 +741,7 @@ select.mingshiu-select option {
     color: var(--color-text-main);
 }
 
-.base-status-head .eyebrow {
+.status-head .eyebrow {
     font-size: 0.78rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -839,12 +839,12 @@ input[type="number"].stat-flat-input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 768px) {
-    .base-status-scroll {
+    .status-scroll {
         max-height: none;
         padding-right: 0;
     }
 
-    .base-status-card {
+    .status-card {
         padding: 2rem 1.5rem;
     }
 
@@ -861,21 +861,21 @@ input[type="number"].stat-flat-input::-webkit-inner-spin-button {
 /* ==================================================================
    08. Pages: Status Weapon Input
    ================================================================== */
-.status-weapon-page {
+.weapon-page {
     /* Reuses base status components; no additional overrides yet. */
 }
 
 /* ==================================================================
    09. Pages: Status Bonus Input
    ================================================================== */
-.status-bonus-page {
+.bonus-page {
     /* Reuses base status components; no additional overrides yet. */
 }
 
 /* ==================================================================
    10. Pages: Status Echo Input
    ================================================================== */
-.status-echo-page {
+.echo-page {
     /* Reuses base status components; no additional overrides yet. */
 }
 

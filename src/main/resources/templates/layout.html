@@ -9,35 +9,26 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/css/tempusdominus-bootstrap-4.min.css">
   <link rel="stylesheet" th:href="@{/css/common.css}">
+  <link rel="stylesheet" th:href="@{/css/sideber.css}">
   <link rel="stylesheet" th:href="@{/css/status-hud.css}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
-    <header th:replace="~{fragments/header :: header}">
-    </header>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" th:replace="~{fragments/sidebar :: sidebar(activePage=${activePage})}">
-    </aside>
+    <header th:replace="~{fragments/header :: header}"></header>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" th:replace="~{fragments/sidebar :: sidebar(activePage=${activePage})}"></aside>
     <main class="content-wrapper">
       <section class="content-header" aria-label="Page summary">
         <div class="container-fluid">
           <div class="page-header">
             <div class="page-header-title">
-              <span class="title-accent">
-              </span>
-              <h1 th:text="${pageTitle}">Dashboard</h1>
-            </div>
-            <div class="page-header-breadcrumb">
-              <span>
-                <a th:href="@{/admin/dashboard}">Home</a>/
-                <span th:text="${pageTitle}">Dashboard</span>
-              </span>
+              <span class="title-accent"></span>
+              <h1 th:text="${pageTitle}"></h1>
             </div>
           </div>
         </div>
       </section>
-      <section class="content" th:replace="~{${contentTemplate} :: content}">
-      </section>
+      <section class="content" th:replace="~{${contentTemplate} :: content}"></section>
     </main>
     <footer class="main-footer text-sm text-muted text-center">
       <strong>AdminLTE Demo</strong>
