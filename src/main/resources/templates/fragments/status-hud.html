@@ -1,0 +1,48 @@
+<div th:fragment="statusHud">
+  <a href="#" class="brand-link status-hud-link">
+    <div class="status-hud-card">
+      <div class="status-hud-header">
+        <img th:src="@{/img/chisa.png}" src="/img/chisa.png" alt="千咲" class="status-hud-icon">
+        <div class="status-hud-main">
+          <div class="status-hud-name-row">
+            <span class="status-hud-name">千咲</span>
+          </div>
+          <div class="status-hud-lv-info">
+            <span class="status-hud-level">Lv.90</span>
+            <span class="status-hud-chain">Ch.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="status-hud-header">
+        <div class="status-hud-stats-grid">
+          <div class="status-hud-stat">
+            <span class="status-hud-stat-label">ATK</span>
+            <span class="status-hud-stat-value">9,999</span>
+          </div>
+          <div class="status-hud-stat">
+            <span class="status-hud-stat-label">CRRT</span>
+            <span class="status-hud-stat-value">999.9%</span>
+          </div>
+          <div class="status-hud-stat">
+            <span class="status-hud-stat-label">CRDM</span>
+            <span class="status-hud-stat-value">999.9%</span>
+          </div>
+          <div class="status-hud-stat">
+            <span class="status-hud-stat-label">ENGN</span>
+            <span class="status-hud-stat-value">999.9%</span>
+          </div>
+        </div>
+      </div>
+      <div class="status-hud-sync">
+        <div class="status-hud-sync-row">
+          <span class="status-hud-sync-label">DAMAGE SYNC</span>
+          <span class="status-hud-sync-value">68%</span>
+        </div>
+        <div class="status-hud-sync-bar">
+          <div class="status-hud-sync-bar-fill" style="width: 68%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

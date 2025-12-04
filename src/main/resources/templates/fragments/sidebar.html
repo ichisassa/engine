@@ -1,44 +1,6 @@
 <aside th:fragment="sidebar(activePage)" class="main-sidebar sidebar-dark-primary elevation-4">
-
-    <!-- 左上 HUD ブランドエリア -->
-    <a href="#" class="brand-link sidebar-hud">
-        <div class="sidebar-hud-card">
-            <div class="sidebar-hud-top">
-                <!-- ① キャラアイコン -->
-                <img th:src="@{/img/chisa.png}" alt="千咲" class="sidebar-hud-icon">
-
-                <!-- ② テキスト部分をまとめる -->
-                <div class="sidebar-hud-main">
-                    <span class="sidebar-hud-name text-glow">千咲</span>
-                    <div class="sidebar-hud-metrics">
-                        <span class="sidebar-hud-metric">
-                            ATK
-                            <strong class="sidebar-hud-value">1,234</strong>
-                        </span>
-                        <span class="sidebar-hud-metric">
-                            CRIT
-                            <strong class="sidebar-hud-value">52%</strong>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-hud-bottom">
-                <div class="sidebar-hud-bar-wrap">
-                    <div class="sidebar-hud-bar-track">
-                        <div class="sidebar-hud-bar-fill" style="width: 68%;"></div>
-                    </div>
-                </div>
-                <div class="sidebar-hud-footer">
-                    <span class="sidebar-hud-dots">●●●●○</span>
-                    <span class="sidebar-hud-text">
-                        Damage Sync:
-                        <strong class="sidebar-hud-value">68%</strong>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </a>
-
+    <!-- 左上 HUD -->
+    <div th:replace="fragments/status-hud :: statusHud"></div>
     <div class="sidebar">
 
         <nav class="mt-2" aria-label="Sidebar navigation">
