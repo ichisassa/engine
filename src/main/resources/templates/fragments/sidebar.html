@@ -1,67 +1,56 @@
 <aside th:fragment="sidebar(activePage)" class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- 左上 HUD -->
-    <div th:replace="fragments/status-hud :: statusHud"></div>
-    <div class="sidebar">
-
-        <nav class="mt-2" aria-label="Sidebar navigation">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a th:href="@{/}" class="nav-link"
-                       th:classappend="${activePage} == 'dashboard' ? ' active' : ''">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>ダッシュボード</p>
-                    </a>
-                </li>
-
-                <li class="nav-item has-treeview base-status-nav menu-open">
-                    <a href="#" class="nav-link"
-                    th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''"
-                    aria-expanded="true">
-                        <i class="nav-icon fas fa-dna"></i>
-                        <p>
-                            ステータス
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a th:href="@{/status/base/input}" class="nav-link"
-                               th:classappend="${activePage} == 'status-base-input' ? ' active' : ''">
-                                <i class="far fa-edit nav-icon"></i>
-                                <p>基礎入力</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/status/weapon/input}" class="nav-link"
-                               th:classappend="${activePage} == 'status-weapon-input' ? ' active' : ''">
-                                <i class="far fa-edit nav-icon"></i>
-                                <p>武器入力</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/status/bonus/input}" class="nav-link"
-                               th:classappend="${activePage} == 'status-bonus-input' ? ' active' : ''">
-                                <i class="far fa-edit nav-icon"></i>
-                                <p>ボーナス入力</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/status/echo/input}" class="nav-link"
-                               th:classappend="${activePage} == 'status-echo-input' ? ' active' : ''">
-                                <i class="far fa-edit nav-icon"></i>
-                                <p>音骸入力</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/settings}" class="nav-link"
-                       th:classappend="${activePage} == 'settings' ? ' active' : ''">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>設定</p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+  <div th:replace="fragments/status-hud :: statusHud">
+  </div>
+  <div class="sidebar">
+    <nav class="mt-2" aria-label="Sidebar navigation">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a th:href="@{/}" class="nav-link" th:classappend="${activePage} == 'dashboard' ? ' active' : ''">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>ダッシュボード</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview base-status-nav menu-open">
+          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''" aria-expanded="true">
+            <i class="nav-icon fas fa-dna"></i>
+            <p>ステータス
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/status/base/input}" class="nav-link" th:classappend="${activePage} == 'status-base-input' ? ' active' : ''">
+                <i class="far fa-edit nav-icon"></i>
+                <p>基礎入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/status/weapon/input}" class="nav-link" th:classappend="${activePage} == 'status-weapon-input' ? ' active' : ''">
+                <i class="far fa-edit nav-icon"></i>
+                <p>武器入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/status/bonus/input}" class="nav-link" th:classappend="${activePage} == 'status-bonus-input' ? ' active' : ''">
+                <i class="far fa-edit nav-icon"></i>
+                <p>ボーナス入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/status/echo/input}" class="nav-link" th:classappend="${activePage} == 'status-echo-input' ? ' active' : ''">
+                <i class="far fa-edit nav-icon"></i>
+                <p>音骸入力</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/settings}" class="nav-link" th:classappend="${activePage} == 'settings' ? ' active' : ''">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>設定</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </aside>
