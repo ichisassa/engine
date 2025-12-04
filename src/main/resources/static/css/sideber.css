@@ -80,6 +80,14 @@
 /* --------------------------------------
  * 04. Treeview Sub Menu
  * -------------------------------------- */
+.nav-item.has-treeview > .nav-treeview {
+    display: none;
+}
+
+.nav-item.has-treeview.menu-open > .nav-treeview {
+    display: block;
+}
+
 .nav-sidebar .nav-treeview {
     margin-left: 0;
 }

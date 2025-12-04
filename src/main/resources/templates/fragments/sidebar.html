@@ -10,8 +10,8 @@
             <p>最新情報</p>
           </a>
         </li>
-        <li class="nav-item has-treeview status-nav menu-open">
-          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''" aria-expanded="true">
+        <li class="nav-item has-treeview status-nav" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' menu-open' : ''">
+          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''" th:attr="aria-expanded=${#strings.startsWith(activePage, 'status-')}">
             <i class="nav-icon fas fa-chart-line"></i>
             <p>ステータス
               <i class="right fas fa-angle-left"></i>
