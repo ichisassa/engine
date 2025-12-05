@@ -244,7 +244,7 @@ select.mingshiu-select option {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2.75rem 3rem;
+    padding: 0.5rem 0.5rem;
     border-radius: var(--radius-card);
     color: var(--color-text-main);
 }
