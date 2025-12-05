@@ -228,7 +228,7 @@ select.mingshiu-select option {
 
 .status-scroll {
     width: 100%;
-    max-height: calc(100vh - 140px);
+    max-height: calc(100vh - 210px);
     padding-right: var(--scrollbar-compensation);
     overflow-y: auto;
     scrollbar-width: auto;

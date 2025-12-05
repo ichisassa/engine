@@ -1,5 +1,5 @@
 <div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
-  <section class="content solo status-page status-weapon-page">
+<section class="content status-page status-page">
   <div class="status-scroll">
     <div class="status-card">
       <div class="card mingshiu-section-card">
@@ -13,6 +13,30 @@
                   <div class="mingshiu-native-select">
                     <select id="character" name="character" class="form-control mingshiu-select neo-select">
                       <option value=""></option>
+                      <option value="トラジコメーディア">トラジコメーディア</option>
+                      <option value="幽冥の忘憂曲">幽冥の忘憂曲</option>
+                      <option value="万物を書き留める月相">万物を書き留める月相</option>
+                      <option value="不変の湖煙">不変の湖煙</option>
+                      <option value="氷華の雅印">氷華の雅印</option>
+                      <option value="怒涛の湖音">怒涛の湖音</option>
+                      <option value="定めを覆す荊冠">定めを覆す荊冠</option>
+                      <option value="千古の湖水">千古の湖水</option>
+                      <option value="仙境の湖光">仙境の湖光</option>
+                      <option value="森のアリア">森のアリア</option>
+                      <option value="春裁ち">春裁ち</option>
+                      <option value="歳華調和">歳華調和</option>
+                      <option value="行進オーバーチュア">行進オーバーチュア</option>
+                      <option value="血の盟約">血の盟約</option>
+                      <option value="決死の一人戦">決死の一人戦</option>
+                      <option value="狂乱マルカート">狂乱マルカート</option>
+                      <option value="奇妙バリエーション">奇妙バリエーション</option>
+                      <option value="赫く燃ゆる流光">赫く燃ゆる流光</option>
+                      <option value="海淵のリフレイン">海淵のリフレイン</option>
+                      <option value="華麗カテンツァ">華麗カテンツァ</option>
+                      <option value="黄金の拳">黄金の拳</option>
+                      <option value="栄枯の湖岸">栄枯の湖岸</option>
+                      <option value="ルクス＆アンブラ">ルクス＆アンブラ</option>
+                      <option value="ラストダンス">ラストダンス</option>
                     </select>
                   </div>
                 </div>
@@ -41,7 +65,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">攻撃力</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="attackPower" name="attackPower" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="attackPower" name="attackPower" placeholder="000">
                       </div>
                     </div>
                   </div>
@@ -61,7 +85,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">HP上限</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -71,7 +95,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">攻撃力（%）</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -81,7 +105,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">防御力（%）</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -91,7 +115,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">クリティカル率</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -101,7 +125,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">クリティカルダメージ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -111,7 +135,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">共鳴効率</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -130,7 +154,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">HP上限</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -140,7 +164,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">攻撃力（%）</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -150,7 +174,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">防御力（%）</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -160,7 +184,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">クリティカル率</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -170,7 +194,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">クリティカルダメージ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -180,7 +204,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">共鳴効率</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -190,7 +214,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">共鳴スキルダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="resonanceSkillUp" name="resonanceSkillUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="resonanceSkillUp" name="resonanceSkillUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -200,7 +224,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">通常攻撃ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="normalAttackUp" name="normalAttackUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="normalAttackUp" name="normalAttackUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -210,7 +234,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">重撃ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="heavyAttackUp" name="heavyAttackUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="heavyAttackUp" name="heavyAttackUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -220,7 +244,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">共鳴解放ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="resonanceReleaseUp" name="resonanceReleaseUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="resonanceReleaseUp" name="resonanceReleaseUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -230,7 +254,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">凝縮ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="condensedDamageUp" name="condensedDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="condensedDamageUp" name="condensedDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -240,7 +264,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">焦熱ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="thermalDamageUp" name="thermalDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="thermalDamageUp" name="thermalDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -250,7 +274,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">電導ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="electricDamageUp" name="electricDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="electricDamageUp" name="electricDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -260,7 +284,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">気動ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="aeroDamageUp" name="aeroDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="aeroDamageUp" name="aeroDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -270,7 +294,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">回折ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="diffractionDamageUp" name="diffractionDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="diffractionDamageUp" name="diffractionDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -280,7 +304,7 @@
                     <div class="stat-row-flat">
                       <div class="stat-flat-label">消滅ダメージアップ</div>
                       <div class="stat-flat-value-wrap">
-                        <input type="number" class="stat-flat-input" id="extinctionDamageUp" name="extinctionDamageUp" placeholder="0">
+                        <input type="number" class="stat-flat-input" id="extinctionDamageUp" name="extinctionDamageUp" placeholder="000.0%">
                       </div>
                     </div>
                   </div>
@@ -292,5 +316,5 @@
       </div>
     </div>
   </div>
-  </section>
+</section>
 </div>

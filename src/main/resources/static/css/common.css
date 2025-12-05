@@ -59,6 +59,8 @@
     --shadow-neon-ring: 0 0 0 1px rgba(59, 255, 255, 0.7), 0 0 10px rgba(59, 255, 255, 0.8), 0 0 22px rgba(40, 180, 255, 0.5);
     --shadow-neon-fill: 0 0 6px rgba(0, 255, 255, 0.65), 0 0 14px rgba(0, 255, 255, 0.55), 0 0 28px rgba(0, 255, 255, 0.45), inset 0 0 10px rgba(0, 120, 255, 0.45);
     --scrollbar-compensation: 22px;
+    --layout-header-height: 57px;
+    --layout-footer-height: 40px;
 }
 
 /* ==================================================================
@@ -73,6 +75,7 @@
 html,
 body {
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -80,7 +83,7 @@ body {
     background: var(--grad-body);
     color: var(--color-text-main);
     min-height: 100vh;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 a {
@@ -107,7 +110,9 @@ input[type="number"] {
    ================================================================== */
 .wrapper {
     min-height: 100vh;
+    height: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .wrapper,
@@ -121,7 +126,17 @@ input[type="number"] {
 .content-wrapper {
     background: var(--grad-content);
     color: var(--color-text-main);
-    min-height: calc(100vh - 120px);
+}
+
+body.layout-fixed .wrapper .content-wrapper.scroll-area {
+    position: absolute;
+    top: var(--layout-header-height);
+    bottom: var(--layout-footer-height);
+    left: 0;
+    right: 0;
+    height: calc(100vh - (var(--layout-header-height) + var(--layout-footer-height)));
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-bottom: 3rem;
 }
 
@@ -131,14 +146,31 @@ input[type="number"] {
     background: transparent;
 }
 
+body.layout-fixed .main-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    min-height: var(--layout-footer-height);
+}
+
 .main-footer {
     background: rgba(3, 9, 22, 0.85);
     border-top: 1px solid var(--color-border-soft);
     color: var(--color-text-muted);
 }
 
+body.layout-fixed .main-header.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    min-height: var(--layout-header-height);
+}
+
 .main-header.navbar {
-    position: relative;
     background: var(--grad-header);
     border-bottom: 1px solid var(--color-border-soft);
     box-shadow: var(--shadow-header), inset 0 -2px 6px rgba(0, 140, 255, 0.15);
