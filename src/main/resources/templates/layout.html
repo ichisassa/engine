@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title id="document-title" data-title-suffix=" | AdminLTE Demo"
-    th:text="${pageTitle} + ' | AdminLTE Demo'">AdminLTE Demo</title>
+  <title id="document-title" data-title-suffix=" | Mingshiu Engine" th:text="${pageTitle} + ' | Mingshiu Engine'">Mingshiu Engine</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/css/tempusdominus-bootstrap-4.min.css">
@@ -15,24 +14,28 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
-    <header th:replace="~{fragments/header :: header}"></header>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4" th:replace="~{fragments/sidebar :: sidebar(activePage=${activePage})}"></aside>
+    <header th:replace="~{fragments/header :: header}">
+    </header>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" th:replace="~{fragments/sidebar :: sidebar(activePage=${activePage})}">
+    </aside>
     <main class="content-wrapper scroll-area">
       <section class="content-header" aria-label="Page summary">
         <div class="container-fluid">
           <div class="page-header">
             <div class="page-header-title">
-              <span class="title-accent"></span>
-              <h1 id="page-title" th:text="${pageTitle}"></h1>
+              <span class="title-accent">
+              </span>
+              <h1 id="page-title" th:text="${pageTitle}">
+              </h1>
             </div>
           </div>
         </div>
       </section>
-      <div id="content-root" th:insert="~{${contentFragment} :: content}"></div>
+      <div id="content-root" th:insert="~{${contentFragment} :: content}">
+      </div>
     </main>
     <footer class="main-footer text-sm text-muted text-center">
-      <strong>AdminLTE Demo</strong>
-      <span class="ml-2">Sample layout using fragments.</span>
+      <strong>Mingshiu Engine</strong>
     </footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
