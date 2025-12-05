@@ -48,9 +48,11 @@
 }
 
 /* --------------------------------------
- * 03. Active Neon (Parent Items Except .resonators-nav)
+ * 03. Active Neon (Parent Items Except .xxx-nav)
  * -------------------------------------- */
-.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active {
+.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active,
+.nav-sidebar .nav-item:not(.weapon-nav) > .nav-link.active,
+.nav-sidebar .nav-item:not(.echo-nav) > .nav-link.active {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -61,7 +63,9 @@
     backdrop-filter: blur(3px);
 }
 
-.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active:hover {
+.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active:hover ,
+.nav-sidebar .nav-item:not(.weapon-nav) > .nav-link.active:hover ,
+.nav-sidebar .nav-item:not(.echo-nav) > .nav-link.active:hover {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -125,20 +129,34 @@
 }
 
 /* --------------------------------------
- * 05. resonators Parent Menu (No Neon)
+ * 05. Parent Menu (No Neon)
  * -------------------------------------- */
 .resonators-nav > .nav-link,
 .resonators-nav > .nav-link:hover,
 .resonators-nav > .nav-link:focus,
 .resonators-nav > .nav-link:active,
-.resonators-nav.menu-open > .nav-link {
+.resonators-nav.menu-open > .nav-link,
+
+.weapon-nav > .nav-link,
+.weapon-nav > .nav-link:hover,
+.weapon-nav > .nav-link:focus,
+.weapon-nav > .nav-link:active,
+.weapon-nav.menu-open > .nav-link
+
+.echo-nav > .nav-link,
+.echo-nav > .nav-link:hover,
+.echo-nav > .nav-link:focus,
+.echo-nav > .nav-link:active,
+.echo-nav.menu-open > .nav-link {
     background: transparent !important;
     box-shadow: none !important;
     border-left-color: transparent !important;
     color: var(--color-text-main) !important;
 }
 
-.resonators-nav.menu-open > .nav-link i {
+.resonators-nav.menu-open > .nav-link i ,
+.weapon-nav.menu-open > .nav-link i ,
+.echo-nav.menu-open > .nav-link i{
     color: var(--color-text-main);
     filter: none;
 }
