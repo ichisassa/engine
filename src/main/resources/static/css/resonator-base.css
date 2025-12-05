@@ -1,0 +1,143 @@
+  .resonator-base-content .resonator-base-stage {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1rem 2.5rem;
+  }
+
+  .resonator-base-content .section-fieldset {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .resonator-base-content .section-legend {
+    border-radius: 999px;
+    padding: 0.3rem 1.4rem;
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .resonator-base-content .resonator-avatar-card {
+    position: relative;
+    border-radius: 22px;
+    border: 1px solid rgba(0, 255, 242, 0.15);
+    background: rgba(1, 5, 12, 0.92);
+    padding: 1.5rem;
+  }
+
+  .resonator-base-content .resonator-avatar-drop-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: rgba(150, 230, 255, 0.7);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .resonator-base-content .resonator-avatar-drop {
+    border: 1px dashed rgba(0, 255, 255, 0.55);
+    border-radius: 16px;
+    padding: 1.2rem;
+    text-align: center;
+    color: rgba(210, 240, 255, 0.9);
+    margin-bottom: 1.25rem;
+    background: rgba(5, 22, 44, 0.82);
+  }
+
+  .resonator-base-content .resonator-avatar-drop span {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(170, 215, 255, 0.8);
+  }
+
+  .resonator-base-content .resonator-avatar-frame {
+    position: relative;
+    border-radius: 18px;
+    width: 240px;
+    aspect-ratio: 3 / 4;
+    margin: 0.75rem auto 0;
+    border: 3px solid #00fff0 !important;
+    outline: 2px solid rgba(0, 255, 255, 0.25) !important;
+    outline-offset: 3px;
+    background:
+      radial-gradient(circle at 30% 0%, rgba(0, 255, 255, 0.22), transparent 60%),
+      linear-gradient(165deg, #02142a, #00040d);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.55);
+  }
+
+  .resonator-base-content .resonator-avatar-frame-label {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: rgba(160, 230, 255, 0.9);
+    text-transform: uppercase;
+  }
+
+  .resonator-base-content .resonator-avatar-preview {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .resonator-base-content .resonator-avatar-silhouette {
+    width: 90px;
+    height: 170px;
+    border-radius: 60px 60px 20px 20px;
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.25), rgba(0, 45, 90, 0.15));
+    margin: 0 auto 0.5rem;
+    position: relative;
+  }
+
+  .resonator-base-content .resonator-avatar-silhouette::before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .resonator-base-content .resonator-form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+
+  .resonator-base-content .resonator-field {
+    max-width: 420px;
+    flex: 1 1 320px;
+  }
+
+  .resonator-base-content .resonator-description-panel {
+    max-width: 460px;
+  }
+
+  .resonator-base-content .neo-form-control {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .resonator-base-content .profile-textarea {
+    min-height: 160px;
+    resize: none;
+  }
+
+  @media (max-width: 768px) {
+    .resonator-base-content .resonator-base-stage {
+      padding: 0 0.5rem 2.5rem;
+    }
+
+    .resonator-base-content .resonator-field,
+    .resonator-base-content .neo-form-control,
+    .resonator-base-content .resonator-description-panel {
+      max-width: 100%;
+    }
+  }

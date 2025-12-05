@@ -131,4 +131,3 @@ if (document.readyState === "loading") {
 else {
     setupPartialNav();
 }
-//# sourceMappingURL=partial-nav.js.map

@@ -1,9 +1,137 @@
-<div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
-<section class="content status-page status-page">
-  <div class="status-scroll">
-    <div class="status-card">
-      <div class="card mingshiu-section-card"></div>
+<div th:fragment="content" class="resonator-base-content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
+ 
+  <link rel="stylesheet" th:href="@{/css/resonator-base.css}">
+
+  <section class="content status-page status-page">
+    <div class="status-scroll">
+      <div class="status-card">
+        <div class="resonator-base-stage">
+          <div class="card mingshiu-section-card">
+            <div class="card-body">
+              <div class="section-fieldset panel-deep">
+                <div class="section-legend badge-neon">共鳴者 基本情報</div>
+                <div class="section-fieldset-body">
+                  <div class="row">
+                    <div class="col-12 col-xl-3 col-lg-4 mb-3">
+                      <div class="resonator-avatar-card h-100">
+                        <span class="resonator-avatar-drop-label">UPLOAD ZONE</span>
+                        <div class="resonator-avatar-drop">
+                          <div class="display-4 mb-2">＋</div>
+                          画像をドラッグ＆ドロップ
+                          <span>またはファイルを選択</span>
+                        </div>
+                        <div class="resonator-avatar-frame">
+                          <div class="resonator-avatar-frame-label">PREVIEW</div>
+                          <div class="resonator-avatar-preview">
+                            <div class="resonator-avatar-silhouette"></div>
+                            <span>NO IMAGE</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-xl-5 col-lg-8 mb-3">
+                      <div class="resonator-form-grid">
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="nameSelect">名前</label>
+                          <select id="nameSelect" name="name" class="form-control neo-form-control">
+                            <option value="">選択してください</option>
+                            <option value="garbrena">ガルブレーナ</option>
+                            <option value="chisaki">千咲</option>
+                            <option value="kakaria">カカリア</option>
+                          </select>
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="elementSelect">属性</label>
+                          <select id="elementSelect" name="element" class="form-control neo-form-control">
+                            <option value="">選択してください</option>
+                            <option value="fire">焦熱</option>
+                            <option value="ice">冷氷</option>
+                            <option value="impact">衝撃</option>
+                            <option value="thunder">奔雷</option>
+                            <option value="none">無属性</option>
+                          </select>
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="genderSelect">性別</label>
+                          <select id="genderSelect" name="gender" class="form-control neo-form-control">
+                            <option value="">選択してください</option>
+                            <option value="female">女性</option>
+                            <option value="male">男性</option>
+                            <option value="unknown">不明</option>
+                          </select>
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="birthplaceInput">出身</label>
+                          <input id="birthplaceInput" type="text" name="birthplace" class="form-control neo-form-control" placeholder="例）星導都市">
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="organizationInput">所属</label>
+                          <input id="organizationInput" type="text" name="organization" class="form-control neo-form-control" placeholder="例）自由調律局">
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="cvInput">声優</label>
+                          <input id="cvInput" type="text" name="cv" class="form-control neo-form-control" placeholder="例）庄司宇芽香">
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="weaponSelect">武器</label>
+                          <select id="weaponSelect" name="weapon" class="form-control neo-form-control">
+                            <option value="">選択してください</option>
+                            <option value="pistol">拳銃</option>
+                            <option value="katana">太刀</option>
+                            <option value="sniper">狙撃銃</option>
+                            <option value="sonic-lance">音槍</option>
+                          </select>
+                        </div>
+                        <div class="resonator-field">
+                          <label class="neo-form-label text-uppercase" for="battleStyleSelect">戦闘スタイル</label>
+                          <select id="battleStyleSelect" name="battleStyle" class="form-control neo-form-control" multiple size="4">
+                            <option value="melee">近接</option>
+                            <option value="range">遠距離</option>
+                            <option value="support">サポート</option>
+                            <option value="dps">DPS</option>
+                            <option value="debuff">妨害</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-xl-4 mb-3">
+                      <div class="resonator-description-panel">
+                        <label class="neo-form-label text-uppercase" for="descriptionArea">人物</label>
+                        <textarea id="descriptionArea" name="description" class="form-control neo-form-control profile-textarea" rows="5" placeholder="人物像や背景を入力してください。"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body pt-0">
+              <div class="section-fieldset panel-deep">
+                <div class="section-legend badge-neon">追加情報</div>
+                <div class="section-fieldset-body">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="neo-form-label text-uppercase" for="resonanceInput">共鳴技 / 音痕</label>
+                      <input id="resonanceInput" type="text" class="form-control neo-form-control" placeholder="ストラクチュアル・リコンストラクション / 腰椎">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="neo-form-label text-uppercase" for="unlockInput">解放条件 / 入手方法</label>
+                      <input id="unlockInput" type="text" class="form-control neo-form-control" placeholder="Ver2.0 / 集束イベント（期間限定）">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="neo-form-label text-uppercase" for="quoteArea">台詞 / ボイスライン</label>
+                      <textarea id="quoteArea" class="form-control neo-form-control profile-textarea" rows="4" placeholder="「あなたとの取引が成功で終わるよう、最後まで見届けさせてちょうだい。」"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
