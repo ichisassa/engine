@@ -10,40 +10,75 @@
             <p>最新情報</p>
           </a>
         </li>
-        <li class="nav-item has-treeview status-nav" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' menu-open' : ''">
-          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'status-')} ? ' active' : ''" th:attr="aria-expanded=${#strings.startsWith(activePage, 'status-')}">
+        <li class="nav-item has-treeview resonators-nav" th:classappend="${#strings.startsWith(activePage, 'resonators-')} ? ' menu-open' : ''">
+          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'resonators-')} ? ' active' : ''" th:attr="aria-expanded=${#strings.startsWith(activePage, 'resonators-')}">
             <i class="nav-icon fas fa-chart-line"></i>
-            <p>ステータス
+            <p>共鳴者
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a th:href="@{/status/input}" class="nav-link js-nav" data-nav-key="status-input" th:classappend="${activePage} == 'status-input' ? ' active' : ''">
+              <a th:href="@{/resonators/input}" class="nav-link js-nav" data-nav-key="resonators-input" th:classappend="${activePage} == 'resonators-input' ? ' active' : ''">
                 <i class="nav-icon fas fa-sliders-h"></i>
-                <p>ステータス入力</p>
+                <p>共鳴者入力</p>
               </a>
             </li>
             <li class="nav-item">
-              <a th:href="@{/status/list}" class="nav-link js-nav" data-nav-key="status-list" th:classappend="${activePage} == 'status-list' ? ' active' : ''">
+              <a th:href="@{/resonators/list}" class="nav-link js-nav" data-nav-key="resonators-list" th:classappend="${activePage} == 'resonators-list' ? ' active' : ''">
                 <i class="nav-icon fas fa-list-alt"></i>
-                <p>ステータス一覧</p>
+                <p>共鳴者一覧</p>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a th:href="@{/weapon}" class="nav-link js-nav" data-nav-key="weapon" th:classappend="${activePage} == 'weapon' ? ' active' : ''">
+
+        <li class="nav-item has-treeview weapon-nav" th:classappend="${#strings.startsWith(activePage, 'weapon-')} ? ' menu-open' : ''">
+          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'weapon-')} ? ' active' : ''" th:attr="aria-expanded=${#strings.startsWith(activePage, 'weapon-')}">
             <i class="nav-icon fas fa-crosshairs"></i>
-            <p>武器</p>
+            <p>武器
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/weapon/input}" class="nav-link js-nav" data-nav-key="weapon-input" th:classappend="${activePage} == 'weapon-input' ? ' active' : ''">
+                <i class="nav-icon fas fa-sliders-h"></i>
+                <p>武器入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/weapon/list}" class="nav-link js-nav" data-nav-key="weapon-list" th:classappend="${activePage} == 'weapon-list' ? ' active' : ''">
+                <i class="nav-icon fas fa-list-alt"></i>
+                <p>武器一覧</p>
+              </a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a th:href="@{/echo}" class="nav-link js-nav" data-nav-key="echo" th:classappend="${activePage} == 'echo' ? ' active' : ''">
-            <i class="nav-icon fas fa-wave-square"></i>
-            <p>音骸</p>
+
+        <li class="nav-item has-treeview echo-nav" th:classappend="${#strings.startsWith(activePage, 'echo-')} ? ' menu-open' : ''">
+          <a href="#" class="nav-link" th:classappend="${#strings.startsWith(activePage, 'echo-')} ? ' active' : ''" th:attr="aria-expanded=${#strings.startsWith(activePage, 'echo-')}">
+            <i class="nav-icon fas fa-crosshairs"></i>
+            <p>音骸
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/echo/input}" class="nav-link js-nav" data-nav-key="echo-input" th:classappend="${activePage} == 'echo-input' ? ' active' : ''">
+                <i class="nav-icon fas fa-sliders-h"></i>
+                <p>音骸入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/echo/list}" class="nav-link js-nav" data-nav-key="echo-list" th:classappend="${activePage} == 'echo-list' ? ' active' : ''">
+                <i class="nav-icon fas fa-list-alt"></i>
+                <p>音骸一覧</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
         <li class="nav-item">
           <a th:href="@{/settings}" class="nav-link js-nav" data-nav-key="settings" th:classappend="${activePage} == 'settings' ? ' active' : ''">
             <i class="nav-icon fas fa-cogs"></i>

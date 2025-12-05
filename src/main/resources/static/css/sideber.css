@@ -48,9 +48,9 @@
 }
 
 /* --------------------------------------
- * 03. Active Neon (Parent Items Except .status-nav)
+ * 03. Active Neon (Parent Items Except .resonators-nav)
  * -------------------------------------- */
-.nav-sidebar .nav-item:not(.status-nav) > .nav-link.active {
+.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -61,7 +61,7 @@
     backdrop-filter: blur(3px);
 }
 
-.nav-sidebar .nav-item:not(.status-nav) > .nav-link.active:hover {
+.nav-sidebar .nav-item:not(.resonators-nav) > .nav-link.active:hover {
     color: var(--color-text-main);
     background: rgba(41, 198, 255, 0.12);
     border-left-color: #44ffff;
@@ -125,20 +125,20 @@
 }
 
 /* --------------------------------------
- * 05. Status Parent Menu (No Neon)
+ * 05. resonators Parent Menu (No Neon)
  * -------------------------------------- */
-.status-nav > .nav-link,
-.status-nav > .nav-link:hover,
-.status-nav > .nav-link:focus,
-.status-nav > .nav-link:active,
-.status-nav.menu-open > .nav-link {
+.resonators-nav > .nav-link,
+.resonators-nav > .nav-link:hover,
+.resonators-nav > .nav-link:focus,
+.resonators-nav > .nav-link:active,
+.resonators-nav.menu-open > .nav-link {
     background: transparent !important;
     box-shadow: none !important;
     border-left-color: transparent !important;
     color: var(--color-text-main) !important;
 }
 
-.status-nav.menu-open > .nav-link i {
+.resonators-nav.menu-open > .nav-link i {
     color: var(--color-text-main);
     filter: none;
 }
