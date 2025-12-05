@@ -5,7 +5,7 @@
     <nav class="mt-2" aria-label="Sidebar navigation">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a th:href="@{/}" class="nav-link" th:classappend="${activePage} == 'news' ? ' active' : ''">
+          <a th:href="@{/}" class="nav-link js-nav" data-nav-key="news" th:classappend="${activePage} == 'news' ? ' active' : ''">
             <i class="nav-icon fas fa-newspaper"></i>
             <p>最新情報</p>
           </a>
@@ -19,13 +19,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a th:href="@{/status/input}" class="nav-link" th:classappend="${activePage} == 'status-input' ? ' active' : ''">
+              <a th:href="@{/status/input}" class="nav-link js-nav" data-nav-key="status-input" th:classappend="${activePage} == 'status-input' ? ' active' : ''">
                 <i class="nav-icon fas fa-sliders-h"></i>
                 <p>ステータス入力</p>
               </a>
             </li>
             <li class="nav-item">
-              <a th:href="@{/status/list}" class="nav-link" th:classappend="${activePage} == 'status-list' ? ' active' : ''">
+              <a th:href="@{/status/list}" class="nav-link js-nav" data-nav-key="status-list" th:classappend="${activePage} == 'status-list' ? ' active' : ''">
                 <i class="nav-icon fas fa-list-alt"></i>
                 <p>ステータス一覧</p>
               </a>
@@ -33,19 +33,19 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a th:href="@{/weapon}" class="nav-link" th:classappend="${activePage} == 'weapon' ? ' active' : ''">
+          <a th:href="@{/weapon}" class="nav-link js-nav" data-nav-key="weapon" th:classappend="${activePage} == 'weapon' ? ' active' : ''">
             <i class="nav-icon fas fa-crosshairs"></i>
             <p>武器</p>
           </a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/echo}" class="nav-link" th:classappend="${activePage} == 'echo' ? ' active' : ''">
+          <a th:href="@{/echo}" class="nav-link js-nav" data-nav-key="echo" th:classappend="${activePage} == 'echo' ? ' active' : ''">
             <i class="nav-icon fas fa-wave-square"></i>
             <p>音骸</p>
           </a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/settings}" class="nav-link" th:classappend="${activePage} == 'settings' ? ' active' : ''">
+          <a th:href="@{/settings}" class="nav-link js-nav" data-nav-key="settings" th:classappend="${activePage} == 'settings' ? ' active' : ''">
             <i class="nav-icon fas fa-cogs"></i>
             <p>設定</p>
           </a>

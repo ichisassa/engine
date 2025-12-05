@@ -1,4 +1,5 @@
-﻿<section class="content status-page status-page" th:fragment="content">
+<div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
+<section class="content status-page status-page">
   <div class="status-scroll">
     <div class="status-card">
       <div class="card mingshiu-section-card">
@@ -385,3 +386,4 @@
     </div>
   </div>
 </section>
+</div>

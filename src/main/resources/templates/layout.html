@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title th:text="${pageTitle} + ' | AdminLTE Demo'">AdminLTE Demo</title>
+  <title id="document-title" data-title-suffix=" | AdminLTE Demo"
+    th:text="${pageTitle} + ' | AdminLTE Demo'">AdminLTE Demo</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/css/tempusdominus-bootstrap-4.min.css">
@@ -23,12 +24,12 @@
           <div class="page-header">
             <div class="page-header-title">
               <span class="title-accent"></span>
-              <h1 th:text="${pageTitle}"></h1>
+              <h1 id="page-title" th:text="${pageTitle}"></h1>
             </div>
           </div>
         </div>
       </section>
-      <section class="content" th:replace="~{${contentTemplate} :: content}"></section>
+      <div id="content-root" th:insert="~{${contentFragment} :: content}"></div>
     </main>
     <footer class="main-footer text-sm text-muted text-center">
       <strong>AdminLTE Demo</strong>
@@ -41,6 +42,7 @@
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/locale/ja.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/js/tempusdominus-bootstrap-4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+  <script th:src="@{/js/partial-nav.js}"></script>
 </body>
 
 </html>

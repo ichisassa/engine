@@ -106,23 +106,17 @@
 }
 
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
-    color: #f4ffff;
-    background: rgba(41, 198, 255, 0.12);
-    border-left-color: #44ffff;
-    box-shadow:
-        0 0 12px rgba(0, 255, 255, 0.75),
-        0 0 25px rgba(40, 200, 255, 0.5),
-        0 0 45px rgba(15, 120, 255, 0.45);
+    color: #f4ffff !important;
+    background: rgba(41, 198, 255, 0.1) !important;
+    border-left-color: rgba(68, 255, 255, 0.8) !important;
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.45) !important;
 }
 
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active:hover {
-    color: #f4ffff;
-    background: rgba(41, 198, 255, 0.12);
-    border-left-color: #44ffff;
-    box-shadow:
-        0 0 12px rgba(0, 255, 255, 0.75),
-        0 0 25px rgba(40, 200, 255, 0.5),
-        0 0 45px rgba(15, 120, 255, 0.45);
+    color: #f4ffff !important;
+    background: rgba(41, 198, 255, 0.14) !important;
+    border-left-color: rgba(80, 255, 255, 0.9) !important;
+    box-shadow: 0 0 12px rgba(0, 220, 255, 0.55) !important;
 }
 
 .nav-sidebar .nav-treeview > .nav-item > .nav-link.active i {
