@@ -1,3 +1,296 @@
 <div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
-  <section class="content solo status-page status-weapon-page"></section>
+  <section class="content solo status-page status-weapon-page">
+  <div class="status-scroll">
+    <div class="status-card">
+      <div class="card mingshiu-section-card">
+
+        <div class="card-body">
+          <div class="section-fieldset panel-deep">
+            <div class="section-legend badge-neon">武器</div>
+            <div class="section-fieldset-body">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="mingshiu-native-select">
+                    <select id="character" name="character" class="form-control mingshiu-select neo-select">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">Lv</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="hp" name="hp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="section-fieldset panel-deep">
+            <div class="section-legend badge-neon">武器ステータス</div>
+            <div class="section-fieldset-body">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">攻撃力</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="attackPower" name="attackPower" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="section-fieldset panel-deep">
+            <div class="section-legend badge-neon">サブステータス</div>
+            <div class="section-fieldset-body">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">HP上限</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">攻撃力（%）</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">防御力（%）</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">クリティカル率</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">クリティカルダメージ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">共鳴効率</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="section-fieldset panel-deep">
+            <div class="section-legend badge-neon">武器効果</div>
+            <div class="section-fieldset-body">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">HP上限</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">攻撃力（%）</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">防御力（%）</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="" name="" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">クリティカル率</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="criticalRate" name="criticalRate" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">クリティカルダメージ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="criticalDamage" name="criticalDamage" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">共鳴効率</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="resonanceEfficiency" name="resonanceEfficiency" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">共鳴スキルダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="resonanceSkillUp" name="resonanceSkillUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">通常攻撃ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="normalAttackUp" name="normalAttackUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">重撃ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="heavyAttackUp" name="heavyAttackUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">共鳴解放ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="resonanceReleaseUp" name="resonanceReleaseUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">凝縮ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="condensedDamageUp" name="condensedDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">焦熱ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="thermalDamageUp" name="thermalDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">電導ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="electricDamageUp" name="electricDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">気動ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="aeroDamageUp" name="aeroDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">回折ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="diffractionDamageUp" name="diffractionDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                  <div class="form-group mb-0">
+                    <div class="stat-row-flat">
+                      <div class="stat-flat-label">消滅ダメージアップ</div>
+                      <div class="stat-flat-value-wrap">
+                        <input type="number" class="stat-flat-input" id="extinctionDamageUp" name="extinctionDamageUp" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
 </div>

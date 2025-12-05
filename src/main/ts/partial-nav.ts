@@ -5,7 +5,15 @@ const PAGE_TITLE_ID = "page-title";
 const DOCUMENT_TITLE_ID = "document-title";
 const STATUS_TREE_SELECTOR = ".status-nav";
 
+// ★ 追加：ツリーメニューの親と prefix の対応表
+const TREE_GROUPS: Array<{ selector: string; prefix: string }> = [
+  { selector: ".resonators-nav", prefix: "resonators-" },
+  { selector: ".weapon-nav",     prefix: "weapon-" },
+  { selector: ".echo-nav",       prefix: "echo-" },
+];
+
 function setActiveNav(activePage: string): void {
+  // 既存：子メニュー（data-nav-key を持つリンク）の active を切り替え
   const navLinks = document.querySelectorAll<HTMLAnchorElement>(
     `${NAV_LINK_SELECTOR}[data-nav-key]`
   );
@@ -14,14 +22,26 @@ function setActiveNav(activePage: string): void {
     link.classList.toggle("active", navKey === activePage);
   });
 
+  // ★ 追加：共鳴者 / 武器 / 音骸 親メニューの active を prefix で制御
+  TREE_GROUPS.forEach(({ selector, prefix }) => {
+    const tree = document.querySelector<HTMLElement>(selector);
+    if (!tree) return;
+
+    const isActive = activePage.startsWith(prefix);
+    const parentLink = tree.querySelector<HTMLAnchorElement>(":scope > .nav-link");
+    if (!parentLink) return;
+
+    parentLink.classList.toggle("active", isActive);
+    parentLink.setAttribute("aria-expanded", String(isActive));
+  });
+
+  // 既存：ステータス用ツリー（もしあれば）
   const statusTree = document.querySelector<HTMLElement>(STATUS_TREE_SELECTOR);
   if (!statusTree) {
     return;
   }
-
   const isStatusPage = activePage.startsWith("status-");
   statusTree.classList.toggle("menu-open", isStatusPage);
-
   const toggleLink = statusTree.querySelector<HTMLAnchorElement>(":scope > .nav-link");
   if (toggleLink) {
     toggleLink.classList.toggle("active", isStatusPage);

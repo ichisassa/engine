@@ -5,12 +5,33 @@ var PARTIAL_PARAM = "partial=content";
 var PAGE_TITLE_ID = "page-title";
 var DOCUMENT_TITLE_ID = "document-title";
 var STATUS_TREE_SELECTOR = ".status-nav";
+// ★ 追加：ツリーメニューの親と prefix の対応表
+var TREE_GROUPS = [
+    { selector: ".resonators-nav", prefix: "resonators-" },
+    { selector: ".weapon-nav", prefix: "weapon-" },
+    { selector: ".echo-nav", prefix: "echo-" },
+];
 function setActiveNav(activePage) {
+    // 既存：子メニュー（data-nav-key を持つリンク）の active を切り替え
     var navLinks = document.querySelectorAll("".concat(NAV_LINK_SELECTOR, "[data-nav-key]"));
     navLinks.forEach(function (link) {
         var navKey = link.getAttribute("data-nav-key");
         link.classList.toggle("active", navKey === activePage);
     });
+    // ★ 追加：共鳴者 / 武器 / 音骸 親メニューの active を prefix で制御
+    TREE_GROUPS.forEach(function (_a) {
+        var selector = _a.selector, prefix = _a.prefix;
+        var tree = document.querySelector(selector);
+        if (!tree)
+            return;
+        var isActive = activePage.startsWith(prefix);
+        var parentLink = tree.querySelector(":scope > .nav-link");
+        if (!parentLink)
+            return;
+        parentLink.classList.toggle("active", isActive);
+        parentLink.setAttribute("aria-expanded", String(isActive));
+    });
+    // 既存：ステータス用ツリー（もしあれば）
     var statusTree = document.querySelector(STATUS_TREE_SELECTOR);
     if (!statusTree) {
         return;
