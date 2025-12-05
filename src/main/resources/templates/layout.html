@@ -14,8 +14,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
-    <header th:replace="~{fragments/header :: header}">
-    </header>
+    <header th:replace="~{fragments/header :: header}"></header>
     <aside class="main-sidebar sidebar-dark-primary elevation-4" th:replace="~{fragments/sidebar :: sidebar(activePage=${activePage})}">
     </aside>
     <main class="content-wrapper scroll-area">
@@ -34,9 +33,7 @@
       <div id="content-root" th:insert="~{${contentFragment} :: content}">
       </div>
     </main>
-    <footer class="main-footer text-sm text-muted text-center">
-      <strong>Mingshiu Engine</strong>
-    </footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
