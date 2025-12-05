@@ -28,14 +28,24 @@ public class DisplayController {
         return render("設定", "contents/settings", "settings", partial, model);
     }
 
-    @GetMapping("/resonators/input")
-    public String resonatorsInput(@RequestParam(required = false) String partial, Model model) {
-        return render("共鳴者入力", "contents/resonators-input", "resonators-input", partial, model);
+    @GetMapping("/resonators/base/input")
+    public String resonatorsBaseInput(@RequestParam(required = false) String partial, Model model) {
+        return render("基本情報入力", "contents/resonators-base-input", "resonators-base-input", partial, model);
     }
 
-    @GetMapping("/resonators/list")
-    public String resonatorsList(@RequestParam(required = false) String partial, Model model) {
-        return render("共鳴者一覧", "contents/resonators-list", "resonators-list", partial, model);
+    @GetMapping("/resonators/base/list")
+    public String resonatorsBaseList(@RequestParam(required = false) String partial, Model model) {
+        return render("基本情報一覧", "contents/resonators-base-list", "resonators-base-list", partial, model);
+    }
+
+    @GetMapping("/resonators/status/input")
+    public String resonatorsStatusInput(@RequestParam(required = false) String partial, Model model) {
+        return render("ステータス入力", "contents/resonators-status-input", "resonators-status-input", partial, model);
+    }
+
+    @GetMapping("/resonators/status/list")
+    public String resonatorsStatusList(@RequestParam(required = false) String partial, Model model) {
+        return render("ステータス一覧", "contents/resonators-status-list", "resonators-status-list", partial, model);
     }
 
     @GetMapping("/weapon/input")

@@ -19,15 +19,29 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a th:href="@{/resonators/input}" class="nav-link js-nav" data-nav-key="resonators-input" th:classappend="${activePage} == 'resonators-input' ? ' active' : ''">
+              <a th:href="@{/resonators/base/input}" class="nav-link js-nav" data-nav-key="resonators-base-input" th:classappend="${activePage} == 'resonators-base-input' ? ' active' : ''">
                 <i class="nav-icon fas fa-sliders-h"></i>
-                <p>共鳴者入力</p>
+                <p>基本情報入力</p>
               </a>
             </li>
             <li class="nav-item">
-              <a th:href="@{/resonators/list}" class="nav-link js-nav" data-nav-key="resonators-list" th:classappend="${activePage} == 'resonators-list' ? ' active' : ''">
+              <a th:href="@{/resonators/base/list}" class="nav-link js-nav" data-nav-key="resonators-base-list" th:classappend="${activePage} == 'resonators-base-list' ? ' active' : ''">
                 <i class="nav-icon fas fa-list-alt"></i>
-                <p>共鳴者一覧</p>
+                <p>基本情報一覧</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/resonators/status/input}" class="nav-link js-nav" data-nav-key="resonators-status-input" th:classappend="${activePage} == 'resonators-status-input' ? ' active' : ''">
+                <i class="nav-icon fas fa-sliders-h"></i>
+                <p>ステータス入力</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/resonators/status/list}" class="nav-link js-nav" data-nav-key="resonators-status-list" th:classappend="${activePage} == 'resonators-status-list' ? ' active' : ''">
+                <i class="nav-icon fas fa-list-alt"></i>
+                <p>ステータス一覧</p>
               </a>
             </li>
           </ul>
