@@ -1,6 +1,6 @@
-
 <div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
   <link rel="stylesheet" th:href="@{/css/resonator-base.css}">
+  <script th:src="@{/js/battle-style-selector.js}"></script>
     <section class="content status-page status-page">
         <div class="status-scroll">
           <div class="status-card">
@@ -28,6 +28,7 @@
                             </div>
                           </div>
                         </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1"></div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
                           <div class="resonator-field">
                             <div class="form-group mb-2">
@@ -110,6 +111,22 @@
                               </div>
                             </div>
                           </div>
+                          <div class="resonator-field battle-style-field">
+                            <div class="align-items-start">
+                              <div class="battle-style-panel" aria-live="polite">
+                                <div class="battle-style-panel-header">
+                                  <p class="battle-style-panel-title mb-0">戦闘スタイル</p>
+                                  <button type="button" class="battle-style-select-btn" id="battle-style-trigger">
+                                    <span>選択</span>
+                                  </button>
+                                </div>
+                                <div class="battle-style-panel-body">
+                                  <p class="battle-style-empty" id="battle-style-empty">戦闘スタイルが選択されていません。</p>
+                                  <div class="battle-style-list" id="battle-style-list" role="list" aria-live="polite"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -120,5 +137,6 @@
           </div>
         </div>
     </section>
+    <div th:replace="~{fragments/modal-battle-style :: modal}"></div>
   </div>
 </div>

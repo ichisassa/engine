@@ -111,6 +111,129 @@
     resize: none;
   }
 
+  .battle-style-field .stat-flat-value-wrap-m {
+    width: 100%;
+  }
+
+  .battle-style-panel {
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    background: radial-gradient(circle at top, rgba(0, 140, 255, 0.12), transparent 55%),
+      rgba(2, 8, 20, 0.92);
+    padding: 1.25rem 1.25rem;
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.15), inset 0 0 25px rgba(0, 80, 125, 0.25);
+  }
+
+  .battle-style-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .battle-style-panel-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .battle-style-select-btn {
+    border: 1px solid rgba(0, 255, 255, 0.6);
+    background: rgba(0, 20, 36, 0.85);
+    color: #eaffff;
+    border-radius: 999px;
+    padding: 0.35rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.35);
+    transition: filter 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .battle-style-select-btn:hover,
+  .battle-style-select-btn:focus {
+    filter: brightness(1.1);
+    box-shadow: 0 0 22px rgba(0, 255, 255, 0.6);
+  }
+
+  .battle-style-panel-body {
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 0.8rem;
+    background: rgba(0, 10, 25, 0.92);
+    min-height: 205px;
+  }
+
+  .battle-style-list {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .battle-style-empty {
+    font-size: 0.9rem;
+    color: rgba(170, 210, 235, 0.75);
+    margin-bottom: 0.4rem;
+  }
+
+  .style-item {
+    border: 1px solid rgba(0, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    color: rgba(230, 249, 255, 0.95);
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    background: linear-gradient(120deg, rgba(0, 255, 255, 0.15), rgba(0, 90, 255, 0.2));
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+    text-shadow: 0 0 6px rgba(0, 220, 255, 0.35);
+  }
+
+  .battle-style-modal .modal-content {
+    background: linear-gradient(180deg, rgba(0, 10, 24, 0.98), rgba(0, 4, 12, 0.98));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.35), 0 25px 80px rgba(0, 0, 0, 0.65);
+  }
+
+  .battle-style-modal .modal-header,
+  .battle-style-modal .modal-footer {
+    border-color: rgba(0, 160, 255, 0.25);
+  }
+
+  .battle-style-option-list {
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .battle-style-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.35rem 0.2rem;
+    border-bottom: 1px solid rgba(0, 70, 120, 0.35);
+  }
+
+  .battle-style-option:last-child {
+    border-bottom: none;
+  }
+
+  .battle-style-option label {
+    margin: 0;
+    color: rgba(220, 240, 255, 0.9);
+    letter-spacing: 0.05em;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .battle-style-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00e5ff;
+  }
+
   @media (max-width: 768px) {
     .resonator-base-content .resonator-base-stage {
       padding: 0 0.5rem 2.5rem;

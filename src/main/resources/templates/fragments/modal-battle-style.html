@@ -1,0 +1,151 @@
+<div th:fragment="modal">
+  <div class="modal fade battle-style-modal" id="battle-style-modal" tabindex="-1" role="dialog" aria-labelledby="battle-style-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="battle-style-modal-label">戦闘スタイルを選択</h5>
+          <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small mb-3">複数選択が可能です。必要なスタイルにチェックを入れて「選択」を押してください。</p>
+          <div class="battle-style-option-list">
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-main-attacker" value="メインアタッカー">
+              <label for="battle-style-option-main-attacker">メインアタッカー</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-concerto" value="協奏効率">
+              <label for="battle-style-option-concerto">協奏効率</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-normal-damage" value="通常攻撃ダメージ">
+              <label for="battle-style-option-normal-damage">通常攻撃ダメージ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-heavy-damage" value="重撃ダメージ">
+              <label for="battle-style-option-heavy-damage">重撃ダメージ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-resonance-skill" value="共鳴スキルダメージ">
+              <label for="battle-style-option-resonance-skill">共鳴スキルダメージ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-resonance-lib" value="共鳴解放ダメージ">
+              <label for="battle-style-option-resonance-lib">共鳴解放ダメージ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-survivability" value="耐久・回復">
+              <label for="battle-style-option-survivability">耐久・回復</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-pull" value="牽引">
+              <label for="battle-style-option-pull">牽引</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-coop" value="協同攻撃">
+              <label for="battle-style-option-coop">協同攻撃</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-stasis" value="停滞">
+              <label for="battle-style-option-stasis">停滞</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-charge" value="共鳴解放チャージ">
+              <label for="battle-style-option-charge">共鳴解放チャージ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-resonance-break" value="共振度削り">
+              <label for="battle-style-option-resonance-break">共振度削り</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-poise" value="中断耐性アップ">
+              <label for="battle-style-option-poise">中断耐性アップ</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-damage-boost" value="ダメージブースト">
+              <label for="battle-style-option-damage-boost">ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-normal-boost" value="通常攻撃ダメージブースト">
+              <label for="battle-style-option-normal-boost">通常攻撃ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-heavy-boost" value="重撃ダメージブースト">
+              <label for="battle-style-option-heavy-boost">重撃ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-resonance-skill-boost" value="共鳴スキルダメージブースト">
+              <label for="battle-style-option-resonance-skill-boost">共鳴スキルダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-resonance-lib-boost" value="共鳴解放ダメージブースト">
+              <label for="battle-style-option-resonance-lib-boost">共鳴解放ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-coop-boost" value="協同攻撃ダメージブースト">
+              <label for="battle-style-option-coop-boost">協同攻撃ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-echo-boost" value="音骸スキルダメージブースト">
+              <label for="battle-style-option-echo-boost">音骸スキルダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-glacio" value="凝縮ダメージブースト">
+              <label for="battle-style-option-glacio">凝縮ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-fusion" value="焦熱ダメージブースト">
+              <label for="battle-style-option-fusion">焦熱ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-electro" value="電導ダメージブースト">
+              <label for="battle-style-option-electro">電導ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-aero" value="気動ダメージブースト">
+              <label for="battle-style-option-aero">気動ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-spectro" value="回折ダメージブースト">
+              <label for="battle-style-option-spectro">回折ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-havoc" value="消滅ダメージブースト">
+              <label for="battle-style-option-havoc">消滅ダメージブースト</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-cryo" value="結霜効果">
+              <label for="battle-style-option-cryo">結霜効果</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-explosion" value="斉爆効果">
+              <label for="battle-style-option-explosion">斉爆効果</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-electromagnetic" value="電磁効果">
+              <label for="battle-style-option-electromagnetic">電磁効果</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-wind" value="風蝕効果">
+              <label for="battle-style-option-wind">風蝕効果</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-sonorous" value="騒光効果">
+              <label for="battle-style-option-sonorous">騒光効果</label>
+            </div>
+            <div class="battle-style-option">
+              <input type="checkbox" class="battle-style-option-input" id="battle-style-option-void" value="虚滅効果">
+              <label for="battle-style-option-void">虚滅効果</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-battle-style-cancel data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn btn-neon" data-battle-style-apply>選択</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
