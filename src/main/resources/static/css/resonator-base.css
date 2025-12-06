@@ -19,10 +19,10 @@
   .resonator-avatar-drop {
     border: 1px dashed rgba(0, 255, 255, 0.55);
     border-radius: 16px;
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: center;
     color: rgba(210, 240, 255, 0.9);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     background: rgba(5, 22, 44, 0.82);
     cursor: pointer;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -124,10 +124,10 @@
   .resonator-face-drop {
     border: 1px dashed rgba(170, 135, 255, 0.7);
     border-radius: 16px;
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: center;
     color: rgba(235, 225, 255, 0.92);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     background: rgba(18, 20, 58, 0.85);
     cursor: pointer;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -156,15 +156,15 @@
     border-radius: 18px;
     aspect-ratio: 1 / 1;
     width: 100%;
-    max-width: 320px;
-    margin: 0.75rem auto 0;
+    max-width: 260px;
+    margin: 0.5rem auto 0;
     border: 3px solid #a870ff !important;
     outline: 2px solid rgba(168, 112, 255, 0.4) !important;
     outline-offset: 4px;
     background:
       radial-gradient(circle at 70% 20%, rgba(120, 80, 255, 0.22), transparent 65%),
       linear-gradient(165deg, #060e24, #12052c);
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,8 +189,8 @@
   }
 
   .resonator-face-silhouette {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     border-radius: 32px;
     border: 1px solid rgba(185, 140, 255, 0.35);
     background: linear-gradient(180deg, rgba(168, 112, 255, 0.35), rgba(32, 6, 68, 0.35));
@@ -211,6 +211,48 @@
   }
   /* 顔画像エリア ここまで */
 
+  /* 説明エリア ここから */
+.resonator-description-card {
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    background: radial-gradient(circle at 20% 0%, rgba(0, 200, 255, 0.18), transparent 70%), rgba(3, 12, 26, 0.9);
+    padding: 0.6rem 0.5rem;
+    box-shadow: inset 0 0 22px rgba(0, 80, 120, 0.35), 0 0 18px rgba(0, 255, 255, 0.2);
+}
+  .description-card-header {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  .description-card-body {
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 0.3rem;
+    background: rgba(0, 12, 26, 0.85);
+  }
+
+  .description-textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    background: transparent;
+    color: rgba(230, 249, 255, 0.95);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-family: inherit;
+  }
+
+  .description-textarea::placeholder {
+    color: rgba(180, 210, 230, 0.7);
+  }
+
+  .description-textarea:focus {
+    outline: none;
+  }
+  /* 説明エリア ここまで */
+
   .resonator-form-grid {
     display: flex;
     flex-wrap: wrap;
@@ -218,7 +260,7 @@
   }
 
   .resonator-field {
-    max-width: 420px;
+    max-width: 500px;
     flex: 1 1 320px;
   }
 
@@ -232,7 +274,7 @@
   }
 
   .profile-textarea {
-    min-height: 160px;
+    min-height: 140px;
     resize: none;
   }
 

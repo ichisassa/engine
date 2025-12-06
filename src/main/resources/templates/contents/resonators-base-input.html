@@ -1,146 +1,157 @@
 <div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
   <link rel="stylesheet" th:href="@{/css/resonator-base.css}">
   <script th:src="@{/js/battle-style-selector.js}"></script>
-    <section class="content status-page status-page">
-        <div class="status-scroll">
-          <div class="status-card">
-            <div class="resonator-base-stage">
-              <div class="card mingshiu-section-card">
-                <div class="card-body">
-                  <div class="section-fieldset panel-deep">
-                    <div class="section-legend badge-neon">基本情報</div>
-                    <div class="section-fieldset-body">
-                      <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
-                          <div class="resonator-avatar-card h-100">
-                            <span class="resonator-avatar-drop-label">UPLOAD ZONE</span>
-                            <div class="resonator-avatar-drop" role="button" tabindex="0">
-                              <div class="avatar-drop-icon">＋</div>画像をドラッグ＆ドロップ
-                              <span>またはファイルを選択</span>
+  <section class="content status-page status-page">
+    <div class="status-scroll">
+      <div class="status-card">
+        <div class="resonator-base-stage">
+          <div class="card mingshiu-section-card">
+            <div class="card-body">
+              <div class="section-fieldset panel-deep">
+                <div class="section-legend badge-neon">基本情報</div>
+                <div class="section-fieldset-body">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
+                      <div class="resonator-avatar-card h-100">
+                        <span class="resonator-avatar-drop-label">AVATAR IMAGE</span>
+                        <div class="resonator-avatar-drop" role="button" tabindex="0">
+                          <div class="avatar-drop-icon">＋</div>画像をドラッグ＆ドロップ
+                          <span>またはファイルを選択</span>
+                        </div>
+                        <div class="resonator-avatar-frame">
+                          <div class="resonator-avatar-frame-label">PREVIEW</div>
+                          <div class="resonator-avatar-preview">
+                            <div class="resonator-avatar-silhouette">
                             </div>
-                            <div class="resonator-avatar-frame">
-                              <div class="resonator-avatar-frame-label">PREVIEW</div>
-                              <div class="resonator-avatar-preview">
-                                <div class="resonator-avatar-silhouette">
-                                </div>
-                                <span>NO IMAGE</span>
-                              </div>
+                            <span>NO IMAGE</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-1">
+                      <div class="resonator-face-card mb-2">
+                        <span class="resonator-face-drop-label">FACE IMAGE</span>
+                        <div class="resonator-face-drop" role="button" tabindex="0">
+                          <div class="face-drop-icon">＋</div>画像をドラッグ＆ドロップ
+                          <span>またはファイルを選択</span>
+                        </div>
+                        <div class="resonator-face-frame">
+                          <div class="resonator-face-frame-label">PREVIEW</div>
+                          <div class="resonator-face-preview">
+                            <div class="resonator-face-silhouette">
+                            </div>
+                            <span>NO IMAGE</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="resonator-description-card">
+                        <div class="description-card-header">説明</div>
+                        <div class="description-card-body">
+                          <textarea class="description-textarea profile-textarea" placeholder="キャラクターの説明を入力してください" rows="5">
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-6 col-sm-12 mb-1">
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="stat-row-flat">
+                            <div class="stat-flat-label-m">名前</div>
+                            <div class="stat-flat-value-wrap-m">
+                              <input type="text" class="stat-flat-input" id="resonator_name" name="resonator_name" placeholder="漂泊者">
                             </div>
                           </div>
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
-                          <!-- 顔画像エリア ここから -->
-                          <div class="resonator-face-card h-100">
-                            <span class="resonator-face-drop-label">FACE IMAGE</span>
-                            <div class="resonator-face-drop" role="button" tabindex="0">
-                              <div class="face-drop-icon">＋</div>画像をドラッグ＆ドロップ
-                              <span>またはファイルを選択</span>
-                            </div>
-                            <div class="resonator-face-frame">
-                              <div class="resonator-face-frame-label">PREVIEW</div>
-                              <div class="resonator-face-preview">
-                                <div class="resonator-face-silhouette"></div>
-                                <span>NO IMAGE</span>
-                              </div>
-                            </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="mingshiu-native-select">
+                            <select id="element" name="element" class="mingshiu-select neo-select">
+                              <option value="">属性を選択してください</option>
+                              <option value="glacio">凝縮</option>
+                              <option value="fusion">焦熱</option>
+                              <option value="electro">電導</option>
+                              <option value="aero">気動</option>
+                              <option value="spectro">回折</option>
+                              <option value="havoc">消滅</option>
+                            </select>
                           </div>
-                          <!-- 顔画像エリア ここまで -->
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                              <div class="stat-row-flat">
-                                <div class="stat-flat-label-m">名前</div>
-                                <div class="stat-flat-value-wrap-m">
-                                  <input type="text" class="stat-flat-input" id="resonator_name" name="resonator_name" placeholder="漂泊者">
-                                </div>
-                              </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="mingshiu-native-select">
+                            <select id="" name="" class="mingshiu-select neo-select">
+                              <option value="">武器を選択してください</option>
+                              <option value="">
+                              </option>
+                              <option value="">
+                              </option>
+                              <option value="">
+                              </option>
+                              <option value="">
+                              </option>
+                              <option value="">
+                              </option>
+                              <option value="">
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="mingshiu-native-select">
+                            <select id="" name="" class="mingshiu-select neo-select">
+                              <option value="">性別を選択してください</option>
+                              <option value="">女性</option>
+                              <option value="">男性</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="stat-row-flat">
+                            <div class="stat-flat-label-m">出身</div>
+                            <div class="stat-flat-value-wrap-m">
+                              <input type="text" class="stat-flat-input" id="" name="" placeholder="出身">
                             </div>
                           </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                                <div class="mingshiu-native-select">
-                                  <select id="element" name="element" class="mingshiu-select neo-select">
-                                    <option value="">属性を選択してください</option>
-                                    <option value="glacio">凝縮</option>
-                                    <option value="fusion">焦熱</option>
-                                    <option value="electro">電導</option>
-                                    <option value="aero">気動</option>
-                                    <option value="spectro">回折</option>
-                                    <option value="havoc">消滅</option>
-                                  </select>
-                              </div>
+                        </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="stat-row-flat">
+                            <div class="stat-flat-label-m">所属</div>
+                            <div class="stat-flat-value-wrap-m">
+                              <input type="text" class="stat-flat-input" id="" name="" placeholder="所属">
                             </div>
                           </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                                <div class="mingshiu-native-select">
-                                  <select id="" name="" class="mingshiu-select neo-select">
-                                    <option value="">武器を選択してください</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                  </select>
-                              </div>
+                        </div>
+                      </div>
+                      <div class="resonator-field">
+                        <div class="form-group mb-2">
+                          <div class="stat-row-flat">
+                            <div class="stat-flat-label-m">声優</div>
+                            <div class="stat-flat-value-wrap-m">
+                              <input type="text" class="stat-flat-input" id="" name="" placeholder="声優">
                             </div>
                           </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                              <div class="mingshiu-native-select">
-                                <select id="" name="" class="mingshiu-select neo-select">
-                                  <option value="">性別を選択してください</option>
-                                  <option value="">女性</option>
-                                  <option value="">男性</option>
-                                </select>
-                              </div>
+                        </div>
+                      </div>
+                      <div class="resonator-field battle-style-field">
+                        <div class="align-items-start">
+                          <div class="battle-style-panel" aria-live="polite">
+                            <div class="battle-style-panel-header">
+                              <p class="battle-style-panel-title mb-0">戦闘スタイル</p>
+                              <button type="button" class="battle-style-select-btn" id="battle-style-trigger">
+                                <span>選択</span>
+                              </button>
                             </div>
-                          </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                              <div class="stat-row-flat">
-                                <div class="stat-flat-label-m">出身</div>
-                                <div class="stat-flat-value-wrap-m">
-                                  <input type="text" class="stat-flat-input" id="" name="" placeholder="出身">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                              <div class="stat-row-flat">
-                                <div class="stat-flat-label-m">所属</div>
-                                <div class="stat-flat-value-wrap-m">
-                                  <input type="text" class="stat-flat-input" id="" name="" placeholder="所属">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="resonator-field">
-                            <div class="form-group mb-2">
-                              <div class="stat-row-flat">
-                                <div class="stat-flat-label-m">声優</div>
-                                <div class="stat-flat-value-wrap-m">
-                                  <input type="text" class="stat-flat-input" id="" name="" placeholder="声優">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="resonator-field battle-style-field">
-                            <div class="align-items-start">
-                              <div class="battle-style-panel" aria-live="polite">
-                                <div class="battle-style-panel-header">
-                                  <p class="battle-style-panel-title mb-0">戦闘スタイル</p>
-                                  <button type="button" class="battle-style-select-btn" id="battle-style-trigger">
-                                    <span>選択</span>
-                                  </button>
-                                </div>
-                                <div class="battle-style-panel-body">
-                                  <p class="battle-style-empty" id="battle-style-empty">戦闘スタイルが選択されていません。</p>
-                                  <div class="battle-style-list" id="battle-style-list" role="list" aria-live="polite"></div>
-                                </div>
+                            <div class="battle-style-panel-body">
+                              <p class="battle-style-empty" id="battle-style-empty">戦闘スタイルが選択されていません。</p>
+                              <div class="battle-style-list" id="battle-style-list" role="list" aria-live="polite">
                               </div>
                             </div>
                           </div>
@@ -153,7 +164,9 @@
             </div>
           </div>
         </div>
-    </section>
-    <div th:replace="~{fragments/modal-battle-style :: modal}"></div>
+      </div>
+    </div>
+  </section>
+  <div th:replace="~{fragments/modal-battle-style :: modal}">
   </div>
 </div>
