@@ -2,7 +2,7 @@
 var BATTLE_STYLE_MODAL_ID = "battle-style-modal";
 var BATTLE_STYLE_SELECTORS = {
     trigger: "#battle-style-trigger",
-    modal: "#" + BATTLE_STYLE_MODAL_ID,
+    modal: "#".concat(BATTLE_STYLE_MODAL_ID),
     list: "#battle-style-list",
     placeholder: "#battle-style-empty",
     apply: "[data-battle-style-apply]",
@@ -36,7 +36,7 @@ function gatherSelectedStyles() {
     if (!modal) {
         return [];
     }
-    var checked = modal.querySelectorAll(BATTLE_STYLE_SELECTORS.checkbox + ":checked");
+    var checked = modal.querySelectorAll("".concat(BATTLE_STYLE_SELECTORS.checkbox, ":checked"));
     var selected = [];
     Array.prototype.forEach.call(checked, function (checkbox) {
         var value = checkbox.value.trim();
@@ -70,9 +70,7 @@ function renderBattleStyleList(values) {
 }
 function focusBattleStyleTrigger() {
     var trigger = queryElement(BATTLE_STYLE_SELECTORS.trigger);
-    if (trigger) {
-        trigger.focus();
-    }
+    trigger === null || trigger === void 0 ? void 0 : trigger.focus();
 }
 document.addEventListener("click", function (event) {
     var target = event.target;
