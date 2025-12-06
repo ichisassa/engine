@@ -305,6 +305,27 @@ select.mingshiu-select option {
     border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.stat-flat-label-m {
+    flex: 0 0 30%;
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #f3f6ff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+}
+
+.stat-flat-value-wrap-m {
+    flex: 0 0 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 .stat-flat-input {
     width: 100%;
     max-width: 240px;
