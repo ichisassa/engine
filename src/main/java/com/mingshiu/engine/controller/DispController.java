@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class DisplayController {
+public class DispController {
 
         private String render(String pageTitle, String contentTemplate, String activePage, String partial, Model model) {
         model.addAttribute("pageTitle", pageTitle);
