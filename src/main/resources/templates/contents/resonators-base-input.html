@@ -1,9 +1,12 @@
-<div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
+﻿<div th:fragment="content" th:attr="data-page-title=${pageTitle},data-active-page=${activePage}">
   <link rel="stylesheet" th:href="@{/css/resonator-base.css}">
   <script th:src="@{/js/battle-style-selector.js}"></script>
   <section class="content status-page status-page">
     <div class="status-scroll">
       <div class="status-card">
+        <div class="resonator-base-register-container">
+          <button type="button" class="btn btn-register-primary">登録</button>
+        </div>
         <div class="resonator-base-stage">
           <div class="card mingshiu-section-card">
             <div class="card-body">
