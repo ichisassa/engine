@@ -333,6 +333,12 @@
   outline: none;
 }
 
+.upload-message {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
 .resonator-form-grid {
   display: flex;
   flex-wrap: wrap;

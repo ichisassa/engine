@@ -40,8 +40,9 @@ function renderResult(element: HTMLElement | null, message: string, isError = fa
     return;
   }
   element.textContent = message;
+  element.classList.remove("text-muted");
   element.classList.toggle("text-danger", isError);
-  element.classList.toggle("text-success", !isError);
+  element.classList.toggle("text-white", !isError);
 }
 
 function isImageFile(file: File): boolean {
