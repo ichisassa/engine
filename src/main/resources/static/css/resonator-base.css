@@ -28,7 +28,7 @@
   box-shadow: 0 0 26px rgba(0, 255, 255, 0.7);
 }
 
-.resonator-avatar-card {
+.resonator-visual-card {
   position: relative;
   border-radius: 22px;
   border: 1px solid rgba(0, 255, 242, 0.2);
@@ -38,7 +38,7 @@
   box-shadow: 0 0 28px rgba(0, 210, 230, 0.3);
 }
 
-.resonator-avatar-drop-label {
+.resonator-visual-drop-label {
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   color: rgba(150, 230, 255, 0.7);
@@ -46,7 +46,7 @@
   margin-bottom: 0.5rem;
 }
 
-.resonator-avatar-drop {
+.resonator-visual-drop {
   border: 1px dashed rgba(0, 255, 255, 0.55);
   border-radius: 16px;
   padding: 1rem;
@@ -58,25 +58,31 @@
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.resonator-avatar-drop:hover,
-.resonator-avatar-drop:focus {
+.resonator-visual-drop.drag-over {
+  border-color: rgba(0, 255, 255, 0.95);
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.resonator-visual-drop:hover,
+.resonator-visual-drop:focus {
   box-shadow: 0 0 24px rgba(0, 255, 255, 0.45);
   transform: translateY(-2px);
 }
 
-.resonator-avatar-drop span {
+.resonator-visual-drop span {
   display: block;
   font-size: 0.8rem;
   color: rgba(170, 215, 255, 0.8);
 }
 
-.avatar-drop-icon {
+.visual-drop-icon {
   font-size: 1.35rem;
   margin-bottom: 0.35rem;
   display: block;
 }
 
-.resonator-avatar-frame {
+.resonator-visual-frame {
   position: relative;
   border-radius: 18px;
   aspect-ratio: 3 / 4;
@@ -95,7 +101,7 @@
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.55);
 }
 
-.resonator-avatar-frame-label {
+.resonator-visual-frame-label {
   position: absolute;
   top: 6px;
   left: 10px;
@@ -105,12 +111,29 @@
   text-transform: uppercase;
 }
 
-.resonator-avatar-preview {
+.resonator-visual-preview {
   text-align: center;
   color: rgba(255, 255, 255, 0.55);
 }
 
-.resonator-avatar-silhouette {
+.resonator-visual-preview-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: none;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.35);
+}
+
+.resonator-visual-preview.has-image .resonator-visual-silhouette,
+.resonator-visual-preview.has-image .resonator-visual-placeholder-text {
+  display: none;
+}
+
+.resonator-visual-preview.has-image .resonator-visual-preview-image {
+  display: block;
+}
+
+.resonator-visual-silhouette {
   width: 90px;
   height: 170px;
   border-radius: 60px 60px 20px 20px;
@@ -120,7 +143,7 @@
   position: relative;
 }
 
-.resonator-avatar-silhouette::before {
+.resonator-visual-silhouette::before {
   content: "";
   position: absolute;
   width: 60px;

@@ -15,18 +15,20 @@
                 <div class="section-fieldset-body">
                   <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-1">
-                      <div class="resonator-avatar-card h-100">
-                        <span class="resonator-avatar-drop-label">AVATAR IMAGE</span>
-                        <div class="resonator-avatar-drop" role="button" tabindex="0">
-                          <div class="avatar-drop-icon">＋</div>画像をドラッグ＆ドロップ
+                      <div class="resonator-visual-card h-100">
+                        <span class="resonator-visual-drop-label">AVATAR IMAGE</span>
+                        <div class="resonator-visual-drop" id="visualDropZone" role="button" tabindex="0">
+                          <div class="visual-drop-icon">＋</div>画像をドラッグ＆ドロップ
                           <span>またはファイルを選択</span>
                         </div>
-                        <div class="resonator-avatar-frame">
-                          <div class="resonator-avatar-frame-label">PREVIEW</div>
-                          <div class="resonator-avatar-preview">
-                            <div class="resonator-avatar-silhouette">
-                            </div>
-                            <span>NO IMAGE</span>
+                        <input type="hidden" id="visualUniqueId" name="visualUniqueId">
+                        <div id="visualUploadResult" class="small text-muted mb-2" aria-live="polite"></div>
+                        <div class="resonator-visual-frame">
+                          <div class="resonator-visual-frame-label">PREVIEW</div>
+                          <div class="resonator-visual-preview" id="visualPreviewContainer">
+                            <div class="resonator-visual-silhouette"></div>
+                            <span class="resonator-visual-placeholder-text">NO IMAGE</span>
+                            <img id="visualPreview" class="resonator-visual-preview-image" alt="Visual preview" hidden>
                           </div>
                         </div>
                       </div>
@@ -170,6 +172,6 @@
       </div>
     </div>
   </section>
-  <div th:replace="~{fragments/modal-battle-style :: modal}">
-  </div>
+  <div th:replace="~{fragments/modal-battle-style :: modal}"></div>
+  <script th:src="@{/js/resonators-base-upload.js}"></script>
 </div>
