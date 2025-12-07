@@ -1,4 +1,4 @@
-type VisualUploadElements = {
+type UploadElements = {
   dropZone        : HTMLElement;
   resultBox       : HTMLElement      | null;
   uniqueIdField   : HTMLInputElement | null;
@@ -6,22 +6,32 @@ type VisualUploadElements = {
   previewImage    : HTMLImageElement | null;
 };
 
-const UPLOAD_ENDPOINT   = "/api/resonators/base/temp-file/upload";
-const MAX_FILE_SIZE     = 10 * 1024 * 1024; // 5MB
-const VISUAL_IMAGE_TYPE = "1";
+type UploadConfig = {
+  imageType        : string;
+  dropZoneId       : string;
+  resultBoxId      : string;
+  uniqueIdFieldId  : string;
+  previewContainerId: string;
+  previewImageId   : string;
+};
 
-function getVisualUploadElements(): VisualUploadElements | null {
-  const dropZone = document.getElementById("visualDropZone");
+const UPLOAD_ENDPOINT   = "/api/resonators/base/temp-file/upload";
+const MAX_FILE_SIZE     = 10 * 1024 * 1024; // 10MB
+const VISUAL_IMAGE_TYPE = "1";
+const FACE_IMAGE_TYPE   = "2";
+
+function getUploadElements(config: UploadConfig): UploadElements | null {
+  const dropZone = document.getElementById(config.dropZoneId);
   if (!dropZone) {
     return null;
   }
 
   return {
     dropZone,
-    resultBox        : document.getElementById("visualUploadResult"),
-    uniqueIdField    : document.getElementById("visualUniqueId") as HTMLInputElement | null,
-    previewContainer : document.getElementById("visualPreviewContainer"),
-    previewImage     : document.getElementById("visualPreview") as HTMLImageElement | null,
+    resultBox        : document.getElementById(config.resultBoxId),
+    uniqueIdField    : document.getElementById(config.uniqueIdFieldId) as HTMLInputElement | null,
+    previewContainer : document.getElementById(config.previewContainerId),
+    previewImage     : document.getElementById(config.previewImageId) as HTMLImageElement | null,
   };
 }
 
@@ -55,11 +65,15 @@ function updatePreview(
   };
 }
 
-async function uploadVisualImage(file: File, elements: VisualUploadElements): Promise<void> {
+async function uploadImage(
+  file: File,
+  elements: UploadElements,
+  imageType: string,
+): Promise<void> {
   renderResult(elements.resultBox, "アップロード中...", false);
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("imageType", VISUAL_IMAGE_TYPE);
+  formData.append("imageType", imageType);
 
   try {
     const response = await fetch(UPLOAD_ENDPOINT, {
@@ -79,39 +93,39 @@ async function uploadVisualImage(file: File, elements: VisualUploadElements): Pr
       elements.uniqueIdField.value = data.uniqueId ?? "";
     }
     updatePreview(file, elements.previewContainer, elements.previewImage);
-    renderResult(elements.resultBox, `アップロード成功: ${data.fileName ?? file.name}`, false);
+    renderResult(elements.resultBox, `アップロード完了: ${data.fileName ?? file.name}`, false);
   } catch (error) {
     console.error("Upload failed", error);
     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);
   }
 }
 
-function handleFile(file: File, elements: VisualUploadElements): void {
+function handleFile(file: File, elements: UploadElements, imageType: string): void {
   if (!isImageFile(file)) {
     renderResult(elements.resultBox, "画像ファイルのみアップロードできます。", true);
     return;
   }
 
   if (file.size > MAX_FILE_SIZE) {
-    renderResult(elements.resultBox, "ファイルサイズは5MB以内にしてください。", true);
+    renderResult(elements.resultBox, "ファイルサイズは10MB以下にしてください。", true);
     return;
   }
 
-  void uploadVisualImage(file, elements);
+  void uploadImage(file, elements, imageType);
 }
 
-function handleDrop(event: DragEvent, elements: VisualUploadElements): void {
+function handleDrop(event: DragEvent, elements: UploadElements, imageType: string): void {
   const files = event.dataTransfer?.files;
   if (!files || !files.length) {
-    renderResult(elements.resultBox, "ファイルが見つかりません。", true);
+    renderResult(elements.resultBox, "ファイルが選択されていません。", true);
     return;
   }
 
-  handleFile(files[0], elements);
+  handleFile(files[0], elements, imageType);
 }
 
-function initializeVisualDropZone(): void {
-  const elements = getVisualUploadElements();
+function initImageUpload(config: UploadConfig): void {
+  const elements = getUploadElements(config);
   if (!elements) {
     return;
   }
@@ -145,7 +159,7 @@ function initializeVisualDropZone(): void {
   dropZone.addEventListener("drop", (event) => {
     preventDefault(event);
     setHighlight(false);
-    handleDrop(event, elements);
+    handleDrop(event, elements, config.imageType);
   });
 
   const fileInput = document.createElement("input");
@@ -165,12 +179,28 @@ function initializeVisualDropZone(): void {
   fileInput.addEventListener("change", () => {
     const file = fileInput.files?.[0];
     if (file) {
-      handleFile(file, elements);
+      handleFile(file, elements, config.imageType);
     }
     fileInput.value = "";
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initializeVisualDropZone();
+  initImageUpload({
+    imageType        : VISUAL_IMAGE_TYPE,
+    dropZoneId       : "visualDropZone",
+    resultBoxId      : "visualUploadResult",
+    uniqueIdFieldId  : "visualUniqueId",
+    previewContainerId: "visualPreviewContainer",
+    previewImageId   : "visualPreview",
+  });
+
+  initImageUpload({
+    imageType        : FACE_IMAGE_TYPE,
+    dropZoneId       : "faceDropZone",
+    resultBoxId      : "faceUploadResult",
+    uniqueIdFieldId  : "faceUniqueId",
+    previewContainerId: "facePreviewContainer",
+    previewImageId   : "facePreview",
+  });
 });

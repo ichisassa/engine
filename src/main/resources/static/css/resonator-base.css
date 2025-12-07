@@ -50,6 +50,8 @@
   border: 1px dashed rgba(0, 255, 255, 0.55);
   border-radius: 16px;
   padding: 1rem;
+  outline: 2px solid rgba(0, 255, 255, 0.25) !important;
+  outline-offset: 3px;
   text-align: center;
   color: rgba(210, 240, 255, 0.9);
   margin-bottom: 1rem;
@@ -177,12 +179,20 @@
   border: 1px dashed rgba(170, 135, 255, 0.7);
   border-radius: 16px;
   padding: 1rem;
+  outline: 2px solid rgba(168, 112, 255, 0.4) !important;
+  outline-offset: 3px;
   text-align: center;
   color: rgba(235, 225, 255, 0.92);
   margin-bottom: 1rem;
   background: rgba(18, 20, 58, 0.85);
   cursor: pointer;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.resonator-face-drop.drag-over {
+  border-color: rgba(194, 146, 255, 0.95);
+  box-shadow: 0 0 28px rgba(194, 146, 255, 0.7);
+  transform: translateY(-2px);
 }
 
 .resonator-face-drop:hover,
@@ -212,7 +222,7 @@
   margin: 0.5rem auto 0;
   border: 3px solid #a870ff !important;
   outline: 2px solid rgba(168, 112, 255, 0.4) !important;
-  outline-offset: 4px;
+  outline-offset: 3px;
   background:
     radial-gradient(circle at 70% 20%, rgba(120, 80, 255, 0.22), transparent 65%),
     linear-gradient(165deg, #060e24, #12052c);
@@ -235,9 +245,32 @@
 }
 
 .resonator-face-preview {
-  text-align: center;
-  color: rgba(255, 245, 255, 0.65);
   width: 100%;
+  min-height: 150px;
+  color: rgba(255, 245, 255, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.resonator-face-preview-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 24px;
+  display: none;
+  box-shadow: 0 0 18px rgba(168, 112, 255, 0.35);
+}
+
+.resonator-face-preview.has-image .resonator-face-silhouette,
+.resonator-face-preview.has-image .resonator-face-placeholder-text {
+  display: none;
+}
+
+.resonator-face-preview.has-image .resonator-face-preview-image {
+  display: block;
 }
 
 .resonator-face-silhouette {
@@ -253,11 +286,11 @@
 .resonator-face-silhouette::before {
   content: "";
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 1px solid rgba(185, 140, 255, 0.3);
-  top: -38px;
+  top: -35px;
   left: 50%;
   transform: translateX(-50%);
 }
