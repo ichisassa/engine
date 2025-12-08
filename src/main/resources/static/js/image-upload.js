@@ -39,6 +39,12 @@ var UPLOAD_ENDPOINT = "/api/resonators/base/temp-file/upload";
 var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 var VISUAL_IMAGE_TYPE = "1";
 var FACE_IMAGE_TYPE = "2";
+var LOADING_OVERLAY_ID = "uploadLoadingOverlay";
+var BODY_LOADING_CLASS = "upload-loading";
+var activeUploadCount = 0;
+function getWindowWithApi() {
+    return window;
+}
 function getUploadElements(config) {
     var dropZone = document.getElementById(config.dropZoneId);
     if (!dropZone) {
@@ -46,10 +52,14 @@ function getUploadElements(config) {
     }
     return {
         dropZone: dropZone,
-        resultBox: document.getElementById(config.resultBoxId),
-        uniqueIdField: document.getElementById(config.uniqueIdFieldId),
-        previewContainer: document.getElementById(config.previewContainerId),
-        previewImage: document.getElementById(config.previewImageId),
+        resultBox: config.resultBoxId ? document.getElementById(config.resultBoxId) : null,
+        uniqueIdField: config.uniqueIdFieldId
+            ? document.getElementById(config.uniqueIdFieldId)
+            : null,
+        previewContainer: config.previewContainerId ? document.getElementById(config.previewContainerId) : null,
+        previewImage: config.previewImageId
+            ? document.getElementById(config.previewImageId)
+            : null,
     };
 }
 function renderResult(element, message, isError) {
@@ -61,6 +71,24 @@ function renderResult(element, message, isError) {
     element.classList.remove("text-muted");
     element.classList.toggle("text-danger", isError);
     element.classList.toggle("text-white", !isError);
+}
+function setGlobalLoading(isLoading) {
+    var overlay = document.getElementById(LOADING_OVERLAY_ID);
+    if (!overlay) {
+        return;
+    }
+    activeUploadCount += isLoading ? 1 : -1;
+    if (activeUploadCount < 0) {
+        activeUploadCount = 0;
+    }
+    var shouldShow = activeUploadCount > 0;
+    overlay.classList.toggle("is-active", shouldShow);
+    overlay.setAttribute("aria-hidden", String(!shouldShow));
+    document.body.classList.toggle(BODY_LOADING_CLASS, shouldShow);
+    document.body.setAttribute("aria-busy", String(shouldShow));
+}
+function isGlobalLoading() {
+    return activeUploadCount > 0;
 }
 function isImageFile(file) {
     return !!file.type && file.type.toLowerCase().startsWith("image/");
@@ -88,9 +116,10 @@ function uploadImage(file, elements, imageType) {
                     formData = new FormData();
                     formData.append("file", file);
                     formData.append("imageType", imageType);
+                    setGlobalLoading(true);
                     _c.label = 1;
                 case 1:
-                    _c.trys.push([1, 6, , 7]);
+                    _c.trys.push([1, 6, 7, 8]);
                     return [4 /*yield*/, fetch(UPLOAD_ENDPOINT, {
                             method: "POST",
                             body: formData,
@@ -112,18 +141,24 @@ function uploadImage(file, elements, imageType) {
                     }
                     updatePreview(file, elements.previewContainer, elements.previewImage);
                     renderResult(elements.resultBox, "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u5B8C\u4E86: ".concat((_b = data.fileName) !== null && _b !== void 0 ? _b : file.name), false);
-                    return [3 /*break*/, 7];
+                    return [3 /*break*/, 8];
                 case 6:
                     error_1 = _c.sent();
                     console.error("Upload failed", error_1);
                     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);
-                    return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 7:
+                    setGlobalLoading(false);
+                    return [7 /*endfinally*/];
+                case 8: return [2 /*return*/];
             }
         });
     });
 }
 function handleFile(file, elements, imageType) {
+    if (isGlobalLoading()) {
+        return;
+    }
     if (!isImageFile(file)) {
         renderResult(elements.resultBox, "画像ファイルのみアップロードできます。", true);
         return;
@@ -136,6 +171,9 @@ function handleFile(file, elements, imageType) {
 }
 function handleDrop(event, elements, imageType) {
     var _a;
+    if (isGlobalLoading()) {
+        return;
+    }
     var files = (_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.files;
     if (!files || !files.length) {
         renderResult(elements.resultBox, "ファイルが選択されていません。", true);
@@ -156,6 +194,10 @@ function initImageUpload(config) {
     var setHighlight = function (shouldHighlight) {
         dropZone.classList.toggle("drag-over", shouldHighlight);
     };
+    var setPressed = function (pressed) {
+        dropZone.classList.toggle("is-pressed", pressed);
+    };
+    var clearPressed = function () { return setPressed(false); };
     dropZone.addEventListener("dragenter", function (event) {
         preventDefault(event);
         setHighlight(true);
@@ -171,6 +213,7 @@ function initImageUpload(config) {
     dropZone.addEventListener("drop", function (event) {
         preventDefault(event);
         setHighlight(false);
+        clearPressed();
         handleDrop(event, elements, config.imageType);
     });
     var fileInput = document.createElement("input");
@@ -178,11 +221,33 @@ function initImageUpload(config) {
     fileInput.accept = "image/*";
     fileInput.hidden = true;
     dropZone.appendChild(fileInput);
+    dropZone.addEventListener("mousedown", function () {
+        if (isGlobalLoading()) {
+            return;
+        }
+        setPressed(true);
+    });
+    dropZone.addEventListener("touchstart", function () {
+        if (isGlobalLoading()) {
+            return;
+        }
+        setPressed(true);
+    });
+    ["mouseup", "mouseleave", "touchend", "touchcancel", "blur"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, clearPressed);
+    });
     dropZone.addEventListener("click", function () { return fileInput.click(); });
     dropZone.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
+            setPressed(true);
             fileInput.click();
+        }
+    });
+    dropZone.addEventListener("keyup", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            clearPressed();
         }
     });
     fileInput.addEventListener("change", function () {
@@ -192,23 +257,44 @@ function initImageUpload(config) {
             handleFile(file, elements, config.imageType);
         }
         fileInput.value = "";
+        clearPressed();
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
-    initImageUpload({
-        imageType: VISUAL_IMAGE_TYPE,
-        dropZoneId: "visualDropZone",
-        resultBoxId: "visualUploadResult",
-        uniqueIdFieldId: "visualUniqueId",
-        previewContainerId: "visualPreviewContainer",
-        previewImageId: "visualPreview",
+function initUploadContainers(root) {
+    if (root === void 0) { root = document; }
+    var containers = root.querySelectorAll("[data-upload-image-type]");
+    containers.forEach(function (container) {
+        if (container.dataset.uploadInitialized === "true") {
+            return;
+        }
+        var imageType = container.dataset.uploadImageType;
+        var dropZoneId = container.dataset.uploadDropZoneId;
+        if (!imageType || !dropZoneId) {
+            return;
+        }
+        initImageUpload({
+            imageType: imageType,
+            dropZoneId: dropZoneId,
+            resultBoxId: container.dataset.uploadResultId,
+            uniqueIdFieldId: container.dataset.uploadUniqueIdFieldId,
+            previewContainerId: container.dataset.uploadPreviewContainerId,
+            previewImageId: container.dataset.uploadPreviewImageId,
+        });
+        container.dataset.uploadInitialized = "true";
     });
-    initImageUpload({
-        imageType: FACE_IMAGE_TYPE,
-        dropZoneId: "faceDropZone",
-        resultBoxId: "faceUploadResult",
-        uniqueIdFieldId: "faceUniqueId",
-        previewContainerId: "facePreviewContainer",
-        previewImageId: "facePreview",
-    });
-});
+}
+function bootstrapImageUploads() {
+    initUploadContainers();
+    var api = {
+        register: function (config) { return initImageUpload(config); },
+        registerMany: function (configs) { return configs.forEach(function (config) { return initImageUpload(config); }); },
+        initFromDom: function (root) { return initUploadContainers(root !== null && root !== void 0 ? root : document); },
+    };
+    getWindowWithApi().MingshiuImageUpload = api;
+}
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootstrapImageUploads);
+}
+else {
+    bootstrapImageUploads();
+}
