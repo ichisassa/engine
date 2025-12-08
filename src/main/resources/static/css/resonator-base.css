@@ -1,3 +1,4 @@
+/* 共鳴者関連コンポーネント（flex レイアウトを指定、position を使った位置調整、余白（margin）の調整）。 */
 .resonator-base-register-container {
   position: sticky;
   top: 0.5rem;
@@ -7,6 +8,7 @@
   z-index: 5;
 }
 
+/* ボタンスタイル（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、文字サイズや太さの調整、文字色の設定、ホバーなどのトランジション効果）。 */
 .btn-register-primary {
   border: 1px solid rgba(0, 255, 255, 0.7);
   background: linear-gradient(135deg, rgba(0, 26, 52, 0.95), rgba(0, 150, 174, 0.95));
@@ -21,6 +23,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
+/* ボタンスタイル（影（box-shadow）の付与）。 */
 .btn-register-primary:hover,
 .btn-register-primary:focus {
   filter: brightness(1.1);
@@ -28,6 +31,7 @@
   box-shadow: 0 0 26px rgba(0, 255, 255, 0.7);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与）。 */
 .resonator-visual-card {
   position: relative;
   border-radius: 22px;
@@ -38,6 +42,7 @@
   box-shadow: 0 0 28px rgba(0, 210, 230, 0.3);
 }
 
+/* 共鳴者関連コンポーネント（余白（margin）の調整、文字サイズや太さの調整、文字色の設定）。 */
 .resonator-visual-drop-label {
   font-size: 1rem;
   letter-spacing: 0.3em;
@@ -46,6 +51,7 @@
   margin-bottom: 0.5rem;
 }
 
+/* 共鳴者関連コンポーネント（余白（margin）の調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、文字色の設定、ホバーなどのトランジション効果、カーソルの見た目の指定）。 */
 .resonator-visual-drop {
   --drop-zone-glow: rgba(0, 255, 255, 1);
   --drop-zone-text: rgba(255, 255, 255, 0.95);
@@ -62,12 +68,14 @@
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与、文字色の設定）。 */
 .resonator-visual-drop.drag-over {
   border-color: rgba(0, 255, 255, 0.95);
   box-shadow: 0 0 28px rgba(0, 255, 255, 0.6);
   transform: translateY(-2px);
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与、文字色の設定）。 */
 .resonator-visual-drop:hover,
 .resonator-visual-drop:focus-visible {
   box-shadow:
@@ -78,18 +86,21 @@
   border-color: rgba(0, 255, 255, 0.95);
 }
 
+/* 共鳴者関連コンポーネント（文字サイズや太さの調整、文字色の設定）。 */
 .resonator-visual-drop span {
   display: block;
   font-size: 0.8rem;
   color: rgba(170, 215, 255, 0.8);
 }
 
+/* .visual-drop-icon 用スタイル（余白（margin）の調整、文字サイズや太さの調整）。 */
 .visual-drop-icon {
   font-size: 1.35rem;
   margin-bottom: 0.35rem;
   display: block;
 }
 
+/* 共鳴者関連コンポーネント（flex レイアウトを指定、position を使った位置調整、余白（margin）の調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、はみ出しコンテンツ（overflow）の制御）。 */
 .resonator-visual-frame {
   position: relative;
   border-radius: 18px;
@@ -109,6 +120,7 @@
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.55);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、文字サイズや太さの調整、文字色の設定）。 */
 .resonator-visual-frame-label {
   position: absolute;
   top: 6px;
@@ -119,11 +131,13 @@
   text-transform: uppercase;
 }
 
+/* 共鳴者関連コンポーネント（文字色の設定）。 */
 .resonator-visual-preview {
   text-align: center;
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与）。 */
 .resonator-visual-preview-image {
   max-width: 100%;
   height: auto;
@@ -132,15 +146,18 @@
   box-shadow: 0 0 18px rgba(0, 255, 255, 0.35);
 }
 
+/* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
 .resonator-visual-preview.has-image .resonator-visual-silhouette,
 .resonator-visual-preview.has-image .resonator-visual-placeholder-text {
   display: none;
 }
 
+/* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
 .resonator-visual-preview.has-image .resonator-visual-preview-image {
   display: block;
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、枠線（border）の装飾、背景色・背景装飾の設定）。 */
 .resonator-visual-silhouette {
   content: "";
   position: absolute;
@@ -154,6 +171,7 @@
   transform: translateX(-50%);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、枠線（border）の装飾）。 */
 .resonator-visual-silhouette::before {
   content: "";
   position: absolute;
@@ -166,6 +184,7 @@
   transform: translateX(-50%);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与）。 */
 .resonator-face-card {
   position: relative;
   border-radius: 22px;
@@ -176,6 +195,7 @@
   box-shadow: 0 0 28px rgba(136, 80, 255, 0.35);
 }
 
+/* 共鳴者関連コンポーネント（余白（margin）の調整、文字サイズや太さの調整、文字色の設定）。 */
 .resonator-face-drop-label {
   font-size: 1rem;
   letter-spacing: 0.3em;
@@ -184,6 +204,7 @@
   margin-bottom: 0.5rem;
 }
 
+/* 共鳴者関連コンポーネント（余白（margin）の調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、文字色の設定、ホバーなどのトランジション効果、カーソルの見た目の指定）。 */
 .resonator-face-drop {
   --drop-zone-glow: rgba(194, 146, 255, 1);
   --drop-zone-text: rgba(255, 245, 255, 0.95);
@@ -200,12 +221,14 @@
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与、文字色の設定）。 */
 .resonator-face-drop.drag-over {
   border-color: rgba(194, 146, 255, 0.95);
   box-shadow: 0 0 28px rgba(194, 146, 255, 0.7);
   transform: translateY(-2px);
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与、文字色の設定）。 */
 .resonator-face-drop:hover,
 .resonator-face-drop:focus-visible {
   box-shadow:
@@ -216,24 +239,29 @@
   border-color: rgba(194, 146, 255, 1);
 }
 
+/* 共鳴者関連コンポーネント（文字サイズや太さの調整、文字色の設定）。 */
 .resonator-face-drop span {
   display: block;
   font-size: 0.8rem;
   color: rgba(210, 195, 255, 0.85);
 }
 
+/* アニメーション定義（影（box-shadow）の付与）。 */
 @keyframes dropZonePulse {
   0% {
     box-shadow: 0 0 24px var(--drop-zone-glow), 0 0 10px rgba(255, 255, 255, 0.35);
   }
 
+  /* 50% 用スタイル（影（box-shadow）の付与）。 */
   50% {
     box-shadow: 0 0 52px var(--drop-zone-glow), 0 0 18px rgba(255, 255, 255, 0.8);
   }
 
+  /* 100% 用スタイル（影（box-shadow）の付与）。 */
   100% {
     box-shadow: 0 0 24px var(--drop-zone-glow), 0 0 10px rgba(255, 255, 255, 0.35);
   }
+/*.face-drop-icon 用スタイル（余白（margin）の調整、文字サイズや太さの調整）。 */
 }
 
 .face-drop-icon {
@@ -242,6 +270,7 @@
   display: block;
 }
 
+/* 共鳴者関連コンポーネント（flex レイアウトを指定、position を使った位置調整、余白（margin）の調整、内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、はみ出しコンテンツ（overflow）の制御）。 */
 .resonator-face-frame {
   position: relative;
   border-radius: 18px;
@@ -261,6 +290,7 @@
   box-shadow: 0 0 30px rgba(160, 90, 255, 0.55);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、文字サイズや太さの調整、文字色の設定）。 */
 .resonator-face-frame-label {
   position: absolute;
   top: 6px;
@@ -271,11 +301,13 @@
   text-transform: uppercase;
 }
 
+/* 共鳴者関連コンポーネント（文字色の設定）。 */
 .resonator-face-preview {
   text-align: center;
   color: rgba(255, 245, 255, 0.65);
 }
 
+/* 共鳴者関連コンポーネント（枠線（border）の装飾、影（box-shadow）の付与）。 */
 .resonator-face-preview-image {
   max-width: 100%;
   height: auto;
@@ -284,15 +316,18 @@
   box-shadow: 0 0 18px rgba(168, 112, 255, 0.35);
 }
 
+/* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
 .resonator-face-preview.has-image .resonator-face-silhouette,
 .resonator-face-preview.has-image .resonator-face-placeholder-text {
   display: none;
 }
 
+/* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
 .resonator-face-preview.has-image .resonator-face-preview-image {
   display: block;
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、枠線（border）の装飾、背景色・背景装飾の設定）。 */
 .resonator-face-silhouette {
   content: "";
   position: absolute;
@@ -306,6 +341,7 @@
   transform: translateX(-50%);
 }
 
+/* 共鳴者関連コンポーネント（position を使った位置調整、枠線（border）の装飾）。 */
 .resonator-face-silhouette::before {
   content: "";
   position: absolute;
@@ -318,6 +354,7 @@
   transform: translateX(-50%);
 }
 
+/* 共鳴者関連コンポーネント（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与）。 */
 .resonator-description-card {
   border-radius: 20px;
   border: 1px solid rgba(0, 255, 255, 0.2);
@@ -326,6 +363,7 @@
   box-shadow: inset 0 0 22px rgba(0, 80, 120, 0.35), 0 0 18px rgba(0, 255, 255, 0.2);
 }
 
+/* .description-card-header 用スタイル（余白（margin）の調整、文字サイズや太さの調整）。 */
 .description-card-header {
   font-size: 0.95rem;
   font-weight: 600;
@@ -333,6 +371,7 @@
   margin-bottom: 0.2rem;
 }
 
+/* .description-card-body 用スタイル（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定）。 */
 .description-card-body {
   border: 1px solid rgba(0, 255, 255, 0.2);
   border-radius: 14px;
@@ -340,6 +379,7 @@
   background: rgba(0, 12, 26, 0.85);
 }
 
+/* .description-textarea 用スタイル（枠線（border）の装飾、背景色・背景装飾の設定、文字サイズや太さの調整、文字色の設定）。 */
 .description-textarea {
   width: 100%;
   resize: none;
@@ -351,34 +391,41 @@
   font-family: inherit;
 }
 
+/* .description-textarea::placeholder 用スタイル（文字色の設定）。 */
 .description-textarea::placeholder {
   color: rgba(180, 210, 230, 0.7);
 }
 
+/* .description-textarea:focus 用スタイル（細かなレイアウトや装飾の調整）。 */
 .description-textarea:focus {
   outline: none;
 }
 
+/* 画像アップロード／プレビュー用コンポーネント（文字サイズや太さの調整）。 */
 .upload-message {
   font-size: 0.95rem;
   line-height: 1.4;
   font-weight: 500;
 }
 
+/* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
 .resonator-field {
   max-width: 500px;
   flex: 1 1 320px;
 }
 
+/* .profile-textarea 用スタイル（細かなレイアウトや装飾の調整）。 */
 .profile-textarea {
   min-height: 140px;
   resize: none;
 }
 
+/* 戦闘スタイル選択 UI（細かなレイアウトや装飾の調整）。 */
 .battle-style-field .stat-flat-value-wrap-m {
   width: 100%;
 }
 
+/* 戦闘スタイル選択 UI（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与）。 */
 .battle-style-panel {
   border-radius: 20px;
   border: 1px solid rgba(0, 255, 255, 0.25);
@@ -388,6 +435,7 @@
   box-shadow: 0 0 18px rgba(0, 255, 255, 0.15), inset 0 0 25px rgba(0, 80, 125, 0.25);
 }
 
+/* 戦闘スタイル選択 UI（flex レイアウトを指定、余白（margin）の調整）。 */
 .battle-style-panel-header {
   display: flex;
   align-items: center;
@@ -396,12 +444,14 @@
   margin-bottom: 0.85rem;
 }
 
+/* 戦闘スタイル選択 UI（文字サイズや太さの調整）。 */
 .battle-style-panel-title {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 
+/* 戦闘スタイル選択 UI（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、文字サイズや太さの調整、文字色の設定、ホバーなどのトランジション効果）。 */
 .battle-style-select-btn {
   border: 1px solid rgba(0, 255, 255, 0.6);
   background: rgba(0, 20, 36, 0.85);
@@ -415,12 +465,14 @@
   transition: filter 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* 戦闘スタイル選択 UI（影（box-shadow）の付与）。 */
 .battle-style-select-btn:hover,
 .battle-style-select-btn:focus {
   filter: brightness(1.1);
   box-shadow: 0 0 22px rgba(0, 255, 255, 0.6);
 }
 
+/* 戦闘スタイル選択 UI（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定）。 */
 .battle-style-panel-body {
   border: 1px solid rgba(0, 255, 255, 0.25);
   border-radius: 15px;
@@ -429,6 +481,7 @@
   min-height: 205px;
 }
 
+/* 戦闘スタイル選択 UI（flex レイアウトを指定、はみ出しコンテンツ（overflow）の制御）。 */
 .battle-style-list {
   max-height: 200px;
   overflow-y: auto;
@@ -437,12 +490,14 @@
   gap: 0.45rem;
 }
 
+/* 戦闘スタイル選択 UI（余白（margin）の調整、文字サイズや太さの調整、文字色の設定）。 */
 .battle-style-empty {
   font-size: 0.9rem;
   color: rgba(170, 210, 235, 0.75);
   margin-bottom: 0.4rem;
 }
 
+/* .style-item 用スタイル（内側余白（padding）の調整、枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与、文字サイズや太さの調整、文字色の設定）。 */
 .style-item {
   border: 1px solid rgba(0, 255, 255, 0.35);
   border-radius: 999px;
@@ -455,23 +510,27 @@
   text-shadow: 0 0 6px rgba(0, 220, 255, 0.35);
 }
 
+/* 戦闘スタイル選択 UI（枠線（border）の装飾、背景色・背景装飾の設定、影（box-shadow）の付与）。 */
 .battle-style-modal .modal-content {
   background: linear-gradient(180deg, rgba(0, 10, 24, 0.98), rgba(0, 4, 12, 0.98));
   border: 1px solid rgba(0, 255, 255, 0.3);
   box-shadow: 0 0 25px rgba(0, 170, 255, 0.35), 0 25px 80px rgba(0, 0, 0, 0.65);
 }
 
+/* 戦闘スタイル選択 UI（枠線（border）の装飾、文字色の設定）。 */
 .battle-style-modal .modal-header,
 .battle-style-modal .modal-footer {
   border-color: rgba(0, 160, 255, 0.25);
 }
 
+/* 戦闘スタイル選択 UI（内側余白（padding）の調整、はみ出しコンテンツ（overflow）の制御）。 */
 .battle-style-option-list {
   max-height: 360px;
   overflow-y: auto;
   padding-right: 0.5rem;
 }
 
+/* 戦闘スタイル選択 UI（flex レイアウトを指定、内側余白（padding）の調整、枠線（border）の装飾）。 */
 .battle-style-option {
   display: flex;
   align-items: center;
@@ -480,10 +539,12 @@
   border-bottom: 1px solid rgba(0, 70, 120, 0.35);
 }
 
+/* 戦闘スタイル選択 UI（枠線（border）の装飾）。 */
 .battle-style-option:last-child {
   border-bottom: none;
 }
 
+/* 戦闘スタイル選択 UI（余白（margin）の調整、文字色の設定、カーソルの見た目の指定）。 */
 .battle-style-option label {
   margin: 0;
   color: rgba(220, 240, 255, 0.9);
@@ -492,27 +553,32 @@
   cursor: pointer;
 }
 
+/* 戦闘スタイル選択 UI（文字色の設定）。 */
 .battle-style-option input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: #00e5ff;
 }
 
+/* @media (max-width: 768px) 用スタイル（内側余白（padding）の調整）。 */
 @media (max-width: 768px) {
   .resonator-base-content .resonator-base-stage {
     padding: 0 0.5rem 2.5rem;
   }
 
+  /* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
   .resonator-base-content .resonator-field,
   .resonator-base-content .neo-form-control,
   .resonator-base-content .resonator-description-panel {
     max-width: 100%;
   }
 
+  /* 共鳴者関連コンポーネント（余白（margin）の調整）。 */
   .resonator-face-card {
     margin-top: 1rem;
   }
 
+  /* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
   .resonator-face-frame {
     max-width: 100%;
   }
