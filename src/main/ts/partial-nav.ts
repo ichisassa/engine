@@ -100,6 +100,13 @@ function loadPartialContent(url: string, pushHistory: boolean = true): void {
 
       root.innerHTML = html;
       applyFragmentMetadata(root);
+
+      // ★ ここを追加：画像アップロードなど DOM 依存コンポーネントの再初期化
+      const anyWindow = window as any;
+      if (anyWindow.MingshiuImageUpload && typeof anyWindow.MingshiuImageUpload.initFromDom === "function") {
+        anyWindow.MingshiuImageUpload.initFromDom(root);
+      }
+
       if (pushHistory) {
         window.history.pushState({}, "", url);
       }

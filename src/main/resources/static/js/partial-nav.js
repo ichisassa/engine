@@ -92,6 +92,11 @@ function loadPartialContent(url, pushHistory) {
         }
         root.innerHTML = html;
         applyFragmentMetadata(root);
+        // ★ ここを追加：画像アップロードなど DOM 依存コンポーネントの再初期化
+        var anyWindow = window;
+        if (anyWindow.MingshiuImageUpload && typeof anyWindow.MingshiuImageUpload.initFromDom === "function") {
+            anyWindow.MingshiuImageUpload.initFromDom(root);
+        }
         if (pushHistory) {
             window.history.pushState({}, "", url);
         }
