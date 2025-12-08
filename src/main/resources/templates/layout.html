@@ -36,8 +36,9 @@
     <footer th:replace="~{fragments/footer :: footer}"></footer>
   </div>
   <div id="uploadLoadingOverlay" class="upload-fullscreen-overlay" aria-hidden="true">
-    <div class="upload-fullscreen-spinner" role="status" aria-live="assertive" aria-label="アップロード中">
-      <span class="sr-only">アップロード中...</span>
+    <div class="upload-fullscreen-box" role="status" aria-live="assertive" aria-label="アップロード中">
+      <div class="upload-fullscreen-spinner" aria-hidden="true"></div>
+      <div class="upload-fullscreen-message">Now Uploading...</div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
