@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var UPLOAD_ENDPOINT = "/api/file/upload";
+var UPLOAD_ENDPOINT = "/api/upload/file/image";
 var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 var VISUAL_IMAGE_TYPE = "1";
 var FACE_IMAGE_TYPE = "2";

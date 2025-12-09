@@ -1,24 +1,24 @@
 type UploadElements = {
-  dropZone        : HTMLElement;
-  resultBox       : HTMLElement      | null;
-  uniqueIdField   : HTMLInputElement | null;
-  previewContainer: HTMLElement      | null;
-  previewImage    : HTMLImageElement | null;
+  dropZone: HTMLElement;
+  resultBox: HTMLElement | null;
+  uniqueIdField: HTMLInputElement | null;
+  previewContainer: HTMLElement | null;
+  previewImage: HTMLImageElement | null;
 };
 
 type UploadConfig = {
-  imageType        : string;
-  dropZoneId       : string;
-  resultBoxId?     : string;
-  uniqueIdFieldId? : string;
+  imageType: string;
+  dropZoneId: string;
+  resultBoxId?: string;
+  uniqueIdFieldId?: string;
   previewContainerId?: string;
-  previewImageId?  : string;
+  previewImageId?: string;
 };
 
-const UPLOAD_ENDPOINT    = "/api/file/upload";
-const MAX_FILE_SIZE      = 10 * 1024 * 1024; // 10MB
-const VISUAL_IMAGE_TYPE  = "1";
-const FACE_IMAGE_TYPE    = "2";
+const UPLOAD_ENDPOINT = "/api/upload/file/image";
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const VISUAL_IMAGE_TYPE = "1";
+const FACE_IMAGE_TYPE = "2";
 const LOADING_OVERLAY_ID = "uploadLoadingOverlay";
 const BODY_LOADING_CLASS = "upload-loading";
 type ImageUploadApi = {
@@ -41,12 +41,12 @@ function getUploadElements(config: UploadConfig): UploadElements | null {
 
   return {
     dropZone,
-    resultBox        : config.resultBoxId ? document.getElementById(config.resultBoxId) : null,
-    uniqueIdField    : config.uniqueIdFieldId
+    resultBox: config.resultBoxId ? document.getElementById(config.resultBoxId) : null,
+    uniqueIdField: config.uniqueIdFieldId
       ? (document.getElementById(config.uniqueIdFieldId) as HTMLInputElement | null)
       : null,
-    previewContainer : config.previewContainerId ? document.getElementById(config.previewContainerId) : null,
-    previewImage     : config.previewImageId
+    previewContainer: config.previewContainerId ? document.getElementById(config.previewContainerId) : null,
+    previewImage: config.previewImageId
       ? (document.getElementById(config.previewImageId) as HTMLImageElement | null)
       : null,
   };

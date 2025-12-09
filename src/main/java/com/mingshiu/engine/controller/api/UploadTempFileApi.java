@@ -18,7 +18,7 @@ import com.mingshiu.engine.service.dto.UploadFileResponse;
  */
 @RestController
 @RequiredArgsConstructor
-public class UploadFileApi {
+public class UploadTempFileApi {
 
   private final UploadTempFileService service;
 
@@ -30,7 +30,7 @@ public class UploadFileApi {
    * @param session Http Session
    * @return 処理結果
    */
-  @PostMapping("/api/upload/image")
+  @PostMapping("/api/upload/file/image")
   public ResponseEntity<?> uploadImg(@RequestParam("file") MultipartFile file, @RequestParam Map<String, String> params,
       HttpSession session) {
     UploadFileResponse response = service.uploadImg(file, params, session);
