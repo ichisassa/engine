@@ -15,7 +15,7 @@ type UploadConfig = {
   previewImageId?  : string;
 };
 
-const UPLOAD_ENDPOINT    = "/api/resonators/base/temp-file/upload";
+const UPLOAD_ENDPOINT    = "/api/file/upload";
 const MAX_FILE_SIZE      = 10 * 1024 * 1024; // 10MB
 const VISUAL_IMAGE_TYPE  = "1";
 const FACE_IMAGE_TYPE    = "2";

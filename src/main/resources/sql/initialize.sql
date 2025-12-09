@@ -21,14 +21,13 @@ GRANT ALL PRIVILEGES ON DATABASE mingshiu TO mingshiu_user;
 -- ============================================
 -- 
 -- ============================================
-CREATE TABLE temp_file (
-    user_id      VARCHAR(50)  NOT NULL,      -- ユーザーID
-    session_id   VARCHAR(50)  NOT NULL,      -- セッションID
-    unique_id    VARCHAR(50)  NOT NULL,      -- ユニークID（UUID）
-    image_type   SMALLINT     NOT NULL,      -- 画像種別（1:メイン、2:顔）
-    file_name    VARCHAR(50)  NOT NULL,      -- 元ファイル名
-    content_type VARCHAR(50)  NOT NULL,      -- MIMEタイプ
-    file_base64  TEXT         NOT NULL,      -- Base64データ本体
-    created_at   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,    -- 登録日時
-    CONSTRAINT pk_temp_file PRIMARY KEY (user_id, session_id, unique_id, image_type)
+CREATE TABLE upload_temp_file (
+    user_id        VARCHAR(50)  NOT NULL,                              -- ユーザーID 
+    session_id     VARCHAR(50)  NOT NULL,                              -- セッションID
+    unique_id      VARCHAR(50)  NOT NULL,                              -- ユニークID（UUID）
+    file_type      INTEGER      NOT NULL,                              -- ファイル種別
+    file_extension VARCHAR(50)  NOT NULL,                              -- ファイル拡張子
+    file_base64    TEXT         NOT NULL,                              -- File本体(Base64)
+    created_at     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,    -- 登録日時
+    CONSTRAINT pk_temp_file PRIMARY KEY (user_id, session_id, unique_id, file_type)
 );
