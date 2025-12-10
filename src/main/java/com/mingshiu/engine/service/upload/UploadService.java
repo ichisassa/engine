@@ -65,15 +65,16 @@ public class UploadService {
     String extension = Utility.getFileExtension(file);
     Integer fileType = Utility.toInt(params.get("FileType"));
 
-    Integer rs = saveTempFile(userId, sessionId, uniqueId, fileType, extension, base64);
-    if (rs == null) {
+    UploadTempFile savedFile = saveTempFile(userId, sessionId, uniqueId, fileType, extension, base64);
+    if (savedFile == null) {
+      rtn.error("system", "Failed to save uploaded image");
       return rtn;
     }
 
-    if (rs < 0) {
-      return rtn;
-    }
-
+    rtn.uniqueId = savedFile.getUniqueId();
+    rtn.fileName = Utility.isEmpty(file.getOriginalFilename()) ? savedFile.getUniqueId() : file.getOriginalFilename();
+    rtn.base64Data = savedFile.getFileBase64();
+    rtn.mimeType = resolveMimeType(file, extension);
     rtn.success();
     return rtn;
   }
@@ -87,20 +88,22 @@ public class UploadService {
    * @param fileType      1:画像(visual)、2:画像(face)
    * @param fileExtension File拡張子
    * @param base64        base64文字列
-   * @return 処理結果
+   * @return insert result
    */
-  public Integer saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String fileExtension,
-      String base64) {
-    Integer rtn = 0;
+  public UploadTempFile saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType,
+      String fileExtension, String base64) {
     try {
       UploadTempFile tmp = UploadTempFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId)
           .fileType(fileType).fileExtension(fileExtension).fileBase64(base64).build();
-      return mapper.insert(tmp);
+      int inserted = mapper.insert(tmp);
+      if (inserted <= 0) {
+        return null;
+      }
+      return mapper.selectByKey(userId, sessionId, uniqueId, fileType);
     } catch (Exception e) {
       log.error("Failed to insert temp file", e);
-      rtn = null;
     }
-    return rtn;
+    return null;
   }
 
   /**
@@ -125,5 +128,16 @@ public class UploadService {
       return null;
     }
     return rtn;
+  }
+
+  private String resolveMimeType(MultipartFile file, String extension) {
+    String contentType = file.getContentType();
+    if (!Utility.isEmpty(contentType)) {
+      return contentType;
+    }
+    if (!Utility.isEmpty(extension)) {
+      return "image/" + extension;
+    }
+    return "image/png";
   }
 }

@@ -3,10 +3,17 @@ package com.mingshiu.engine.service.upload.dto;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * DTO returned by the upload API so the frontend can render state.
+ */
 public class UploadResponse {
 
   public boolean isError;
   public Map<String, String> messages;
+  public String uniqueId;
+  public String fileName;
+  public String base64Data;
+  public String mimeType;
 
   public UploadResponse() {
     this.isError = false;
@@ -26,5 +33,4 @@ public class UploadResponse {
     this.isError = true;
     this.messages.put(key, val);
   }
-
 }

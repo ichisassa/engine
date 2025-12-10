@@ -20,6 +20,8 @@ type UploadApiResponse = {
   messages?: Record<string, string>;
   uniqueId?: string;
   fileName?: string;
+  base64Data?: string;
+  mimeType?: string;
 };
 
 const UPLOAD_ENDPOINT = "/api/upload/file/image";
@@ -94,20 +96,18 @@ function isImageFile(file: File): boolean {
 }
 
 function updatePreview(
-  file: File,
+  base64Data: string | undefined,
+  mimeType: string | undefined,
   previewContainer: HTMLElement | null,
   previewImage: HTMLImageElement | null,
 ): void {
-  if (!previewContainer || !previewImage) {
+  if (!previewContainer || !previewImage || !base64Data) {
     return;
   }
-  const objectUrl = URL.createObjectURL(file);
-  previewImage.src = objectUrl;
+  const resolvedMime = mimeType && mimeType.length > 0 ? mimeType : "image/png";
+  previewImage.src = `data:${resolvedMime};base64,${base64Data}`;
   previewImage.hidden = false;
   previewContainer.classList.add("has-image");
-  previewImage.onload = () => {
-    URL.revokeObjectURL(objectUrl);
-  };
 }
 
 async function uploadImage(
@@ -141,7 +141,7 @@ async function uploadImage(
     if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
       elements.uniqueIdField.value = data.uniqueId;
     }
-    updatePreview(file, elements.previewContainer, elements.previewImage);
+    updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
     const fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
     renderResult(elements.resultBox, `アップロード完了: ${fileName}`, false);
   } catch (error) {

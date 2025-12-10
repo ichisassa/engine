@@ -93,17 +93,14 @@ function isGlobalLoading() {
 function isImageFile(file) {
     return !!file.type && file.type.toLowerCase().startsWith("image/");
 }
-function updatePreview(file, previewContainer, previewImage) {
-    if (!previewContainer || !previewImage) {
+function updatePreview(base64Data, mimeType, previewContainer, previewImage) {
+    if (!previewContainer || !previewImage || !base64Data) {
         return;
     }
-    var objectUrl = URL.createObjectURL(file);
-    previewImage.src = objectUrl;
+    var resolvedMime = mimeType && mimeType.length > 0 ? mimeType : "image/png";
+    previewImage.src = "data:".concat(resolvedMime, ";base64,").concat(base64Data);
     previewImage.hidden = false;
     previewContainer.classList.add("has-image");
-    previewImage.onload = function () {
-        URL.revokeObjectURL(objectUrl);
-    };
 }
 function uploadImage(file, elements, fileType) {
     return __awaiter(this, void 0, void 0, function () {
@@ -141,7 +138,7 @@ function uploadImage(file, elements, fileType) {
                     if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
                         elements.uniqueIdField.value = data.uniqueId;
                     }
-                    updatePreview(file, elements.previewContainer, elements.previewImage);
+                    updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
                     fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
                     renderResult(elements.resultBox, "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u5B8C\u4E86: ".concat(fileName), false);
                     return [3 /*break*/, 6];

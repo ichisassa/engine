@@ -157,6 +157,22 @@
   display: block;
 }
 
+.preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* 共鳴者関連コンポーネント（position を使った位置調整、枠線（border）の装飾、背景色・背景装飾の設定）。 */
 .resonator-visual-silhouette {
   content: "";
