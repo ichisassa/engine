@@ -46,6 +46,11 @@ public class UploadService {
     UploadResponse rtn = new UploadResponse();
 
     Map<String, String> errors = validate(file, params);
+    if (errors == null) {
+      rtn.error("validate", "system error");
+      return rtn;
+    }
+
     if (!errors.isEmpty()) {
       rtn.error(errors);
       return rtn;
@@ -57,9 +62,14 @@ public class UploadService {
     String base64 = Utility.toBase64(file);
     Integer fileType = Utility.toInt(params.get("FileType"));
 
-    int rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
+    Integer rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
+    if (rs == null) {
+      rtn.error("saveTempFile", "system error");
+      return rtn;
+    }
+
     if (rs < 0) {
-      rtn.error("db", "save file error");
+      rtn.error("saveTempFile", "save file error");
       return rtn;
     }
 
@@ -77,15 +87,14 @@ public class UploadService {
    * @param base64    base64文字列
    * @return 処理結果
    */
-  public int saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String base64) {
-    int rtn = 0;
+  public Integer saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String base64) {
+    Integer rtn = 0;
     try {
       UploadTempFile tmp = UploadTempFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId)
           .fileType(fileType).fileBase64(base64).build();
-      rtn = mapper.insert(tmp);
-      return rtn;
+      return mapper.insert(tmp);
     } catch (Exception e) {
-      rtn = -1;
+      rtn = null;
     }
     return rtn;
   }
@@ -99,14 +108,17 @@ public class UploadService {
    */
   public Map<String, String> validate(MultipartFile file, Map<String, String> params) {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
-    Map<String, String> err = null;
+    try {
+      Map<String, String> err = null;
 
-    err = formValidator.validate(UploadFormField.class, params);
-    rtn.putAll(err);
+      err = formValidator.validate(UploadFormField.class, params);
+      rtn.putAll(err);
 
-    err = fileValidator.validate(UploadImgFileField.class, file);
-    rtn.putAll(err);
-
+      err = fileValidator.validate(UploadImgFileField.class, file);
+      rtn.putAll(err);
+    } catch (Exception e) {
+      return null;
+    }
     return rtn;
   }
 }
