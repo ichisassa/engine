@@ -10,8 +10,6 @@ public class UploadResponse {
 
   public boolean isError;
   public Map<String, String> messages;
-  public String uniqueId;
-  public String fileName;
   public String base64Data;
   public String mimeType;
 

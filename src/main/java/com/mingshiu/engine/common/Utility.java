@@ -40,24 +40,28 @@ public class Utility {
     return rtn;
   }
 
-  public static String getFileExtension(MultipartFile file) {
-    if (file == null) {
-      return "";
-    }
-    String fname = file.getOriginalFilename();
-    if (!isEmpty(fname)) {
-      int idx = fname.lastIndexOf('.');
-      if (idx >= 0 && idx < fname.length() - 1) {
-        return fname.substring(idx + 1).toLowerCase();
+  public static String getExtension(MultipartFile file) {
+    String rtn = null;
+    if (file != null) {
+      String fname = file.getOriginalFilename();
+      if (!isEmpty(fname)) {
+        int idx = fname.lastIndexOf('.');
+        if (idx >= 0 && idx < fname.length() - 1) {
+          rtn = fname.substring(idx + 1).toLowerCase();
+        }
       }
     }
-    String ctype = file.getContentType();
-    if (!isEmpty(ctype)) {
-      int idx = ctype.lastIndexOf('/');
-      if (idx >= 0 && idx < ctype.length() - 1) {
-        return ctype.substring(idx + 1).toLowerCase();
+    return rtn;
+  }
+
+  public static String getContentType(MultipartFile file) {
+    String rtn = null;
+    if (file != null) {
+      String contentType = file.getContentType();
+      if (!Utility.isEmpty(contentType)) {
+        rtn = contentType;
       }
     }
-    return "";
+    return rtn;
   }
 }

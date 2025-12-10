@@ -18,8 +18,7 @@ type UploadConfig = {
 type UploadApiResponse = {
   isError?: boolean;
   messages?: Record<string, string>;
-  uniqueId?: string;
-  base64Data?: string;
+  fileBase64?: string;
   mimeType?: string;
 };
 
@@ -95,16 +94,16 @@ function isImageFile(file: File): boolean {
 }
 
 function updatePreview(
-  base64Data: string | undefined,
+  fileBase64: string | undefined,
   mimeType: string | undefined,
   previewContainer: HTMLElement | null,
   previewImage: HTMLImageElement | null,
 ): void {
-  if (!previewContainer || !previewImage || !base64Data) {
+  if (!previewContainer || !previewImage || !fileBase64) {
     return;
   }
   const resolvedMime = mimeType && mimeType.length > 0 ? mimeType : "image/png";
-  previewImage.src = `data:${resolvedMime};base64,${base64Data}`;
+  previewImage.src = `data:${resolvedMime};base64,${fileBase64}`;
   previewImage.hidden = false;
   previewContainer.classList.add("has-image");
 }
@@ -136,10 +135,7 @@ async function uploadImage(
       return;
     }
 
-    if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
-      elements.uniqueIdField.value = data.uniqueId;
-    }
-    updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
+    updatePreview(data.fileBase64, data.mimeType, elements.previewContainer, elements.previewImage);
   } catch (error) {
     console.error("Upload failed", error);
     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);

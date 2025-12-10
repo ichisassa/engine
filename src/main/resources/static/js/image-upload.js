@@ -93,12 +93,12 @@ function isGlobalLoading() {
 function isImageFile(file) {
     return !!file.type && file.type.toLowerCase().startsWith("image/");
 }
-function updatePreview(base64Data, mimeType, previewContainer, previewImage) {
-    if (!previewContainer || !previewImage || !base64Data) {
+function updatePreview(fileBase64, mimeType, previewContainer, previewImage) {
+    if (!previewContainer || !previewImage || !fileBase64) {
         return;
     }
     var resolvedMime = mimeType && mimeType.length > 0 ? mimeType : "image/png";
-    previewImage.src = "data:".concat(resolvedMime, ";base64,").concat(base64Data);
+    previewImage.src = "data:".concat(resolvedMime, ";base64,").concat(fileBase64);
     previewImage.hidden = false;
     previewContainer.classList.add("has-image");
 }
@@ -134,10 +134,7 @@ function uploadImage(file, elements, fileType) {
                         renderResult(elements.resultBox, errorMessage, true);
                         return [2 /*return*/];
                     }
-                    if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
-                        elements.uniqueIdField.value = data.uniqueId;
-                    }
-                    updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
+                    updatePreview(data.fileBase64, data.mimeType, elements.previewContainer, elements.previewImage);
                     return [3 /*break*/, 6];
                 case 4:
                     error_1 = _b.sent();

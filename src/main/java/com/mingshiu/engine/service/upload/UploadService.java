@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mingshiu.engine.common.Utility;
-import com.mingshiu.engine.mapper.UploadTempFileMapper;
-import com.mingshiu.engine.model.UploadTempFile;
+import com.mingshiu.engine.mapper.UploadFileMapper;
+import com.mingshiu.engine.model.UploadFile;
 import com.mingshiu.engine.service.upload.dto.UploadResponse;
 import com.mingshiu.engine.service.upload.field.UploadFormField;
 import com.mingshiu.engine.service.upload.field.UploadImgFileField;
@@ -31,7 +31,7 @@ public class UploadService {
   private static final Logger log = LoggerFactory.getLogger(UploadService.class);
 
   // MyBatis(Mapper)
-  private final UploadTempFileMapper mapper;
+  private final UploadFileMapper mapper;
 
   // Validator
   private final ValidatorForm formValidator;
@@ -50,6 +50,7 @@ public class UploadService {
 
     Map<String, String> errors = validate(file, params);
     if (errors == null) {
+      rtn.error("system", "zzz");
       return rtn;
     }
 
@@ -61,20 +62,16 @@ public class UploadService {
     String userId = "0123456789";
     String sessionId = session.getId();
     String uniqueId = UUID.randomUUID().toString();
-    String base64 = Utility.toBase64(file);
-    String extension = Utility.getFileExtension(file);
     Integer fileType = Utility.toInt(params.get("FileType"));
 
-    UploadTempFile savedFile = saveTempFile(userId, sessionId, uniqueId, fileType, extension, base64);
-    if (savedFile == null) {
-      rtn.error("system", "Failed to save uploaded image");
+    UploadFile rs = saveImgFile(userId, sessionId, uniqueId, fileType, file);
+    if (rs == null) {
+      rtn.error("system", "zzz");
       return rtn;
     }
 
-    rtn.uniqueId = savedFile.getUniqueId();
-    rtn.fileName = Utility.isEmpty(file.getOriginalFilename()) ? savedFile.getUniqueId() : file.getOriginalFilename();
-    rtn.base64Data = savedFile.getFileBase64();
-    rtn.mimeType = resolveMimeType(file, extension);
+    rtn.base64Data = rs.getFileBase64();
+    rtn.mimeType = rs.getFileContentType();
     rtn.success();
     return rtn;
   }
@@ -82,28 +79,33 @@ public class UploadService {
   /**
    * insert 処理
    *
-   * @param userId        userId
-   * @param sessionId     sessionId
-   * @param uniqueId      uniqueId
-   * @param fileType      1:画像(visual)、2:画像(face)
-   * @param fileExtension File拡張子
-   * @param base64        base64文字列
-   * @return insert result
+   * @param userId    userId
+   * @param sessionId sessionId
+   * @param uniqueId  uniqueId
+   * @param fileType  1:画像(visual)、2:画像(face)
+   * @param file      MultipartFile
+   * @return 判定結果
    */
-  public UploadTempFile saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType,
-      String fileExtension, String base64) {
+  public UploadFile saveImgFile(String userId, String sessionId, String uniqueId, Integer fileType,
+      MultipartFile file) {
+    UploadFile rtn = null;
     try {
-      UploadTempFile tmp = UploadTempFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId)
-          .fileType(fileType).fileExtension(fileExtension).fileBase64(base64).build();
-      int inserted = mapper.insert(tmp);
-      if (inserted <= 0) {
-        return null;
+      String base64 = Utility.toBase64(file);
+      String exten = Utility.getExtension(file);
+      String ctype = Utility.getContentType(file);
+
+      UploadFile tmp = UploadFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId).fileType(fileType)
+          .fileExtension(exten).fileContentType(ctype).fileBase64(base64).fileData(null).build();
+      int rs = mapper.insert(tmp);
+      if (rs > 0) {
+        rtn = mapper.selectByKey(userId, sessionId, uniqueId, fileType);
+      } else {
+        log.error("xxx");
       }
-      return mapper.selectByKey(userId, sessionId, uniqueId, fileType);
     } catch (Exception e) {
-      log.error("Failed to insert temp file", e);
+      log.error("xxx", e);
     }
-    return null;
+    return rtn;
   }
 
   /**
@@ -117,27 +119,14 @@ public class UploadService {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
     try {
       Map<String, String> err = null;
-
       err = formValidator.validate(UploadFormField.class, params);
       rtn.putAll(err);
-
       err = fileValidator.validate(UploadImgFileField.class, file);
       rtn.putAll(err);
     } catch (Exception e) {
-      log.error("Validation execution error", e);
-      return null;
+      log.error("xxx", e);
+      rtn = null;
     }
     return rtn;
-  }
-
-  private String resolveMimeType(MultipartFile file, String extension) {
-    String contentType = file.getContentType();
-    if (!Utility.isEmpty(contentType)) {
-      return contentType;
-    }
-    if (!Utility.isEmpty(extension)) {
-      return "image/" + extension;
-    }
-    return "image/png";
   }
 }
