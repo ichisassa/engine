@@ -2,41 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mingshiu.engine.mapper.UploadTempFileMapper">
     <insert id="insert" parameterType="com.mingshiu.engine.model.UploadTempFile">
-        INSERT INTO temp_file (
+        INSERT INTO upload_temp_file (
             user_id,
             session_id,
             unique_id,
-            image_type,
-            file_name,
-            content_type,
+            file_type,
+            file_extension,
             file_base64,
             created_at
         ) VALUES (
             #{userId},
             #{sessionId},
             #{uniqueId},
-            #{imageType},
-            #{fileName},
-            #{contentType},
+            #{fileType},
+            #{fileExtension},
             #{fileBase64},
             CURRENT_TIMESTAMP
         )
     </insert>
     <select id="selectByKey" resultType="com.mingshiu.engine.model.UploadTempFile">
         SELECT
-            user_id      AS userId,
-            session_id   AS sessionId,
-            unique_id    AS uniqueId,
-            image_type   AS imageType,
-            file_name    AS fileName,
-            content_type AS contentType,
-            file_base64  AS fileBase64,
-            created_at   AS createdAt
-        FROM temp_file
+            user_id        AS userId,
+            session_id     AS sessionId,
+            unique_id      AS uniqueId,
+            file_type      AS fileType,
+            file_extension AS fileExtension,
+            file_base64    AS fileBase64,
+            created_at     AS createdAt
+        FROM upload_temp_file
         WHERE
             user_id = #{userId}
             AND session_id = #{sessionId}
             AND unique_id = #{uniqueId}
-            AND image_type = #{imageType}
+            AND file_type = #{fileType}
     </select>
 </mapper>
