@@ -1,6 +1,5 @@
 package com.mingshiu.engine.validation;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 public class ValidatorBase {
