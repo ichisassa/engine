@@ -37,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var UPLOAD_ENDPOINT = "/api/upload/file/image";
 var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-var VISUAL_IMAGE_TYPE = "1";
-var FACE_IMAGE_TYPE = "2";
+var FILE_TYPE_VISUAL = "1";
+var FILE_TYPE_FACE = "2";
 var LOADING_OVERLAY_ID = "uploadLoadingOverlay";
 var BODY_LOADING_CLASS = "upload-loading";
 var activeUploadCount = 0;
@@ -105,57 +105,60 @@ function updatePreview(file, previewContainer, previewImage) {
         URL.revokeObjectURL(objectUrl);
     };
 }
-function uploadImage(file, elements, imageType) {
+function uploadImage(file, elements, fileType) {
     return __awaiter(this, void 0, void 0, function () {
-        var formData, response, errorBody, message, data, error_1;
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var formData, response, data, messages, joined, errorMessage, fileName, error_1;
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     renderResult(elements.resultBox, "アップロード中...", false);
                     formData = new FormData();
                     formData.append("file", file);
-                    formData.append("imageType", imageType);
+                    formData.append("FileType", fileType);
                     setGlobalLoading(true);
-                    _c.label = 1;
+                    _b.label = 1;
                 case 1:
-                    _c.trys.push([1, 6, 7, 8]);
+                    _b.trys.push([1, 4, 5, 6]);
                     return [4 /*yield*/, fetch(UPLOAD_ENDPOINT, {
                             method: "POST",
                             body: formData,
                         })];
                 case 2:
-                    response = _c.sent();
-                    if (!!response.ok) return [3 /*break*/, 4];
-                    return [4 /*yield*/, response.json().catch(function () { return ({}); })];
+                    response = _b.sent();
+                    return [4 /*yield*/, response.json().catch(function () { return null; })];
                 case 3:
-                    errorBody = _c.sent();
-                    message = typeof errorBody.message === "string" ? errorBody.message : "アップロードに失敗しました。";
-                    renderResult(elements.resultBox, message, true);
-                    return [2 /*return*/];
-                case 4: return [4 /*yield*/, response.json()];
-                case 5:
-                    data = _c.sent();
-                    if (elements.uniqueIdField) {
-                        elements.uniqueIdField.value = (_a = data.uniqueId) !== null && _a !== void 0 ? _a : "";
+                    data = _b.sent();
+                    if (!data || data.isError) {
+                        messages = (_a = data === null || data === void 0 ? void 0 : data.messages) !== null && _a !== void 0 ? _a : {};
+                        joined = Object.values(messages)
+                            .filter(function (value) { return typeof value === "string" && value.length > 0; })
+                            .join("\n");
+                        errorMessage = joined || "アップロードに失敗しました。";
+                        renderResult(elements.resultBox, errorMessage, true);
+                        return [2 /*return*/];
+                    }
+                    if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
+                        elements.uniqueIdField.value = data.uniqueId;
                     }
                     updatePreview(file, elements.previewContainer, elements.previewImage);
-                    renderResult(elements.resultBox, "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u5B8C\u4E86: ".concat((_b = data.fileName) !== null && _b !== void 0 ? _b : file.name), false);
-                    return [3 /*break*/, 8];
-                case 6:
-                    error_1 = _c.sent();
+                    fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
+                    renderResult(elements.resultBox, "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u5B8C\u4E86: ".concat(fileName), false);
+                    return [3 /*break*/, 6];
+                case 4:
+                    error_1 = _b.sent();
                     console.error("Upload failed", error_1);
                     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);
-                    return [3 /*break*/, 8];
-                case 7:
+                    return [3 /*break*/, 6];
+                case 5:
                     setGlobalLoading(false);
                     return [7 /*endfinally*/];
-                case 8: return [2 /*return*/];
+                case 6: return [2 /*return*/];
             }
         });
     });
 }
-function handleFile(file, elements, imageType) {
+function handleFile(file, elements, fileType) {
     if (isGlobalLoading()) {
         return;
     }
@@ -164,22 +167,22 @@ function handleFile(file, elements, imageType) {
         return;
     }
     if (file.size > MAX_FILE_SIZE) {
-        renderResult(elements.resultBox, "ファイルサイズは10MB以下にしてください。", true);
+        renderResult(elements.resultBox, "ファイルサイズが10MBを超えています。", true);
         return;
     }
-    void uploadImage(file, elements, imageType);
+    void uploadImage(file, elements, fileType);
 }
-function handleDrop(event, elements, imageType) {
+function handleDrop(event, elements, fileType) {
     var _a;
     if (isGlobalLoading()) {
         return;
     }
     var files = (_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.files;
     if (!files || !files.length) {
-        renderResult(elements.resultBox, "ファイルが選択されていません。", true);
+        renderResult(elements.resultBox, "ファイルがドロップされていません。", true);
         return;
     }
-    handleFile(files[0], elements, imageType);
+    handleFile(files[0], elements, fileType);
 }
 function initImageUpload(config) {
     var elements = getUploadElements(config);
@@ -214,7 +217,7 @@ function initImageUpload(config) {
         preventDefault(event);
         setHighlight(false);
         clearPressed();
-        handleDrop(event, elements, config.imageType);
+        handleDrop(event, elements, config.fileType);
     });
     var fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -254,7 +257,7 @@ function initImageUpload(config) {
         var _a;
         var file = (_a = fileInput.files) === null || _a === void 0 ? void 0 : _a[0];
         if (file) {
-            handleFile(file, elements, config.imageType);
+            handleFile(file, elements, config.fileType);
         }
         fileInput.value = "";
         clearPressed();
@@ -262,18 +265,19 @@ function initImageUpload(config) {
 }
 function initUploadContainers(root) {
     if (root === void 0) { root = document; }
-    var containers = root.querySelectorAll("[data-upload-image-type]");
+    var containers = root.querySelectorAll("[data-upload-file-type], [data-upload-image-type]");
     containers.forEach(function (container) {
+        var _a;
         if (container.dataset.uploadInitialized === "true") {
             return;
         }
-        var imageType = container.dataset.uploadImageType;
+        var fileType = (_a = container.dataset.uploadFileType) !== null && _a !== void 0 ? _a : container.dataset.uploadImageType;
         var dropZoneId = container.dataset.uploadDropZoneId;
-        if (!imageType || !dropZoneId) {
+        if (!fileType || !dropZoneId) {
             return;
         }
         initImageUpload({
-            imageType: imageType,
+            fileType: fileType,
             dropZoneId: dropZoneId,
             resultBoxId: container.dataset.uploadResultId,
             uniqueIdFieldId: container.dataset.uploadUniqueIdFieldId,

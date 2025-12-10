@@ -1,4 +1,4 @@
-type UploadElements = {
+﻿type UploadElements = {
   dropZone: HTMLElement;
   resultBox: HTMLElement | null;
   uniqueIdField: HTMLInputElement | null;
@@ -7,7 +7,7 @@ type UploadElements = {
 };
 
 type UploadConfig = {
-  imageType: string;
+  fileType: string;
   dropZoneId: string;
   resultBoxId?: string;
   uniqueIdFieldId?: string;
@@ -15,10 +15,17 @@ type UploadConfig = {
   previewImageId?: string;
 };
 
+type UploadApiResponse = {
+  isError?: boolean;
+  messages?: Record<string, string>;
+  uniqueId?: string;
+  fileName?: string;
+};
+
 const UPLOAD_ENDPOINT = "/api/upload/file/image";
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-const VISUAL_IMAGE_TYPE = "1";
-const FACE_IMAGE_TYPE = "2";
+const FILE_TYPE_VISUAL = "1";
+const FILE_TYPE_FACE = "2";
 const LOADING_OVERLAY_ID = "uploadLoadingOverlay";
 const BODY_LOADING_CLASS = "upload-loading";
 type ImageUploadApi = {
@@ -106,12 +113,12 @@ function updatePreview(
 async function uploadImage(
   file: File,
   elements: UploadElements,
-  imageType: string,
+  fileType: string,
 ): Promise<void> {
   renderResult(elements.resultBox, "アップロード中...", false);
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("imageType", imageType);
+  formData.append("FileType", fileType);
 
   setGlobalLoading(true);
   try {
@@ -120,19 +127,23 @@ async function uploadImage(
       body: formData,
     });
 
-    if (!response.ok) {
-      const errorBody = await response.json().catch(() => ({}));
-      const message = typeof errorBody.message === "string" ? errorBody.message : "アップロードに失敗しました。";
-      renderResult(elements.resultBox, message, true);
+    const data: UploadApiResponse | null = await response.json().catch(() => null);
+    if (!data || data.isError) {
+      const messages = data?.messages ?? {};
+      const joined = Object.values(messages)
+        .filter((value): value is string => typeof value === "string" && value.length > 0)
+        .join("\n");
+      const errorMessage = joined || "アップロードに失敗しました。";
+      renderResult(elements.resultBox, errorMessage, true);
       return;
     }
 
-    const data = await response.json();
-    if (elements.uniqueIdField) {
-      elements.uniqueIdField.value = data.uniqueId ?? "";
+    if (elements.uniqueIdField && typeof data.uniqueId === "string" && data.uniqueId.length > 0) {
+      elements.uniqueIdField.value = data.uniqueId;
     }
     updatePreview(file, elements.previewContainer, elements.previewImage);
-    renderResult(elements.resultBox, `アップロード完了: ${data.fileName ?? file.name}`, false);
+    const fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
+    renderResult(elements.resultBox, `アップロード完了: ${fileName}`, false);
   } catch (error) {
     console.error("Upload failed", error);
     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);
@@ -141,7 +152,7 @@ async function uploadImage(
   }
 }
 
-function handleFile(file: File, elements: UploadElements, imageType: string): void {
+function handleFile(file: File, elements: UploadElements, fileType: string): void {
   if (isGlobalLoading()) {
     return;
   }
@@ -151,24 +162,24 @@ function handleFile(file: File, elements: UploadElements, imageType: string): vo
   }
 
   if (file.size > MAX_FILE_SIZE) {
-    renderResult(elements.resultBox, "ファイルサイズは10MB以下にしてください。", true);
+    renderResult(elements.resultBox, "ファイルサイズが10MBを超えています。", true);
     return;
   }
 
-  void uploadImage(file, elements, imageType);
+  void uploadImage(file, elements, fileType);
 }
 
-function handleDrop(event: DragEvent, elements: UploadElements, imageType: string): void {
+function handleDrop(event: DragEvent, elements: UploadElements, fileType: string): void {
   if (isGlobalLoading()) {
     return;
   }
   const files = event.dataTransfer?.files;
   if (!files || !files.length) {
-    renderResult(elements.resultBox, "ファイルが選択されていません。", true);
+    renderResult(elements.resultBox, "ファイルがドロップされていません。", true);
     return;
   }
 
-  handleFile(files[0], elements, imageType);
+  handleFile(files[0], elements, fileType);
 }
 
 function initImageUpload(config: UploadConfig): void {
@@ -213,7 +224,7 @@ function initImageUpload(config: UploadConfig): void {
     preventDefault(event);
     setHighlight(false);
     clearPressed();
-    handleDrop(event, elements, config.imageType);
+    handleDrop(event, elements, config.fileType);
   });
 
   const fileInput = document.createElement("input");
@@ -258,7 +269,7 @@ function initImageUpload(config: UploadConfig): void {
   fileInput.addEventListener("change", () => {
     const file = fileInput.files?.[0];
     if (file) {
-      handleFile(file, elements, config.imageType);
+      handleFile(file, elements, config.fileType);
     }
     fileInput.value = "";
     clearPressed();
@@ -266,18 +277,18 @@ function initImageUpload(config: UploadConfig): void {
 }
 
 function initUploadContainers(root: ParentNode = document): void {
-  const containers = root.querySelectorAll<HTMLElement>("[data-upload-image-type]");
+  const containers = root.querySelectorAll<HTMLElement>("[data-upload-file-type], [data-upload-image-type]");
   containers.forEach((container) => {
     if (container.dataset.uploadInitialized === "true") {
       return;
     }
-    const imageType = container.dataset.uploadImageType;
+    const fileType = container.dataset.uploadFileType ?? container.dataset.uploadImageType;
     const dropZoneId = container.dataset.uploadDropZoneId;
-    if (!imageType || !dropZoneId) {
+    if (!fileType || !dropZoneId) {
       return;
     }
     initImageUpload({
-      imageType,
+      fileType,
       dropZoneId,
       resultBoxId: container.dataset.uploadResultId,
       uniqueIdFieldId: container.dataset.uploadUniqueIdFieldId,
