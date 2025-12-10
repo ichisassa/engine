@@ -50,7 +50,6 @@ public class UploadService {
 
     Map<String, String> errors = validate(file, params);
     if (errors == null) {
-      rtn.error("validate", "system error");
       return rtn;
     }
 
@@ -63,16 +62,15 @@ public class UploadService {
     String sessionId = session.getId();
     String uniqueId = UUID.randomUUID().toString();
     String base64 = Utility.toBase64(file);
+    String extension = Utility.getFileExtension(file);
     Integer fileType = Utility.toInt(params.get("FileType"));
 
-    Integer rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
+    Integer rs = saveTempFile(userId, sessionId, uniqueId, fileType, extension, base64);
     if (rs == null) {
-      rtn.error("saveTempFile", "system error");
       return rtn;
     }
 
     if (rs < 0) {
-      rtn.error("saveTempFile", "save file error");
       return rtn;
     }
 
@@ -83,18 +81,20 @@ public class UploadService {
   /**
    * insert 処理
    *
-   * @param userId    userId
-   * @param sessionId sessionId
-   * @param uniqueId  uniqueId
-   * @param fileType  fileType
-   * @param base64    base64文字列
+   * @param userId        userId
+   * @param sessionId     sessionId
+   * @param uniqueId      uniqueId
+   * @param fileType      1:画像(visual)、2:画像(face)
+   * @param fileExtension File拡張子
+   * @param base64        base64文字列
    * @return 処理結果
    */
-  public Integer saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String base64) {
+  public Integer saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String fileExtension,
+      String base64) {
     Integer rtn = 0;
     try {
       UploadTempFile tmp = UploadTempFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId)
-          .fileType(fileType).fileBase64(base64).build();
+          .fileType(fileType).fileExtension(fileExtension).fileBase64(base64).build();
       return mapper.insert(tmp);
     } catch (Exception e) {
       log.error("Failed to insert temp file", e);

@@ -40,22 +40,22 @@ public class Utility {
     return rtn;
   }
 
-  public static String fileExtension(MultipartFile file) {
+  public static String getFileExtension(MultipartFile file) {
     if (file == null) {
       return "";
     }
-    String original = file.getOriginalFilename();
-    if (!isEmpty(original)) {
-      int idx = original.lastIndexOf('.');
-      if (idx >= 0 && idx < original.length() - 1) {
-        return original.substring(idx + 1).toLowerCase();
+    String fname = file.getOriginalFilename();
+    if (!isEmpty(fname)) {
+      int idx = fname.lastIndexOf('.');
+      if (idx >= 0 && idx < fname.length() - 1) {
+        return fname.substring(idx + 1).toLowerCase();
       }
     }
-    String contentType = file.getContentType();
-    if (!isEmpty(contentType)) {
-      int idx = contentType.lastIndexOf('/');
-      if (idx >= 0 && idx < contentType.length() - 1) {
-        return contentType.substring(idx + 1).toLowerCase();
+    String ctype = file.getContentType();
+    if (!isEmpty(ctype)) {
+      int idx = ctype.lastIndexOf('/');
+      if (idx >= 0 && idx < ctype.length() - 1) {
+        return ctype.substring(idx + 1).toLowerCase();
       }
     }
     return "";
