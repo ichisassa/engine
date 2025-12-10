@@ -70,8 +70,8 @@ public class UploadService {
       return rtn;
     }
 
-    rtn.base64Data = rs.getFileBase64();
-    rtn.mimeType = rs.getFileContentType();
+    rtn.fileBase64 = rs.getFileBase64();
+    rtn.contentType = rs.getFileContentType();
     rtn.success();
     return rtn;
   }

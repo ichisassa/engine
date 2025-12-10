@@ -19,7 +19,7 @@ type UploadApiResponse = {
   isError?: boolean;
   messages?: Record<string, string>;
   fileBase64?: string;
-  mimeType?: string;
+  contentType?: string;
 };
 
 const UPLOAD_ENDPOINT = "/api/upload/file/image";
@@ -135,7 +135,7 @@ async function uploadImage(
       return;
     }
 
-    updatePreview(data.fileBase64, data.mimeType, elements.previewContainer, elements.previewImage);
+    updatePreview(data.fileBase64, data.contentType, elements.previewContainer, elements.previewImage);
   } catch (error) {
     console.error("Upload failed", error);
     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);

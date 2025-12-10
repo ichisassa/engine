@@ -134,7 +134,7 @@ function uploadImage(file, elements, fileType) {
                         renderResult(elements.resultBox, errorMessage, true);
                         return [2 /*return*/];
                     }
-                    updatePreview(data.fileBase64, data.mimeType, elements.previewContainer, elements.previewImage);
+                    updatePreview(data.fileBase64, data.contentType, elements.previewContainer, elements.previewImage);
                     return [3 /*break*/, 6];
                 case 4:
                     error_1 = _b.sent();

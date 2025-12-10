@@ -10,8 +10,8 @@ public class UploadResponse {
 
   public boolean isError;
   public Map<String, String> messages;
-  public String base64Data;
-  public String mimeType;
+  public String fileBase64;
+  public String contentType;
 
   public UploadResponse() {
     this.isError = false;
