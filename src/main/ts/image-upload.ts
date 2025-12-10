@@ -19,7 +19,6 @@ type UploadApiResponse = {
   isError?: boolean;
   messages?: Record<string, string>;
   uniqueId?: string;
-  fileName?: string;
   base64Data?: string;
   mimeType?: string;
 };
@@ -115,7 +114,6 @@ async function uploadImage(
   elements: UploadElements,
   fileType: string,
 ): Promise<void> {
-  renderResult(elements.resultBox, "アップロード中...", false);
   const formData = new FormData();
   formData.append("file", file);
   formData.append("FileType", fileType);
@@ -142,8 +140,6 @@ async function uploadImage(
       elements.uniqueIdField.value = data.uniqueId;
     }
     updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
-    const fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
-    renderResult(elements.resultBox, `アップロード完了: ${fileName}`, false);
   } catch (error) {
     console.error("Upload failed", error);
     renderResult(elements.resultBox, "ネットワークエラーが発生しました。", true);

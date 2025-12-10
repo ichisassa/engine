@@ -104,12 +104,11 @@ function updatePreview(base64Data, mimeType, previewContainer, previewImage) {
 }
 function uploadImage(file, elements, fileType) {
     return __awaiter(this, void 0, void 0, function () {
-        var formData, response, data, messages, joined, errorMessage, fileName, error_1;
+        var formData, response, data, messages, joined, errorMessage, error_1;
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    renderResult(elements.resultBox, "アップロード中...", false);
                     formData = new FormData();
                     formData.append("file", file);
                     formData.append("FileType", fileType);
@@ -139,8 +138,6 @@ function uploadImage(file, elements, fileType) {
                         elements.uniqueIdField.value = data.uniqueId;
                     }
                     updatePreview(data.base64Data, data.mimeType, elements.previewContainer, elements.previewImage);
-                    fileName = typeof data.fileName === "string" && data.fileName.length > 0 ? data.fileName : file.name;
-                    renderResult(elements.resultBox, "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u5B8C\u4E86: ".concat(fileName), false);
                     return [3 /*break*/, 6];
                 case 4:
                     error_1 = _b.sent();
