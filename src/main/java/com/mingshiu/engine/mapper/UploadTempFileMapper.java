@@ -10,5 +10,5 @@ public interface UploadTempFileMapper {
   int insert(UploadTempFile file);
 
   UploadTempFile selectByKey(@Param("userId") String userId, @Param("sessionId") String sessionId,
-      @Param("uniqueId") String uniqueId, @Param("fileType") Short imageType);
+      @Param("uniqueId") String uniqueId, @Param("fileType") Integer fileType);
 }
