@@ -39,4 +39,25 @@ public class Utility {
     }
     return rtn;
   }
+
+  public static String fileExtension(MultipartFile file) {
+    if (file == null) {
+      return "";
+    }
+    String original = file.getOriginalFilename();
+    if (!isEmpty(original)) {
+      int idx = original.lastIndexOf('.');
+      if (idx >= 0 && idx < original.length() - 1) {
+        return original.substring(idx + 1).toLowerCase();
+      }
+    }
+    String contentType = file.getContentType();
+    if (!isEmpty(contentType)) {
+      int idx = contentType.lastIndexOf('/');
+      if (idx >= 0 && idx < contentType.length() - 1) {
+        return contentType.substring(idx + 1).toLowerCase();
+      }
+    }
+    return "";
+  }
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+  <springProperty scope="context" name="CONSOLE_CHARSET" source="logging.charset.console" defaultValue="UTF-8" />
+  <springProperty scope="context" name="FILE_CHARSET" source="logging.charset.file" defaultValue="UTF-8" />
   <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
   <property name="LOG_FILE" value="logs/application.log" />
 
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>${LOG_PATTERN}</pattern>
+      <charset>${CONSOLE_CHARSET}</charset>
     </encoder>
   </appender>
 
@@ -13,6 +16,7 @@
     <file>${LOG_FILE}</file>
     <encoder>
       <pattern>${LOG_PATTERN}</pattern>
+      <charset>${FILE_CHARSET}</charset>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
