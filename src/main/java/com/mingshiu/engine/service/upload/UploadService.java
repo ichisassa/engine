@@ -38,7 +38,7 @@ public class UploadService {
   private final ValidatorFile fileValidator;
 
   /**
-   * File Upload 処理（画像）
+   * Upload 処理(画像)
    *
    * @param file    入力値(ファイル)
    * @param params  入力値

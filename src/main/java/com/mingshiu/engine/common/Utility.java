@@ -15,19 +15,21 @@ public class Utility {
   }
 
   public static Integer toInt(String val) {
+    Integer rtn = null;
     try {
-      return Integer.parseInt(val);
+      rtn = Integer.parseInt(val);
     } catch (Exception e) {
-      return null;
     }
+    return rtn;
   }
 
   public static Short toShort(String val) {
+    Short rtn = null;
     try {
-      return Short.parseShort(val);
+      rtn = Short.parseShort(val);
     } catch (Exception e) {
-      return null;
     }
+    return rtn;
   }
 
   public static String toBase64(MultipartFile file) {
