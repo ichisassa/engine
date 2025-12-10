@@ -17,7 +17,7 @@ public class Utility {
   public static int toInt(String val, int def) {
     int rtn = def;
     try {
-      return Short.parseShort(val);
+      return Integer.parseInt(val);
     } catch (Exception e) {
       rtn = def;
     }
