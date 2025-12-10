@@ -2,18 +2,16 @@ package com.mingshiu.engine.service;
 
 import java.util.Map;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mingshiu.engine.common.Utills;
-import com.mingshiu.engine.service.dto.UploadValidationResult;
+import com.mingshiu.engine.service.uploadtempfile.dto.UploadValidationResult;
+import com.mingshiu.engine.service.uploadtempfile.field.UploadFileField;
+import com.mingshiu.engine.service.uploadtempfile.field.UploadTempFileField;
+import com.mingshiu.engine.validation.FileValidator;
 import com.mingshiu.engine.validation.FormValidator;
 import com.mingshiu.engine.validation.file.FileValidationResult;
-import com.mingshiu.engine.validation.file.FileValidator;
-import com.mingshiu.engine.validation.upload.UploadFileField;
-import com.mingshiu.engine.validation.upload.UploadTempFileField;
 
 import lombok.RequiredArgsConstructor;
 
