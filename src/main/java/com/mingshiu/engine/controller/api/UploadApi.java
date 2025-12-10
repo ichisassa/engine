@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.mingshiu.engine.service.uploadtempfile.UploadTempFileService;
-import com.mingshiu.engine.service.dto.UploadFileResponse;
+import com.mingshiu.engine.service.uploadtempfile.dto.UploadFileResponse;
 
 /**
  * UploadApi Class

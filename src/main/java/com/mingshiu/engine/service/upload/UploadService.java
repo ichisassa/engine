@@ -10,9 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mingshiu.engine.common.Utills;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
-import com.mingshiu.engine.service.uploadtempfile.dto.UploadFileResponse;
-import com.mingshiu.engine.service.uploadtempfile.field.UploadFileField;
-import com.mingshiu.engine.service.uploadtempfile.field.UploadTempFileField;
+import com.mingshiu.engine.service.uploadtempfile.dto.Response;
+import com.mingshiu.engine.service.uploadtempfile.field.FormField;
+import com.mingshiu.engine.service.uploadtempfile.field.FileField;
 import com.mingshiu.engine.validation.FileValidator;
 import com.mingshiu.engine.validation.FormValidator;
 
@@ -41,9 +41,9 @@ public class UploadTempFileService {
    * @param session Http Session
    * @return 処理結果
    */
-  public UploadFileResponse uploadImg(MultipartFile file, Map<String, String> params, HttpSession session) {
+  public Response uploadImg(MultipartFile file, Map<String, String> params, HttpSession session) {
 
-    UploadFileResponse rtn = new UploadFileResponse();
+    Response rtn = new Response();
 
     Map<String, String> errors = validate(file, params);
     if (!errors.isEmpty()) {
@@ -101,10 +101,10 @@ public class UploadTempFileService {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
     Map<String, String> err = null;
 
-    err = formValidator.validate(UploadTempFileField.class, params);
+    err = formValidator.validate(FileField.class, params);
     rtn.putAll(err);
 
-    err = fileValidator.validate(UploadFileField.class, file);
+    err = fileValidator.validate(FormField.class, file);
     rtn.putAll(err);
 
     return rtn;

@@ -5,7 +5,7 @@ import com.mingshiu.engine.validation.annotation.ImageContentType;
 import com.mingshiu.engine.validation.annotation.RequiredFile;
 import com.mingshiu.engine.validation.FileField;
 
-public enum UploadFileField implements FileField {
+public enum FormField implements FileField {
 
   @RequiredFile(message = "File is empty")
   @ImageContentType(message = "File is no image")

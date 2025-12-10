@@ -1,61 +1,45 @@
 package com.mingshiu.engine.validation;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mingshiu.engine.common.Utills;
-import com.mingshiu.engine.validation.annotation.FileBase64;
 import com.mingshiu.engine.validation.annotation.ImageContentType;
 import com.mingshiu.engine.validation.annotation.RequiredFile;
 
 @Component
 public class FileValidator {
 
-  public <E extends Enum<E> & FileField> FileValidationResult validate(Class<E> fieldEnumClass, MultipartFile file) {
-    FileValidationResult result = new FileValidationResult();
+  public <E extends Enum<E> & FileField> Map<String, String> validate(Class<E> fieldEnumClass, MultipartFile file) {
+    Map<String, String> errors = new LinkedHashMap<>();
 
     if (fieldEnumClass == null) {
-      return result;
+      return errors;
     }
     E[] fields = fieldEnumClass.getEnumConstants();
     if (fields == null) {
-      return result;
+      return errors;
     }
 
     for (E field : fields) {
       Field enumField = resolveField(fieldEnumClass, field);
+      String fieldName = ((Enum<?>) field).name();
 
       RequiredFile requiredFile = enumField.getAnnotation(RequiredFile.class);
       if (requiredFile != null) {
-        String err = validateRequiredFile(requiredFile.message(), file);
-        if (err != null) {
-          result.error(err);
-          return result;
-        }
+        validateRequiredFile(fieldName, requiredFile.message(), file, errors);
       }
 
       ImageContentType imageContentType = enumField.getAnnotation(ImageContentType.class);
       if (imageContentType != null) {
-        String err = validateImageContentType(imageContentType.message(), file);
-        if (err != null) {
-          result.error(err);
-          return result;
-        }
-      }
-
-      FileBase64 fileBase64 = enumField.getAnnotation(FileBase64.class);
-      if (fileBase64 != null) {
-        String err = convertToBase64(fileBase64.message(), file, result);
-        if (err != null) {
-          result.error(err);
-          return result;
-        }
+        validateImageContentType(fieldName, imageContentType.message(), file, errors);
       }
     }
 
-    return result;
+    return errors;
   }
 
   private <E extends Enum<E> & FileField> Field resolveField(Class<E> enumClass, E constant) {
@@ -66,37 +50,23 @@ public class FileValidator {
     }
   }
 
-  private String validateRequiredFile(String message, MultipartFile file) {
+  private void validateRequiredFile(String fieldName, String message, MultipartFile file,
+      Map<String, String> errors) {
     if (file == null || file.isEmpty()) {
-      return message;
+      if (!errors.containsKey(fieldName)) {
+        errors.put(fieldName, message);
+      }
     }
-    return null;
   }
 
-  private String validateImageContentType(String message, MultipartFile file) {
-    if (file == null || file.isEmpty()) {
-      return null;
+  private void validateImageContentType(String fieldName, String message, MultipartFile file,
+      Map<String, String> errors) {
+    if (file == null || file.isEmpty() || errors.containsKey(fieldName)) {
+      return;
     }
     String contentType = file.getContentType();
     if (contentType == null || !contentType.toLowerCase().startsWith("image/")) {
-      return message;
-    }
-    return null;
-  }
-
-  private String convertToBase64(String message, MultipartFile file, FileValidationResult result) {
-    if (file == null || file.isEmpty()) {
-      return message;
-    }
-    try {
-      String base64 = Utills.toBase64(file);
-      if (Utills.isEmpty(base64)) {
-        return message;
-      }
-      result.success(base64);
-      return null;
-    } catch (Exception e) {
-      return message;
+      errors.put(fieldName, message);
     }
   }
 }
