@@ -1,7 +1,8 @@
-package com.mingshiu.engine.service;
+package com.mingshiu.engine.service.uploadtempfile;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.LinkedHashMap;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,7 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mingshiu.engine.common.Utills;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
-import com.mingshiu.engine.service.dto.UploadFileResponse;
+import com.mingshiu.engine.service.UploadFileValidator;
+import com.mingshiu.engine.service.uploadtempfile.dto.UploadFileResponse;
+import com.mingshiu.engine.service.uploadtempfile.dto.UploadValidationResult;
+import com.mingshiu.engine.service.uploadtempfile.field.UploadFileField;
+import com.mingshiu.engine.service.uploadtempfile.field.UploadTempFileField;
+import com.mingshiu.engine.validation.FileValidator;
+import com.mingshiu.engine.validation.FormValidator;
+import com.mingshiu.engine.validation.file.FileValidationResult;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,33 +29,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UploadTempFileService {
 
-  private static enum FileType {
-
-    VISUAL(1), FACE(2);
-
-    private final int type;
-
-    FileType(int type) {
-      this.type = type;
-    }
-
-    public int getType() {
-      return this.type;
-    }
-
-    public static FileType toFileType(int type) {
-      FileType rtn = null;
-      for (FileType t : values()) {
-        if (t.type == type) {
-          rtn = t;
-        }
-      }
-      return rtn;
-    }
-  }
-
   // MyBatis(Mapper)
   private final UploadTempFileMapper mapper;
+
+  // Validator
+  private final FormValidator formValidator;
+  private final FileValidator fileValidator;
 
   /**
    * File Upload 処理(画像)
@@ -61,58 +48,25 @@ public class UploadTempFileService {
 
     UploadFileResponse rtn = new UploadFileResponse();
 
-    String val = params.get("FileType");
-    if (Utills.isEmpty(val)) {
-      rtn.error("FileType is empty");
-      return rtn;
-    }
-
-    int num = Utills.toInt(val, 0);
-    if (num == 0) {
-      rtn.error("FileType is no number");
-      return rtn;
-    }
-
-    FileType type = FileType.toFileType(num);
-    if (type == null) {
-      rtn.error("FileType is not define");
-      return rtn;
-    }
-
-    if (file == null || file.isEmpty()) {
-      rtn.error("File is empty");
-      return rtn;
-    }
-
-    if (file == null || file.isEmpty()) {
-      rtn.error("File is empty");
-      return rtn;
-    }
-
-    String contentType = file.getContentType();
-    if (contentType == null || !contentType.toLowerCase().startsWith("image/")) {
-      rtn.error("File is no image");
-      return rtn;
-    }
-
-    String base64 = Utills.toBase64(file);
-    if (file == null || file.isEmpty()) {
-      rtn.error("to base64 error");
+    Map<String, String> errors = validate(file, params);
+    if (!errors.isEmpty()) {
+      rtn.error(errors);
       return rtn;
     }
 
     String userId = "0123456789";
     String sessionId = session.getId();
     String uniqueId = UUID.randomUUID().toString();
-    int fileType = type.getType();
+    String base64 = Utills.toBase64(file);
+    int fileType = Utills.toInt(params.get("FileType"), 0);
 
     int rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
     if (rs < 0) {
-      rtn.error("to base64 error");
+      rtn.error("db", "save file error");
       return rtn;
     }
 
-    rtn.success("");
+    rtn.success();
     return rtn;
   }
 
@@ -136,6 +90,26 @@ public class UploadTempFileService {
     } catch (Exception e) {
       rtn = -1;
     }
+    return rtn;
+  }
+
+  /**
+   * validate 処理
+   * 
+   * @param file   入力値(ファイル)
+   * @param params 入力値
+   * @return 処理結果
+   */
+  public Map<String, String> validate(MultipartFile file, Map<String, String> params) {
+    Map<String, String> rtn = new LinkedHashMap<String, String>();
+    Map<String, String> err = null;
+
+    err = formValidator.validate(UploadTempFileField.class, params);
+    rtn.putAll(err);
+
+    err = fileValidator.validate(UploadFileField.class, file);
+    rtn.putAll(err);
+
     return rtn;
   }
 }
