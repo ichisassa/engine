@@ -14,24 +14,20 @@ public class Utility {
     return rtn;
   }
 
-  public static int toInt(String val, int def) {
-    int rtn = def;
+  public static Integer toInt(String val) {
     try {
       return Integer.parseInt(val);
     } catch (Exception e) {
-      rtn = def;
+      return null;
     }
-    return rtn;
   }
 
-  public static short toShort(String val, short def) {
-    short rtn = def;
+  public static Short toShort(String val) {
     try {
       return Short.parseShort(val);
     } catch (Exception e) {
-      rtn = def;
+      return null;
     }
-    return rtn;
   }
 
   public static String toBase64(MultipartFile file) {

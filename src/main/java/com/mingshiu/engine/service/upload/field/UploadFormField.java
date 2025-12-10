@@ -1,14 +1,25 @@
 package com.mingshiu.engine.service.upload.field;
 
-import com.mingshiu.engine.validation.annotation.FileBase64;
-import com.mingshiu.engine.validation.annotation.ImageContentType;
-import com.mingshiu.engine.validation.annotation.RequiredFile;
-import com.mingshiu.engine.validation.FileField;
+import com.mingshiu.engine.validation.FormField;
+import com.mingshiu.engine.validation.annotation.FileTypes;
+import com.mingshiu.engine.validation.annotation.Numeric;
+import com.mingshiu.engine.validation.annotation.Required;
 
-public enum UploadFormField implements FileField {
+public enum UploadFormField implements FormField {
 
-  @RequiredFile(message = "File is empty")
-  @ImageContentType(message = "File is no image")
-  @FileBase64(message = "to base64 error")
-  IMAGE;
+  @Required(message = "fileType is empty")
+  @Numeric(message = "fileType is no number")
+  @FileTypes(value = { 1, 2 }, message = "fileType is not define")
+  FILE_TYPE("FileType");
+
+  private final String paramName;
+
+  UploadFormField(String paramName) {
+    this.paramName = paramName;
+  }
+
+  @Override
+  public String paramName() {
+    return paramName;
+  }
 }

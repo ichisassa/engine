@@ -11,10 +11,10 @@ import com.mingshiu.engine.common.Utility;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
 import com.mingshiu.engine.service.upload.dto.UploadResponse;
-import com.mingshiu.engine.service.upload.field.UploadFileField;
+import com.mingshiu.engine.service.upload.field.UploadImgFileField;
 import com.mingshiu.engine.service.upload.field.UploadFormField;
-import com.mingshiu.engine.validation.FileValidator;
-import com.mingshiu.engine.validation.FormValidator;
+import com.mingshiu.engine.validation.ValidatorFile;
+import com.mingshiu.engine.validation.ValidatorForm;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +30,8 @@ public class UploadService {
   private final UploadTempFileMapper mapper;
 
   // Validator
-  private final FormValidator formValidator;
-  private final FileValidator fileValidator;
+  private final ValidatorForm formValidator;
+  private final ValidatorFile fileValidator;
 
   /**
    * File Upload 処理(画像)
@@ -55,7 +55,7 @@ public class UploadService {
     String sessionId = session.getId();
     String uniqueId = UUID.randomUUID().toString();
     String base64 = Utility.toBase64(file);
-    int fileType = Utility.toInt(params.get("FileType"), 0);
+    Integer fileType = Utility.toInt(params.get("FileType"));
 
     int rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
     if (rs < 0) {
@@ -77,7 +77,7 @@ public class UploadService {
    * @param base64    base64文字列
    * @return 処理結果
    */
-  public int saveTempFile(String userId, String sessionId, String uniqueId, int fileType, String base64) {
+  public int saveTempFile(String userId, String sessionId, String uniqueId, Integer fileType, String base64) {
     int rtn = 0;
     try {
       UploadTempFile tmp = UploadTempFile.builder().userId(userId).sessionId(sessionId).uniqueId(uniqueId)
@@ -101,10 +101,10 @@ public class UploadService {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
     Map<String, String> err = null;
 
-    err = formValidator.validate(UploadFileField.class, params);
+    err = formValidator.validate(UploadFormField.class, params);
     rtn.putAll(err);
 
-    err = fileValidator.validate(UploadFormField.class, file);
+    err = fileValidator.validate(UploadImgFileField.class, file);
     rtn.putAll(err);
 
     return rtn;
