@@ -4,7 +4,7 @@ import java.util.Base64;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Utills {
+public class Utility {
 
   public static boolean isEmpty(String val) {
     boolean rtn = false;

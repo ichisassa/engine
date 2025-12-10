@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mingshiu.engine.common.Utills;
+import com.mingshiu.engine.common.Utility;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
 import com.mingshiu.engine.service.upload.dto.UploadResponse;
@@ -54,8 +54,8 @@ public class UploadService {
     String userId = "0123456789";
     String sessionId = session.getId();
     String uniqueId = UUID.randomUUID().toString();
-    String base64 = Utills.toBase64(file);
-    int fileType = Utills.toInt(params.get("FileType"), 0);
+    String base64 = Utility.toBase64(file);
+    int fileType = Utility.toInt(params.get("FileType"), 0);
 
     int rs = saveTempFile(userId, sessionId, uniqueId, fileType, base64);
     if (rs < 0) {
