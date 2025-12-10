@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import com.mingshiu.engine.service.uploadtempfile.UploadTempFileService;
-import com.mingshiu.engine.service.uploadtempfile.dto.UploadFileResponse;
+import com.mingshiu.engine.service.upload.UploadService;
+import com.mingshiu.engine.service.upload.dto.UploadResponse;
 
 /**
  * UploadApi Class
  */
 @RestController
 @RequiredArgsConstructor
-public class UploadTempFileApi {
+public class UploadApi {
 
-  private final UploadTempFileService service;
+  private final UploadService service;
 
   /**
    * File Upload 処理(画像)
@@ -33,7 +33,7 @@ public class UploadTempFileApi {
   @PostMapping("/api/upload/file/image")
   public ResponseEntity<?> uploadImg(@RequestParam("file") MultipartFile file, @RequestParam Map<String, String> params,
       HttpSession session) {
-    UploadFileResponse response = service.uploadImg(file, params, session);
+    UploadResponse response = service.uploadImg(file, params, session);
     return ResponseEntity.ok(response);
   }
 }

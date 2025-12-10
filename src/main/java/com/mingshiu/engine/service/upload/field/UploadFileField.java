@@ -1,11 +1,11 @@
-package com.mingshiu.engine.service.uploadtempfile.field;
+package com.mingshiu.engine.service.upload.field;
 
 import com.mingshiu.engine.validation.FormField;
 import com.mingshiu.engine.validation.annotation.IntValues;
 import com.mingshiu.engine.validation.annotation.Numeric;
 import com.mingshiu.engine.validation.annotation.Required;
 
-public enum FileField implements FormField {
+public enum UploadFileField implements FormField {
 
   @Required(message = "FileType is empty")
   @Numeric(message = "FileType is no number")
@@ -14,7 +14,7 @@ public enum FileField implements FormField {
 
   private final String paramName;
 
-  FileField(String paramName) {
+  UploadFileField(String paramName) {
     this.paramName = paramName;
   }
 

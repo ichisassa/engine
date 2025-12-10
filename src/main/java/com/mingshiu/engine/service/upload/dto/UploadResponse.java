@@ -1,8 +1,8 @@
-package com.mingshiu.engine.service.uploadtempfile.dto;
+package com.mingshiu.engine.service.upload.dto;
 
 import java.util.Map;
 
-public class UploadFileResponse {
+public class UploadResponse {
 
   public boolean isError;
   public Map<String, String> messages;

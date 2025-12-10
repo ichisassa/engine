@@ -1,4 +1,4 @@
-package com.mingshiu.engine.service.uploadtempfile;
+package com.mingshiu.engine.service.upload;
 
 import java.util.Map;
 import java.util.UUID;
@@ -10,9 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mingshiu.engine.common.Utills;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
-import com.mingshiu.engine.service.uploadtempfile.dto.Response;
-import com.mingshiu.engine.service.uploadtempfile.field.FormField;
-import com.mingshiu.engine.service.uploadtempfile.field.FileField;
+import com.mingshiu.engine.service.upload.dto.UploadResponse;
+import com.mingshiu.engine.service.upload.field.UploadFileField;
+import com.mingshiu.engine.service.upload.field.UploadFormField;
 import com.mingshiu.engine.validation.FileValidator;
 import com.mingshiu.engine.validation.FormValidator;
 
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class UploadTempFileService {
+public class UploadService {
 
   // MyBatis(Mapper)
   private final UploadTempFileMapper mapper;
@@ -41,9 +41,9 @@ public class UploadTempFileService {
    * @param session Http Session
    * @return 処理結果
    */
-  public Response uploadImg(MultipartFile file, Map<String, String> params, HttpSession session) {
+  public UploadResponse uploadImg(MultipartFile file, Map<String, String> params, HttpSession session) {
 
-    Response rtn = new Response();
+    UploadResponse rtn = new UploadResponse();
 
     Map<String, String> errors = validate(file, params);
     if (!errors.isEmpty()) {
@@ -101,10 +101,10 @@ public class UploadTempFileService {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
     Map<String, String> err = null;
 
-    err = formValidator.validate(FileField.class, params);
+    err = formValidator.validate(UploadFileField.class, params);
     rtn.putAll(err);
 
-    err = fileValidator.validate(FormField.class, file);
+    err = fileValidator.validate(UploadFormField.class, file);
     rtn.putAll(err);
 
     return rtn;
