@@ -1,9 +1,11 @@
 package com.mingshiu.engine.service.upload;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.LinkedHashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,8 +13,8 @@ import com.mingshiu.engine.common.Utility;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
 import com.mingshiu.engine.service.upload.dto.UploadResponse;
-import com.mingshiu.engine.service.upload.field.UploadImgFileField;
 import com.mingshiu.engine.service.upload.field.UploadFormField;
+import com.mingshiu.engine.service.upload.field.UploadImgFileField;
 import com.mingshiu.engine.validation.ValidatorFile;
 import com.mingshiu.engine.validation.ValidatorForm;
 
@@ -26,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UploadService {
 
+  private static final Logger log = LoggerFactory.getLogger(UploadService.class);
+
   // MyBatis(Mapper)
   private final UploadTempFileMapper mapper;
 
@@ -34,15 +38,14 @@ public class UploadService {
   private final ValidatorFile fileValidator;
 
   /**
-   * File Upload 処理(画像)
-   * 
+   * File Upload 処理（画像）
+   *
    * @param file    入力値(ファイル)
    * @param params  入力値
    * @param session Http Session
    * @return 処理結果
    */
   public UploadResponse uploadImg(MultipartFile file, Map<String, String> params, HttpSession session) {
-
     UploadResponse rtn = new UploadResponse();
 
     Map<String, String> errors = validate(file, params);
@@ -79,7 +82,7 @@ public class UploadService {
 
   /**
    * insert 処理
-   * 
+   *
    * @param userId    userId
    * @param sessionId sessionId
    * @param uniqueId  uniqueId
@@ -94,6 +97,7 @@ public class UploadService {
           .fileType(fileType).fileBase64(base64).build();
       return mapper.insert(tmp);
     } catch (Exception e) {
+      log.error("Failed to insert temp file", e);
       rtn = null;
     }
     return rtn;
@@ -101,10 +105,10 @@ public class UploadService {
 
   /**
    * validate 処理
-   * 
+   *
    * @param file   入力値(ファイル)
    * @param params 入力値
-   * @return 処理結果
+   * @return 判定結果
    */
   public Map<String, String> validate(MultipartFile file, Map<String, String> params) {
     Map<String, String> rtn = new LinkedHashMap<String, String>();
@@ -117,6 +121,7 @@ public class UploadService {
       err = fileValidator.validate(UploadImgFileField.class, file);
       rtn.putAll(err);
     } catch (Exception e) {
+      log.error("Validation execution error", e);
       return null;
     }
     return rtn;
