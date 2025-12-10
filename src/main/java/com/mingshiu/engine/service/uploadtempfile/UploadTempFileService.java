@@ -10,14 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mingshiu.engine.common.Utills;
 import com.mingshiu.engine.mapper.UploadTempFileMapper;
 import com.mingshiu.engine.model.UploadTempFile;
-import com.mingshiu.engine.service.UploadFileValidator;
 import com.mingshiu.engine.service.uploadtempfile.dto.UploadFileResponse;
-import com.mingshiu.engine.service.uploadtempfile.dto.UploadValidationResult;
 import com.mingshiu.engine.service.uploadtempfile.field.UploadFileField;
 import com.mingshiu.engine.service.uploadtempfile.field.UploadTempFileField;
 import com.mingshiu.engine.validation.FileValidator;
 import com.mingshiu.engine.validation.FormValidator;
-import com.mingshiu.engine.validation.file.FileValidationResult;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

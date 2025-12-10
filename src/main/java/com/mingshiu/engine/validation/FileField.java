@@ -1,5 +1,4 @@
-package com.mingshiu.engine.validation.file;
+package com.mingshiu.engine.validation;
 
 public interface FileField {
 }
-
