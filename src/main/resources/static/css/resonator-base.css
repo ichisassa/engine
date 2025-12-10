@@ -112,7 +112,7 @@
   background:
     radial-gradient(circle at 30% 0%, rgba(0, 255, 255, 0.22), transparent 60%),
     linear-gradient(165deg, #02142a, #00040d);
-  padding: 1rem;
+  padding: 2.5rem 1rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,6 +129,8 @@
   letter-spacing: 0.25em;
   color: rgba(255, 255, 255, 255);
   text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* 共鳴者関連コンポーネント（文字色の設定）。 */
@@ -141,9 +143,7 @@
 .resonator-visual-preview-image {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
   display: none;
-  box-shadow: 0 0 18px rgba(0, 255, 255, 0.35);
 }
 
 /* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
@@ -178,7 +178,7 @@
   content: "";
   position: absolute;
   width: 200px;
-  height: 290px;
+  height: 265px;
   border-radius: 60px 60px 20px 20px;
   border: 1px solid rgba(0, 255, 255, 0.25);
   background: linear-gradient(180deg, rgba(0, 255, 255, 0.25), rgba(0, 45, 90, 0.15));
@@ -195,7 +195,7 @@
   height: 150px;
   border-radius: 50%;
   border: 1px solid rgba(0, 255, 255, 0.25);
-  top: -120px;
+  top: -110px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -277,7 +277,8 @@
   100% {
     box-shadow: 0 0 24px var(--drop-zone-glow), 0 0 10px rgba(255, 255, 255, 0.35);
   }
-/*.face-drop-icon 用スタイル（余白（margin）の調整、文字サイズや太さの調整）。 */
+
+  /*.face-drop-icon 用スタイル（余白（margin）の調整、文字サイズや太さの調整）。 */
 }
 
 .face-drop-icon {
@@ -298,7 +299,7 @@
   background:
     radial-gradient(circle at 70% 20%, rgba(120, 80, 255, 0.22), transparent 65%),
     linear-gradient(165deg, #060e24, #12052c);
-  padding: 1rem;
+  padding: 2.5rem 1rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -315,6 +316,8 @@
   letter-spacing: 0.25em;
   color: rgba(235, 225, 255, 255);
   text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* 共鳴者関連コンポーネント（文字色の設定）。 */
@@ -327,9 +330,7 @@
 .resonator-face-preview-image {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
   display: none;
-  box-shadow: 0 0 18px rgba(168, 112, 255, 0.35);
 }
 
 /* 共鳴者関連コンポーネント（細かなレイアウトや装飾の調整）。 */
@@ -347,12 +348,12 @@
 .resonator-face-silhouette {
   content: "";
   position: absolute;
-  width: 200px;
-  height: 40px;
+  width: 180px;
+  height: 20px;
   border-radius: 60px 60px 20px 20px;
   border: 1px solid rgba(185, 140, 255, 0.35);
   background: linear-gradient(180deg, rgba(168, 112, 255, 0.35), rgba(32, 6, 68, 0.35));
-  top: 75%;
+  top: 85%;
   left: 50%;
   transform: translateX(-50%);
 }
